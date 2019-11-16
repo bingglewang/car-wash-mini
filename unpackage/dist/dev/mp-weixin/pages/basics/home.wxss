@@ -1,0 +1,26 @@
+.page {
+  height: 100vh;
+  background-color: white;
+  overflow-y: hidden;
+}
+.basic-home {
+  overflow-y: hidden;
+}
+.basic-content {
+  width: 100%;
+  border-bottom: 1px solid white;
+  /* background-color: red; */
+}
+.basic-bottom {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1024;
+  overflow: hidden;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+.choose-cars {
+  height: 200rpx;
+}
+

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "scroll": "/components/scroll/scroll",
+    "tab": "/components/tab/tab"
+  }
+}
