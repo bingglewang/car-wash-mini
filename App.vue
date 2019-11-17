@@ -4,7 +4,13 @@
 		onLaunch: function() {
 			uni.getSystemInfo({
 				success: function(e) {
-					console.log("高度："+e.windowHeight)
+					var name = 'iPhone X'
+					var name1 = 'iPhone12'
+					if(e.model.indexOf(name) > -1 || e.model.indexOf(name1) > -1){
+						uni.setStorageSync("bottomTarHeight",34); 
+					}else{
+						uni.setStorageSync("bottomTarHeight",0); 
+					}
 					uni.setStorageSync("screenHeight",e.windowHeight); 
 					// #ifndef MP
 					Vue.prototype.StatusBar = e.statusBarHeight;

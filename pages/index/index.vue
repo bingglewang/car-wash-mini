@@ -36,9 +36,17 @@
 <script>
 	export default {
 		data() {
-		return {
-				PageCur: 'basics'
-			}
+			return {
+					PageCur: 'basics'
+				}
+		},
+		//右上角分享功能
+		onShareAppMessage: function(res) {
+			return {
+				title: 'car-wash-mini',
+				desc: '上门洗车',
+				path: '/pages/index/index',
+			};
 		},
 		methods: {
 			NavChange: function(e) {

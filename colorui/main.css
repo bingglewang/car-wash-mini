@@ -1483,7 +1483,7 @@ button.cuIcon.lg {
 	display: flex;
 	position: relative;
 	align-items: center;
-	min-height: 100upx;
+	min-height: 50px;
 	justify-content: space-between;
 }
 
@@ -1674,13 +1674,13 @@ button.cuIcon.lg {
 
 .cu-bar.tabbar {
 	padding: 0;
-	height: calc(100upx + env(safe-area-inset-bottom) / 2);
-	padding-bottom: calc(env(safe-area-inset-bottom) / 2);
+	height: calc(50px + env(safe-area-inset-bottom) );
+	padding-bottom: calc(env(safe-area-inset-bottom));
 }
 
 .cu-tabbar-height {
 	min-height: 50px;
-	/* height: calc(100upx + env(safe-area-inset-bottom) / 2); */
+	height: calc(50px + env(safe-area-inset-bottom));
 }
 
 .cu-bar.tabbar.shadow {

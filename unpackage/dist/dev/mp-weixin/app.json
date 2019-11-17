@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/basics/home",
-    "pages/component/home",
-    "pages/plugin/home"
+    "pages/washcar/home",
+    "pages/order/home",
+    "pages/card/home",
+    "pages/user/home"
   ],
   "subPackages": [],
   "window": {
@@ -18,10 +19,11 @@
     }
   },
   "usingComponents": {
-    "basics": "/pages/basics/home",
-    "components": "/pages/component/home",
-    "plugin": "/pages/plugin/home",
-    "about": "/pages/about/home",
+    "basics": "/pages/washcar/home",
+    "components": "/pages/order/home",
+    "plugin": "/pages/card/home",
+    "about": "/pages/user/home",
     "cu-custom": "/colorui/components/cu-custom"
-  }
+  },
+  "sitemapLocation": "sitemap56.json"
 }

@@ -1,16 +1,16 @@
 import Vue from 'vue'
 import App from './App'
 
-import basics from './pages/basics/home.vue'
+import basics from './pages/washcar/home.vue'
 Vue.component('basics',basics)
 
-import components from './pages/component/home.vue'
+import components from './pages/order/home.vue'
 Vue.component('components',components)
 
-import plugin from './pages/plugin/home.vue'
+import plugin from './pages/card/home.vue'
 Vue.component('plugin',plugin)
 
-import about from './pages/about/home.vue'
+import about from './pages/user/home.vue'
 Vue.component('about',about)
 
 import cuCustom from './colorui/components/cu-custom.vue'
