@@ -3,7 +3,7 @@
 		<view><map style="width: 100%;" :style="{ height: mapHeight + 'px' }" :latitude="latitude" :longitude="longitude" :markers="covers"></map></view>
 		<view class="basic-bottom">
 			<view class="basic-content bg-white" :style="{ height: contentheght + 'px' }">
-				<view class="cu-list menu sm-border">
+				<view class="cu-list menu sm-border" id="my-list-menu">
 					<view class="cu-item" @tap="doSelectLocations">
 						<view class="content">
 							<image src="/static/logo.png" class="png" mode="aspectFit"></image>
@@ -11,7 +11,7 @@
 							<image src="/static/right.png" class="png" mode="aspectFit" style="float: right;"></image>
 						</view>
 					</view>
-					<view class="cu-item" @tap="doSelectCars">
+					<view class="cu-item"  @tap="doSelectCars">
 						<view class="content">
 							<image src="/static/logo.png" class="png" mode="aspectFit"></image>
 							<text class="text-grey">选择您的车辆</text>
@@ -19,8 +19,39 @@
 							<image src="/static/down.png" v-if="!isRight" class="png" mode="aspectFit" style="float: right;"></image>
 						</view>
 					</view>
+					<div class="box">
+					  <div class="box-border">
+					  </div>
+					</div>
 				</view>
-				<view class="choose-cars bg-white" v-if="this.isRight"></view>
+				<view class="choose-cars bg-white" v-if="!this.isRight">
+					<view class=" cf padding-sm" >
+						<view  v-if="currentSwiper != 0" class="bg-cyan radius fl padding-sm" style="transform: translateY(50%);" @click="preSwiper">
+							<image src="/static/next.png"  mode="aspectFit" style="width: 10px;height: 10px;"></image>
+						</view>
+						<view  v-if="currentSwiper+1-myCarList.length != 0" class="bg-cyan radius fr padding-sm" style="transform: translateY(50%);" @click="nextSwiper">
+							<image src="/static/pre.png"  mode="aspectFit" style="width: 10px;height: 10px;"></image>
+						</view>
+						<view>
+							<swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" @change="swiperChange" :current="currentSwiper">
+								<template v-for="(item,index) in myCarList">
+									<swiper-item :key="index">
+										<view class="wash-list-content">
+											<view class="wash-list">
+												<view class="wash-box1" v-for="(car,index1) in item.cars" :key="index1">
+													<view class="wash-text" style="background-color: #e7e7e7;">{{car}}</view>
+												</view>
+												<view class="wash-box1">
+													<view class="wash-text" style="border: #DDDDDD 1upx dashed;"><span style="font-weight: bold;margin-right: 5px;">＋</span>添加车辆</view>
+												</view>
+											</view>
+										</view>
+									</swiper-item>
+								</template>
+							</swiper>
+						</view>
+					</view>
+				</view>
 			</view>
 			<view class="cu-tabbar-height"></view>
 		</view>
@@ -32,6 +63,11 @@ export default {
 	name: 'basics',
 	data() {
 		return {
+			currentSwiper:0,
+			indicatorDots: false,
+			autoplay: false,
+			interval: 2000,
+			duration: 500,
 			tarHeight: 50,
 			isRight: true,
 			screenHeight: 0,
@@ -56,6 +92,18 @@ export default {
 						color: '#fff'
 					}
 				}
+			],
+			myCarList:[
+				{
+					cars:[
+						"车辆1","车辆2","车辆3"
+					]
+				},
+				{
+					cars:[
+						"车辆4","车辆5","车辆6"
+					]
+				}
 			]
 		};
 	},
@@ -64,6 +112,19 @@ export default {
 	},
 
 	methods: {
+		//上一页
+		preSwiper(){
+			this.currentSwiper --;
+		},
+		//下一页
+		nextSwiper(){
+			this.currentSwiper ++;
+		},
+		// 监听swiper 改变
+		swiperChange(e){
+			console.log("当前:"+e.detail.current)
+			console.log("原始:"+e.detail.source)
+		},
 		//选择车辆地址
 		doSelectLocations() {
 			uni.chooseLocation({
@@ -118,5 +179,49 @@ export default {
 }
 .choose-cars {
 	height: 200upx;
+}
+
+.swiper {
+	margin-top: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+.box{
+    width:100px;
+    height:0px;
+    background-color:#ccc
+  }
+  .box-border{
+    position:relative;
+    left:25px;
+    width:50px;
+    height:0px;
+    border-bottom: 0.5px solid #ddd;
+  }
+
+.wash-list-content {
+	width: 100%;
+	max-height: 100px;
+	background-color: #fff;
+	.wash-list {
+		display: flex;
+		flex-wrap: wrap;
+		.wash-box1 {
+			width: 50%;
+			margin-bottom: 40upx;
+			.wash-text {
+				margin: 0 auto;
+				width: 85%;
+				display: flex;
+				justify-content: center;
+				font-size: 26upx;
+				color: #3d3d3d;
+				padding-top: 4px;
+				padding-bottom: 4px;
+			}
+		}
+	}
 }
 </style>

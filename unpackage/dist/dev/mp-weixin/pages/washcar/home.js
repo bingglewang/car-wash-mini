@@ -134,11 +134,47 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   name: 'basics',
   data: function data() {
     return {
+      currentSwiper: 0,
+      indicatorDots: false,
+      autoplay: false,
+      interval: 2000,
+      duration: 500,
       tarHeight: 50,
       isRight: true,
       screenHeight: 0,
@@ -160,7 +196,19 @@ var _default =
           display: 'ALWAYS',
           padding: 10,
           fontSize: 15,
-          color: '#fff' } }] };
+          color: '#fff' } }],
+
+
+
+      myCarList: [
+      {
+        cars: [
+        "车辆1", "车辆2", "车辆3"] },
+
+
+      {
+        cars: [
+        "车辆4", "车辆5", "车辆6"] }] };
 
 
 
@@ -171,6 +219,19 @@ var _default =
   },
 
   methods: {
+    //上一页
+    preSwiper: function preSwiper() {
+      this.currentSwiper--;
+    },
+    //下一页
+    nextSwiper: function nextSwiper() {
+      this.currentSwiper++;
+    },
+    // 监听swiper 改变
+    swiperChange: function swiperChange(e) {
+      console.log("当前:" + e.detail.current);
+      console.log("原始:" + e.detail.source);
+    },
     //选择车辆地址
     doSelectLocations: function doSelectLocations() {
       uni.chooseLocation({
