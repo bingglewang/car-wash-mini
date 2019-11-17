@@ -219,6 +219,13 @@ var _default =
   },
 
   methods: {
+    //跳转添加车辆页面
+    toAddCarPage: function toAddCarPage() {
+      var url = '/pages/washcar/addCar';
+      uni.navigateTo({
+        url: url });
+
+    },
     //上一页
     preSwiper: function preSwiper() {
       this.currentSwiper--;

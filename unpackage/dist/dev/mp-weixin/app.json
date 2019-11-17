@@ -4,7 +4,8 @@
     "pages/washcar/home",
     "pages/order/home",
     "pages/card/home",
-    "pages/user/home"
+    "pages/user/home",
+    "pages/washcar/addCar"
   ],
   "subPackages": [],
   "window": {
@@ -24,5 +25,6 @@
     "plugin": "/pages/card/home",
     "about": "/pages/user/home",
     "cu-custom": "/colorui/components/cu-custom"
-  }
+  },
+  "sitemapLocation": "sitemap68.json"
 }

@@ -41,7 +41,7 @@
 												<view class="wash-box1" v-for="(car,index1) in item.cars" :key="index1">
 													<view class="wash-text" style="background-color: #e7e7e7;">{{car}}</view>
 												</view>
-												<view class="wash-box1">
+												<view class="wash-box1" @tap="toAddCarPage">
 													<view class="wash-text" style="border: #DDDDDD 1upx dashed;"><span style="font-weight: bold;margin-right: 5px;">＋</span>添加车辆</view>
 												</view>
 											</view>
@@ -112,6 +112,13 @@ export default {
 	},
 
 	methods: {
+		//跳转添加车辆页面
+		toAddCarPage(){
+			let url = '/pages/washcar/addCar';
+			uni.navigateTo({
+				url:url
+			})
+		},
 		//上一页
 		preSwiper(){
 			this.currentSwiper --;
