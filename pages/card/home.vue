@@ -9,7 +9,7 @@
 				<view class="card-title" :key="index">{{item.province}}</view>
 				<uni-collapse :key="index">
 					<uni-collapse-item :title="item.city" open="true" thumb="/static/city.png">
-						<view class="cu-form-group" style="border-top: #c8c7cc 1px solid;">
+						<view class="cu-form-group" style="border-top: #ddd 1upx solid;" @click="toBuyPages">
 							<view class="title" style="margin-left: 40px;">{{item.area}}</view>
 							<checkbox
 								class="round blue check-size"
@@ -84,7 +84,14 @@ export default {
 			]
 		};
 	},
-	methods: {}
+	methods: {
+		toBuyPages(){
+			let url = '/pages/card/buyCard'
+			uni.navigateTo({
+				url:url
+			})
+		}
+	}
 };
 </script>
 

@@ -1,0 +1,22 @@
+.mycar-bottom.data-v-42d45d8a {
+  position: fixed;
+  bottom: 0;
+  height: 150rpx;
+  width: 100%;
+  background-color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.mycar-bottom .save-button-addCar.data-v-42d45d8a {
+    border-radius: 60rpx;
+    width: 90%;
+    background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
+    background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
+}
+

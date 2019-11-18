@@ -5,7 +5,9 @@
     "pages/order/home",
     "pages/card/home",
     "pages/user/home",
-    "pages/washcar/addCar"
+    "pages/washcar/addCar",
+    "pages/card/buyCard",
+    "pages/user/myCars"
   ],
   "subPackages": [],
   "window": {
@@ -25,6 +27,5 @@
     "plugin": "/pages/card/home",
     "about": "/pages/user/home",
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap14.json"
+  }
 }

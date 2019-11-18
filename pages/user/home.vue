@@ -8,17 +8,17 @@
 						<view class="phone-number">小炳</view>
 					</view>
 					<view class="box-bd">
-						<view class="item">
+						<view class="item" @click="toMyCarsPage">
 							<view class="icon"><img src="../../static/user/message.png" /></view>
-							<view class="text">我的通知</view>
+							<view class="text">我的车辆</view>
 						</view>
 						<view class="item">
 							<view class="icon"><img src="../../static/user/favorite.png" /></view>
-							<view class="text">我的收藏</view>
+							<view class="text">我的次卡</view>
 						</view>
 						<view class="item">
 							<view class="icon"><img src="../../static/user/service.png" /></view>
-							<view class="text">我的客服</view>
+							<view class="text">我的优惠劵</view>
 						</view>
 					</view>
 				</view>
@@ -95,7 +95,14 @@ export default {
 		return {};
 	},
 	onLoad() {},
-	methods: {}
+	methods: {
+		toMyCarsPage(){
+			let url = '/pages/user/myCars'
+			uni.navigateTo({
+				url:url
+			})
+		}
+	}
 };
 </script>
 
