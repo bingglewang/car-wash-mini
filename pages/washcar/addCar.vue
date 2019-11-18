@@ -24,8 +24,8 @@
 			<view class="detail-item-content"><input class="detail-item-input bg-gray" placeholder="请输入手机号" /></view>
 			<view class="detail-item-tile">
 				<text class="detail-item-title-font">车牌号码</text>
-				<view style="display: flex;align-items: center;margin-left: auto;margin-right: 20px;">
-					<image src="/static/logo.png" style="width: 20px;height: 20px;" mode="aspectFit"></image>
+				<view style="display: flex;align-items: center;margin-left: auto;margin-right: 20px;" @click="doScanCarNum">
+					<image src="/static/scan.png" style="width: 20px;height: 20px;margin-right: 5upx;" mode="aspectFit"></image>
 					<text>拍照识别车牌号</text>
 				</view>
 			</view>
@@ -121,6 +121,14 @@
 			};
 		},
 		methods: {
+			doScanCarNum(){
+				uni.chooseImage({
+				    count: 1, //默认9
+				    success: function (res) {
+				        console.log(JSON.stringify(res.tempFilePaths));
+				    }
+				});
+			},
 			// 判定是否为空
 			empty(v) {
 				let tp = typeof v,
@@ -380,8 +388,8 @@
 	.carinput-input .input-active {
 		border-bottom-width: 2upx !important;
 		border-bottom-style: solid;
-		border-bottom-color: #23CCAB;
-		color: #23CCAB
+		border-bottom-color: #0081FF;
+		color: #0081FF
 	}
 
 	.carinput-power {
@@ -403,18 +411,24 @@
 		line-height: 1
 	}
 
-	uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
-		background: #0081FF !important;
-		border-color: #0081FF !important;
+    checkbox .wx-checkbox-input {
+		border-radius: 50% !important;
+		color: #ffffff !important;
 	}
+
+	checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+		color: #fff !important;
+		background: #0081FF !important;
+	}
+
+	.wx-checkbox-input.wx-checkbox-input-checked {
+		border: none !important;
+	}
+
 
 	.carinput-power .checkbox checkbox {
 		transform: scale(.6) translateY(-2px);
 		margin-right: 0;
-	}
-
-	.carinput-power .checkbox checkbox ::after {
-		color: #0081FF;
 	}
 
 	.detail-item-input {

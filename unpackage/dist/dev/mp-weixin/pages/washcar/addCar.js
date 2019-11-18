@@ -122,7 +122,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 126));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var tkiFloatKeyboard = function tkiFloatKeyboard() {return __webpack_require__.e(/*! import() | components/tki-float-keyboard/tki-float-keyboard */ "components/tki-float-keyboard/tki-float-keyboard").then(__webpack_require__.bind(null, /*! @/components/tki-float-keyboard/tki-float-keyboard.vue */ 129));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 126));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var tkiFloatKeyboard = function tkiFloatKeyboard() {return __webpack_require__.e(/*! import() | components/tki-float-keyboard/tki-float-keyboard */ "components/tki-float-keyboard/tki-float-keyboard").then(__webpack_require__.bind(null, /*! @/components/tki-float-keyboard/tki-float-keyboard.vue */ 129));};var _default =
 
 
 
@@ -245,6 +245,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   },
   methods: {
+    doScanCarNum: function doScanCarNum() {
+      uni.chooseImage({
+        count: 1, //默认9
+        success: function success(res) {
+          console.log(JSON.stringify(res.tempFilePaths));
+        } });
+
+    },
     // 判定是否为空
     empty: function empty(v) {
       var tp = typeof v,
@@ -416,6 +424,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
   onLoad: function () {var _onLoad = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var that;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
               that = this;case 1:case "end":return _context.stop();}}}, _callee, this);}));function onLoad() {return _onLoad.apply(this, arguments);}return onLoad;}() };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

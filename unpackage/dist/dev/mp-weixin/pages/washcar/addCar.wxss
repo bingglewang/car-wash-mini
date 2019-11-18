@@ -100,8 +100,8 @@
 .carinput-input .input-active {
   border-bottom-width: 2rpx !important;
   border-bottom-style: solid;
-  border-bottom-color: #23CCAB;
-  color: #23CCAB;
+  border-bottom-color: #0081FF;
+  color: #0081FF;
 }
 .carinput-power {
   height: 90rpx;
@@ -134,18 +134,22 @@
   color: #999999;
   line-height: 1;
 }
-uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+checkbox .wx-checkbox-input {
+  border-radius: 50% !important;
+  color: #ffffff !important;
+}
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  color: #fff !important;
   background: #0081FF !important;
-  border-color: #0081FF !important;
+}
+.wx-checkbox-input.wx-checkbox-input-checked {
+  border: none !important;
 }
 .carinput-power .checkbox checkbox {
   -webkit-transform: scale(0.6) translateY(-2px);
       -ms-transform: scale(0.6) translateY(-2px);
           transform: scale(0.6) translateY(-2px);
   margin-right: 0;
-}
-.carinput-power .checkbox checkbox ::after {
-  color: #0081FF;
 }
 .detail-item-input {
   height: 80%;
