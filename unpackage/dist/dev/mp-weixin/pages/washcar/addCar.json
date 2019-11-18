@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "tki-float-keyboard": "/components/tki-float-keyboard/tki-float-keyboard"
+  }
 }

@@ -72,16 +72,82 @@
     text-align: left;
     padding-left: 15px;
 }
+.carinput-input {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.carinput-input-i {
+  width: 50rpx;
+  border-bottom-width: 2rpx !important;
+  border-bottom-style: solid;
+  border-bottom-color: #BCBCBC;
+  font-size: 36rpx;
+  color: #333333;
+  line-height: 1;
+  margin-right: 12rpx;
+  padding-bottom: 7rpx;
+  text-align: center;
+}
+.carinput-input-i:nth-last-child(1) {
+  margin-right: 0;
+}
+.carinput-input .input-active {
+  border-bottom-width: 2rpx !important;
+  border-bottom-style: solid;
+  border-bottom-color: #23CCAB;
+  color: #23CCAB;
+}
+.carinput-power {
+  height: 90rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.carinput-power .checkbox-g {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.carinput-power .checkbox {
+  margin-right: 92rpx;
+  font-size: 28rpx;
+  color: #999999;
+  line-height: 1;
+}
+uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+  background: #0081FF !important;
+  border-color: #0081FF !important;
+}
+.carinput-power .checkbox checkbox {
+  -webkit-transform: scale(0.6) translateY(-2px);
+      -ms-transform: scale(0.6) translateY(-2px);
+          transform: scale(0.6) translateY(-2px);
+  margin-right: 0;
+}
+.carinput-power .checkbox checkbox ::after {
+  color: #0081FF;
+}
 .detail-item-input {
   height: 80%;
-}
-.detail-check {
-  height: 40px;
-  text-align: right;
-}
-.detail-check .detail-check-right {
-    padding-right: 19px;
-    margin-bottom: auto;
-    margin-top: auto;
 }
 
