@@ -1,0 +1,32 @@
+.page.data-v-597adf64 {
+  height: 100vh;
+}
+.feedback-item.data-v-597adf64 {
+  border-radius: 20px;
+  width: 80%;
+  height: 50rpx;
+  border: #0081ff 1px solid;
+  font-size: 14px;
+  padding: 4rpx;
+  color: #ffffff;
+  margin-top: 10px;
+  background-color: #0081ff;
+}
+.detail-bottom.data-v-597adf64 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 50px;
+}
+.detail-bottom .save-button-addCar.data-v-597adf64 {
+    border-radius: 100px;
+    width: 80%;
+    background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
+    background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
+}
+

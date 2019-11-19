@@ -12,7 +12,7 @@
 							<view class="icon"><img src="../../static/user/message.png" /></view>
 							<view class="text">我的车辆</view>
 						</view>
-						<view class="item" >
+						<view class="item" @click="toPages('/pages/user/myVipCards')">
 							<view class="icon"><img src="../../static/user/favorite.png" /></view>
 							<view class="text">我的次卡</view>
 						</view>
@@ -26,7 +26,7 @@
 		</view>
 		<view class="list-content">
 			<view class="list">
-				<view class="box1" >
+				<view class="box1" @click="toPages('/pages/user/feedback')">
 					<view class="img">
 						<image src="../../static/user/opinion.png"></image>
 					</view>
@@ -44,7 +44,7 @@
 					</view>
 					<view class="text">公告信息</view>
 				</view>
-				<view class="box1">
+				<view class="box1" @click="showModal">
 					<view class="img">
 						<image src="../../static/user/opinion.png"></image>
 					</view>
@@ -87,12 +87,44 @@
 			</view>
 		</view>
 	    <view class="cu-tabbar-height"></view>
+		
+		<view class="cu-modal" :class="modalName=='Image'?'show':''">
+			<view class="cu-dialog">
+				<view>
+					<template v-for="(item,index) in kefuList">
+						<view :key="index" class="phone-item">
+							<text style="font-weight: bold;">{{item.name}}：</text>
+							<text style="color: #0081FF;">{{item.phoneNubmer}}</text>
+							<view class="phone-item-icon" @click="callPhonenumber(item.phoneNubmer)">
+								<image src="/static/phone.png" mode="aspectFit" style="width: 16px;height: 16px;"></image>
+							</view>
+						</view>
+					</template>
+				</view>
+				<view class="cu-bar bg-white">
+					<view class="action margin-0 flex-sub  solid-left" @tap="hideModal">关闭</view>
+				</view>
+			</view>
+		</view>
+		
 	</view>
 </template>
 <script>
 export default {
 	data() {
-		return {};
+		return {
+			modalName:'',
+			kefuList:[
+				{
+					name:'张三',
+					phoneNubmer:'13227355241'
+				},
+				{
+					name:'李四',
+					phoneNubmer:'17798318776'
+				}
+			]
+		};
 	},
 	onLoad() {},
 	methods: {
@@ -100,6 +132,18 @@ export default {
 			uni.navigateTo({
 				url:url
 			})
+		},
+		showModal() {
+			this.modalName = 'Image'
+		},
+		hideModal() {
+			this.modalName = null
+		},
+		callPhonenumber(phonenubmer){
+			console.log("电话："+phonenubmer)
+			uni.makePhoneCall({
+			    phoneNumber: phonenubmer 
+			});
 		}
 	}
 };
@@ -121,6 +165,23 @@ page {
 		background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 	}
 }
+
+.phone-item{
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding-left: 40px;
+	padding-right: 40px;
+	text{
+		color: #888888;
+	}
+	.phone-item-icon{
+		display: inline-block;
+		margin-left: auto;
+	}
+}
+
 .box {
 	width: 650upx;
 	height: 280upx;

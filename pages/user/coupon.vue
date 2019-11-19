@@ -414,13 +414,13 @@
 		}
 
 		.on {
-			color: #f06c7a;
+			color: #0081FF;
 		}
 
 		.border {
 			height: 4upx;
 			width: 33%;
-			background-color: #f06c7a;
+			background-color: #0081FF;
 			transition: all .3s ease-out;
 
 			&.invalid {
@@ -568,8 +568,8 @@
 					flex-shrink: 0;
 					width: 28%;
 					color: #fff;
-					background: linear-gradient(to right, #ec625c, #ee827f);
-
+					background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
+					
 					&.invalid {
 						background: linear-gradient(to right, #aaa, #999);
 
@@ -623,7 +623,7 @@
 						align-items: center;
 						font-size: 24upx;
 						background-color: #fff;
-						color: #ee827f;
+						color: #0081FF;
 						border-radius: 40upx;
 						padding: 0 10upx;
 					}

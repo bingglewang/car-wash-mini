@@ -40,8 +40,15 @@
 		{
 			"path": "pages/user/coupon",
 			"style": {"enablePullDownRefresh": true}
+		},
+		{
+			"path": "pages/user/myVipCards",
+			"style": {}
+		},
+		{
+			"path": "pages/user/feedback",
+			"style": {}
 		}
-		
 	],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#0081ff",

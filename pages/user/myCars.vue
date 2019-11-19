@@ -6,7 +6,15 @@
 		</cu-custom>
 		<scroll-view scroll-y class="padding">
 			<template v-for="(item,index) in carList">
-				<view class="car-list-item" :key="index"></view>
+				<view class="car-list-item" :key="index">
+					<image :src="item.cardImg" style="width:100px;height: 100px ;" mode="aspectFit"></image>
+					<view style="display: inline-block;margin-left: 20px;">
+						<view style="font-size: 20px;font-weight: bold;color: #000000;">{{item.cardNumber}}</view>
+						<view style="height: 20upx;"></view>
+						<view style="color: #888888;font-size: 15px">{{item.phoneNubmer}}</view>
+					</view>
+					<button  style="margin-left: auto;margin-right: 20px;" class="cu-btn round line-blue shadow">编辑</button>
+				</view>
 			</template>
 			<view style="height: 150upx;"></view>
 		</scroll-view>
@@ -20,40 +28,76 @@
 			return {
 				carList:[
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					},
 					{
-						title:'ddd'
+						id:1,
+						cardImg:'/static/logo.png',
+						cardNumber:'鲁4·77990',
+						phoneNubmer:'13227355241'
 					}
 				]
 			};
@@ -91,5 +135,8 @@
 		height: 100px;
 		background-color: white;
 		margin-bottom: 30upx;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
 	}
 </style>

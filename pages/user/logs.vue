@@ -7,11 +7,10 @@
 
 		<view class="cu-timeline">
 			<template v-for="(item,index) in logsList">
-				<view class="cu-time" :key="index">{{item.date}}</view>
 				<view class="cu-item"  :key="index">
 					<view class="content">
 						<view class="cu-capsule radius">
-							<view class="cu-tag bg-cyan">{{item.title}}</view>
+							<view class="cu-tag bg-gradual-blue">{{item.title}}</view>
 							<view class="cu-tag line-cyan">{{item.time}}</view>
 						</view>
 						<view class="margin-top">
@@ -32,9 +31,8 @@
 			return {
 				logsList: [
 					{
-						date:'11-19',
-						title:'上午',
-						time:'10:00',
+						title:'V1.0.0',
+						time:'2019-11-19',
 						content:[
 							'1、这是第一次，我家的铲屎官走了。',
 							'2、久到足足有三，他的脚步声响在。',
@@ -42,9 +40,8 @@
 						]
 					},
 					{
-						date:'11-19',
-						title:'上午',
-						time:'10:00',
+						title:'V1.0.0',
+						time:'2019-11-19',
 						content:[
 							'1、这是第一次，我家的铲屎官走了。',
 							'2、久到足足有三，他的脚步声响在。',
@@ -52,9 +49,8 @@
 						]
 					},
 					{
-						date:'11-19',
-						title:'上午',
-						time:'10:00',
+						title:'V1.0.0',
+						time:'2019-11-19',
 						content:[
 							'1、这是第一次，我家的铲屎官走了。',
 							'2、久到足足有三，他的脚步声响在。',
@@ -64,17 +60,15 @@
 						]
 					},
 					{
-						date:'11-19',
-						title:'上午',
-						time:'10:00',
+						title:'V1.0.0',
+						time:'2019-11-19',
 						content:[
 							'1、这是第一次，我家的铲屎官走了。'
 						]
 					},
 					{
-						date:'11-19',
-						title:'上午',
-						time:'10:00',
+						title:'V1.0.0',
+						time:'2019-11-19',
 						content:[
 							'1、这是第一次，我家的铲屎官走了。',
 							'2、久到足足有三，他的脚步声响在。'
