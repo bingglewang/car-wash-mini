@@ -6,8 +6,15 @@
 				success: function(e) {
 					var name = 'iPhone X'
 					var name1 = 'iPhone12'
+					var name2 = 'iPhone XR';
+					console.log("机型："+e.model)
 					if(e.model.indexOf(name) > -1 || e.model.indexOf(name1) > -1){
-						uni.setStorageSync("bottomTarHeight",34); 
+						if(e.model.indexOf(name2) > -1){
+							uni.setStorageSync("bottomTarHeight",0); 
+						}else{
+							uni.setStorageSync("bottomTarHeight",34); 
+						}
+						
 					}else{
 						uni.setStorageSync("bottomTarHeight",0); 
 					}
