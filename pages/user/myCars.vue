@@ -10,7 +10,7 @@
 			</template>
 			<view style="height: 150upx;"></view>
 		</scroll-view>
-		<view class="mycar-bottom" style=""><button type="primary" size="default" class="save-button-addCar">添加车辆</button></view>
+		<view class="mycar-bottom" style=""><button type="primary" size="default" class="save-button-addCar" @click="doAddCarPages">添加车辆</button></view>
 	</view>
 </template>
 
@@ -57,6 +57,14 @@
 					}
 				]
 			};
+		},
+		methods:{
+			doAddCarPages(){
+				let url = '/pages/washcar/addCar';
+				uni.navigateTo({
+					url:url
+				})
+			}
 		}
 	};
 </script>
@@ -74,6 +82,7 @@
 		.save-button-addCar {
 			border-radius: 60upx;
 			width: 90%;
+			z-index: 999;
 			background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 		}
 	}

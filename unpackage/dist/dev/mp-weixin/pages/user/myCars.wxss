@@ -16,6 +16,7 @@
 .mycar-bottom .save-button-addCar.data-v-8f36d5e6 {
     border-radius: 60rpx;
     width: 90%;
+    z-index: 999;
     background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
     background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 }
