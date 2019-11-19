@@ -7,9 +7,11 @@
 		<view style="position: fixed;top: 0;width: 100%;">
 			<view style="visibility: hidden;" :style="{height:CustomBar+'px'}">占位盒子</view>
 			<view class="tabr">
-				<view :class="{on:typeClass=='valid'}" @tap="switchType('valid')" style="display: flex;align-items: center;justify-content: center;width: 33%;">可用({{couponValidList.length}})</view>
-				<view :class="{on:typeClass=='novalid'}" @tap="switchType('novalid')" style="display: flex;align-items: center;justify-content: center;">不可用</view>
-				<view :class="{on:typeClass=='invalid'}" @tap="switchType('invalid')" style="display: flex;align-items: center;justify-content: center;">已失效</view>
+				<view style="display: flex;">
+					<view :class="{on:typeClass=='valid'}" @tap="switchType('valid')" class="tabr-item">可用({{couponValidList.length}})</view>
+					<view :class="{on:typeClass=='novalid'}" @tap="switchType('novalid')" class="tabr-item">不可用</view>
+					<view :class="{on:typeClass=='invalid'}" @tap="switchType('invalid')" class="tabr-item">已失效</view>
+				</view>
 				<view class="border" :class="typeClass"></view>
 			</view>
 		</view>
@@ -401,8 +403,8 @@
 		height: 95upx;
 		padding: 0 3%;
 		border-bottom: solid 1upx #dedede;
-		display: flex;
-		view {
+		.tabr-item {
+			display: flex;
 			width: 33%;
 			height: 90upx;
 			justify-content: center;
@@ -417,6 +419,7 @@
 
 		.border {
 			height: 4upx;
+			width: 33%;
 			background-color: #f06c7a;
 			transition: all .3s ease-out;
 

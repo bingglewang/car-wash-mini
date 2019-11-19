@@ -24,12 +24,12 @@ page.data-v-7e25de70 {
   height: 95rpx;
   padding: 0 3%;
   border-bottom: solid 1rpx #dedede;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
 }
-.tabr view.data-v-7e25de70 {
+.tabr .tabr-item.data-v-7e25de70 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
     width: 33%;
     height: 90rpx;
     -webkit-box-pack: center;
@@ -48,6 +48,7 @@ page.data-v-7e25de70 {
 }
 .tabr .border.data-v-7e25de70 {
     height: 4rpx;
+    width: 33%;
     background-color: #f06c7a;
     -webkit-transition: all .3s ease-out;
     -o-transition: all .3s ease-out;
