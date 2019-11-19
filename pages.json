@@ -32,7 +32,16 @@
 		{
 			"path": "pages/user/myCars",
 			"style": {}
+		},
+		{
+			"path": "pages/user/logs",
+			"style": {}
+		},
+		{
+			"path": "pages/user/coupon",
+			"style": {}
 		}
+		
 	],
 	"globalStyle": {
 		"navigationBarBackgroundColor": "#0081ff",

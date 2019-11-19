@@ -7,7 +7,9 @@
     "pages/user/home",
     "pages/washcar/addCar",
     "pages/card/buyCard",
-    "pages/user/myCars"
+    "pages/user/myCars",
+    "pages/user/logs",
+    "pages/user/coupon"
   ],
   "subPackages": [],
   "window": {

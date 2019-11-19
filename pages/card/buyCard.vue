@@ -43,7 +43,7 @@
 				<view class="cu-list grid col-4">
 					<template v-for="(item, index) in gridList">
 						<view class="cu-item" :key="index">
-							<view>
+							<view class="circle-bg">
 								<text class="grid-item-count1">{{ item.count }}</text>
 								<text class="grid-item-unit1">{{ item.unit }}</text>
 							</view>
@@ -182,6 +182,20 @@ export default {
 .quanyishuoming-content{
 	padding-left: 20px;
 }
+
+.grid-item-count1 ::after{
+	  position: absolute;
+	  content: "";   
+	  display: block;   
+	  width: 20px;   
+	  height: 20px;  
+	  border-radius: 50%;
+	  background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
+	  right: calc(50% - 10px);
+	  top: calc(50% - 20px);
+	  opacity:.15;
+}
+
 
 .grid-item-count1 {
 	display: inline-block !important;

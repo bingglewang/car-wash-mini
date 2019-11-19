@@ -8,15 +8,15 @@
 						<view class="phone-number">小炳</view>
 					</view>
 					<view class="box-bd">
-						<view class="item" @click="toMyCarsPage">
+						<view class="item" @click="toPages('/pages/user/myCars')">
 							<view class="icon"><img src="../../static/user/message.png" /></view>
 							<view class="text">我的车辆</view>
 						</view>
-						<view class="item">
+						<view class="item" >
 							<view class="icon"><img src="../../static/user/favorite.png" /></view>
 							<view class="text">我的次卡</view>
 						</view>
-						<view class="item">
+						<view class="item" @click="toPages('/pages/user/coupon')">
 							<view class="icon"><img src="../../static/user/service.png" /></view>
 							<view class="text">我的优惠劵</view>
 						</view>
@@ -26,13 +26,13 @@
 		</view>
 		<view class="list-content">
 			<view class="list">
-				<view class="box1">
+				<view class="box1" >
 					<view class="img">
 						<image src="../../static/user/opinion.png"></image>
 					</view>
 					<view class="text">意见反馈</view>
 				</view>
-				<view class="box1">
+				<view class="box1" @click="toPages('/pages/user/logs')">
 					<view class="img">
 						<image src="../../static/user/opinion.png"></image>
 					</view>
@@ -96,8 +96,7 @@ export default {
 	},
 	onLoad() {},
 	methods: {
-		toMyCarsPage(){
-			let url = '/pages/user/myCars'
+		toPages(url){
 			uni.navigateTo({
 				url:url
 			})
