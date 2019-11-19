@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-var util = __webpack_require__(/*! ../../util/util.js */ 27);var refresh = function refresh() {return __webpack_require__.e(/*! import() | components/refresh */ "components/refresh").then(__webpack_require__.bind(null, /*! ../../components/refresh.vue */ 90));};var navTab = function navTab() {return __webpack_require__.e(/*! import() | components/navTab */ "components/navTab").then(__webpack_require__.bind(null, /*! ../../components/navTab.vue */ 97));};var tabBar4 = function tabBar4() {return __webpack_require__.e(/*! import() | components/tabBar4 */ "components/tabBar4").then(__webpack_require__.bind(null, /*! ../../components/tabBar4.vue */ 104));};var _default =
+var util = __webpack_require__(/*! ../../util/util.js */ 27);var refresh = function refresh() {return __webpack_require__.e(/*! import() | components/refresh */ "components/refresh").then(__webpack_require__.bind(null, /*! ../../components/refresh.vue */ 104));};var navTab = function navTab() {return __webpack_require__.e(/*! import() | components/navTab */ "components/navTab").then(__webpack_require__.bind(null, /*! ../../components/navTab.vue */ 111));};var tabBar4 = function tabBar4() {return __webpack_require__.e(/*! import() | components/tabBar4 */ "components/tabBar4").then(__webpack_require__.bind(null, /*! ../../components/tabBar4.vue */ 118));};var _default =
 
 
 

@@ -51,7 +51,8 @@
         "appid" : "wxad27f5e1b172e958",
         "setting" : {
             "urlCheck" : false,
-            "es6" : true
+            "es6" : true,
+			"checkSiteMap":false
         },
         "permission" : {
             "scope.userLocation" : {

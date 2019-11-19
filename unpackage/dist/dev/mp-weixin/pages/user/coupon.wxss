@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .coupon-content view.data-v-7e25de70 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -25,12 +24,13 @@ page.data-v-7e25de70 {
   height: 95rpx;
   padding: 0 3%;
   border-bottom: solid 1rpx #dedede;
-  /* position: fixed; */
-  top: 0;
-  z-index: 10;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 .tabr view.data-v-7e25de70 {
-    width: 50%;
+    width: 33%;
     height: 90rpx;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -54,6 +54,10 @@ page.data-v-7e25de70 {
     transition: all .3s ease-out;
 }
 .tabr .border.invalid.data-v-7e25de70 {
+      -webkit-transform: translate3d(200%, 0, 0);
+              transform: translate3d(200%, 0, 0);
+}
+.tabr .border.novalid.data-v-7e25de70 {
       -webkit-transform: translate3d(100%, 0, 0);
               transform: translate3d(100%, 0, 0);
 }
@@ -62,71 +66,9 @@ page.data-v-7e25de70 {
   display: block;
   position: relative;
 }
-@-webkit-keyframes showValid-data-v-7e25de70 {
-0% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-}
-100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-}
-@keyframes showValid-data-v-7e25de70 {
-0% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-}
-100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-}
-@-webkit-keyframes showInvalid-data-v-7e25de70 {
-0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-100% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-}
-}
-@keyframes showInvalid-data-v-7e25de70 {
-0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-100% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-}
-}
 .sub-list.data-v-7e25de70 {
   width: 100%;
   padding: 20rpx 0 120rpx 0;
-}
-.sub-list.invalid.data-v-7e25de70 {
-    position: absolute;
-    top: 0;
-    left: 100%;
-    display: none;
-}
-.sub-list.showvalid.data-v-7e25de70 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-animation: showValid-data-v-7e25de70 0.20s linear both;
-            animation: showValid-data-v-7e25de70 0.20s linear both;
-}
-.sub-list.showinvalid.data-v-7e25de70 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-animation: showInvalid-data-v-7e25de70 0.20s linear both;
-            animation: showInvalid-data-v-7e25de70 0.20s linear both;
 }
 .sub-list .tis.data-v-7e25de70 {
     width: 100%;
@@ -154,35 +96,6 @@ page.data-v-7e25de70 {
     overflow: hidden;
     z-index: 4;
     border: 0;
-    /*
-		<view class="carrier" :class="[theIndex==index?'open':oldIndex==index?'close':'']" @touchstart="touchStart(index,$event)" @touchmove="touchMove(index,$event)" @touchend="touchEnd(index,$event)">
-			<view class="left">
-				<view class="title">
-					10元日常用品类
-				</view>
-				<view class="term">
-					2019-04-01~2019-05-30
-				</view>
-			</view>
-			<view class="right">
-				<view class="ticket">
-					<view class="num">
-						10
-					</view>
-					<view class="unit">
-						元
-					</view>
-				</view>
-				<view class="criteria">
-					满50使用
-				</view>
-				<view class="use">
-					去使用
-				</view>
-			</view>
-		</view>
-		* 
-		* */
 }
 .sub-list .row .menu.data-v-7e25de70 {
       position: absolute;
@@ -280,7 +193,8 @@ page.data-v-7e25de70 {
           font-size: 26rpx;
           color: #999;
 }
-.sub-list .row .carrier .left .gap-top.data-v-7e25de70, .sub-list .row .carrier .left .gap-bottom.data-v-7e25de70 {
+.sub-list .row .carrier .left .gap-top.data-v-7e25de70,
+        .sub-list .row .carrier .left .gap-bottom.data-v-7e25de70 {
           position: absolute;
           width: 20rpx;
           height: 20rpx;
@@ -323,7 +237,16 @@ page.data-v-7e25de70 {
 .sub-list .row .carrier .right.invalid .use.data-v-7e25de70 {
             color: #aaa;
 }
-.sub-list .row .carrier .right .ticket.data-v-7e25de70, .sub-list .row .carrier .right .criteria.data-v-7e25de70 {
+.sub-list .row .carrier .right.novalid.data-v-7e25de70 {
+          background: -webkit-gradient(linear, left top, right top, from(#aaa), to(#999));
+          background: -o-linear-gradient(left, #aaa, #999);
+          background: linear-gradient(to right, #aaa, #999);
+}
+.sub-list .row .carrier .right.novalid .use.data-v-7e25de70 {
+            color: #aaa;
+}
+.sub-list .row .carrier .right .ticket.data-v-7e25de70,
+        .sub-list .row .carrier .right .criteria.data-v-7e25de70 {
           width: 100%;
 }
 .sub-list .row .carrier .right .ticket.data-v-7e25de70 {

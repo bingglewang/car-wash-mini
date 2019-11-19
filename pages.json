@@ -31,7 +31,7 @@
 		},
 		{
 			"path": "pages/user/myCars",
-			"style": {}
+			"style": {"enablePullDownRefresh": true}
 		},
 		{
 			"path": "pages/user/logs",
@@ -39,7 +39,7 @@
 		},
 		{
 			"path": "pages/user/coupon",
-			"style": {}
+			"style": {"enablePullDownRefresh": true}
 		}
 		
 	],
