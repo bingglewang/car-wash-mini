@@ -1,0 +1,116 @@
+.container999 {
+  width: 100vw;
+  font-size: 28rpx;
+  min-height: 100vh;
+  overflow: hidden;
+  color: #6B8082;
+  position: relative;
+  background-color: #f6f6f6;
+}
+.content {
+  width: 100%;
+}
+.card {
+  width: 90%;
+  height: 368rpx;
+  background-color: white;
+  margin: 0 auto 42rpx auto;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  position: relative;
+}
+.noCard {
+  width: 90%;
+  height: 200rpx;
+  margin: auto;
+  background-color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #999999;
+  -webkit-box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10rpx;
+}
+.nav1 {
+  position: fixed;
+  left: 0;
+  /* top: 64px; */
+  color: white;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  font-size: 24rpx;
+  background-color: #50B7EA;
+  z-index: 1996;
+}
+.searchInput999 {
+  width: 90%;
+  margin: 0 auto;
+  background: white;
+  border-radius: 30rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 56rpx;
+}
+.search999 {
+  width: 32rpx;
+  height: 32rpx;
+}
+.searchBox999 {
+  width: 56rpx;
+  height: 56rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.input999 {
+  color: #999;
+  width: 80%;
+}
+

@@ -4,38 +4,54 @@
 			<block slot="backText">返回</block>
 			<block slot="content">加盟合作</block>
 		</cu-custom>
-		<view style="height: 120px;padding: 10px;">
-			<view class="bg-white" style="height: 100px;">
-				
+		<view class="feed-back-head">
+			<view class="bg-white feed-back-head-box">
+				<image src="/static/location-blue.png" class="feed-back-img" mode="aspectFit" @click="lookLocation"></image>
+				<view class="feed-back-head-title" @click="lookLocation">
+					<view class="feed-back-head-text1">{{companyName}}</view>
+					<view class="feed-back-head-text2">{{companyAddress}}</view>
+				</view>
+				<view class="feed-back-head-line">
+				</view>
+				<view class="feed-back-head-right" @click="callUs">
+					<view>
+						<image src="../../static/user/kefu.png" class="feed-back-img" mode="aspectFit"></image>
+					</view>
+					<view>
+						<text>联系我们</text>
+					</view>
+				</view>
 			</view>
 		</view>
-		<view class="header">
+		<view class="header11">
 			<view class="left-three" :style="{'border-bottom-color': leftColor }" @click="switchColor('left')">
-				<text class="left-text">个人加盟</text>
+				<text class="left-text" :style="{color:leftTextColor}">个人加盟</text>
 			</view>
 			<view class="right-three" :style="{'border-top-color': rightColor }" @click="switchColor('right')">
-				<text class="right-text">企业加盟</text>
+				<text class="right-text" :style="{color:rightTextColor}">企业加盟</text>
 			</view>
 		</view>
-		<view style="padding-left: 10px;padding-right: 10px;">
+		<view class="feed-back-form">
 			<view class="cu-form-group">
-				<view class="title">加盟区域</view>
+				<view class="title">加盟区域<span style="color: red;">*</span></view>
 				<input placeholder="请输入您要加盟的区域" name="input"></input>
 			</view>
 			<view class="cu-form-group">
-				<view class="title">姓<text style="visibility: hidden;">盒子</text>名</view>
+				<view class="title">姓<text style="visibility: hidden;">盒子</text>名<span style="color: red;">*</span></view>
 				<input placeholder="请输入您的姓名" name="input"></input>
 			</view>
 			<view class="cu-form-group">
-				<view class="title">联系电话</view>
+				<view class="title">联系电话<span style="color: red;">*</span></view>
 				<input placeholder="请输入您的联系电话" name="input"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">备<text style="visibility: hidden;">盒子</text>注</view>
 				<input placeholder="请输入您的备注信息" name="input"></input>
 			</view>
-			<view>
-				
+		</view>
+		<view class="feed-back-bottom">
+			<view class="bg-white feed-back-bottom-box">
+				<button type="primary" size="default" class="save-button-addCar" >确认提交</button>
 			</view>
 		</view>
 	</view>
@@ -45,27 +61,132 @@
 	export default {
 		data() {
 			return {
-				leftColor: '#888888',
-				rightColor: '#ffffff'
+				companyName:'将发动机防盗的风景撒旦飞洒算法撒旦幅度萨芬范德萨',
+				companyAddress:'飓风等级分级大家撒旦飞洒地方啊幅度萨芬范德萨',
+				feedTyp:0,
+				leftColor: '#ffffff',
+				rightColor: '#e7e7e7',
+				leftTextColor: 'red',
+				rightTextColor: 'black'
 			}
 		},
 		methods: {
 			switchColor(direction) {
 				if (direction == 'right') {
-					this.leftColor = '#ffffff'
-					this.rightColor = '#888888'
+					this.leftColor = '#e7e7e7'
+					this.rightColor = '#ffffff'
+					this.leftTextColor = 'black'
+					this.rightTextColor = 'red'
+					this.feedTyp = 1
 				}
 				if (direction == 'left') {
-					this.leftColor = '#888888'
-					this.rightColor = '#ffffff'
+					this.leftColor = '#ffffff'
+					this.rightColor = '#e7e7e7'
+					this.leftTextColor = 'red'
+					this.rightTextColor = 'black'
+					this.feedTyp = 0
 				}
+			},
+			callUs(){
+				uni.makePhoneCall({
+					phoneNumber:'13227355241'
+				})
+			},
+			lookLocation(){
+				let that = this;
+				uni.getLocation({
+				    type: 'gcj02', //返回可以用于uni.openLocation的经纬度
+				    success: function (res) {
+				        const latitude = res.latitude;
+				        const longitude = res.longitude;
+				        uni.openLocation({
+				            latitude: latitude,
+				            longitude: longitude,
+							name:that.companyAddress,
+							address:that.companyAddress,
+				            success: function () {
+				                console.log('success');
+				            }
+				        });
+				    }
+				});
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.header {
+	
+	.feed-back-head{
+		height: 120px;
+		padding: 10px;
+		.feed-back-head-box{
+			height: 100px;
+			display: flex;
+			align-items: center;
+			.feed-back-img{
+				width: 30px;
+				height: 30px;
+				margin-left: 20upx;
+			}
+			.feed-back-head-title{
+				display: inline-block;
+				margin-left: 10px;
+				margin-right: 10px;
+				width: 55%;
+				.feed-back-head-text1{
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+					font-size: 20px;
+					color: #000000;
+					font-weight: bold;
+					margin-bottom: 10upx;
+				}
+				.feed-back-head-text2{
+					overflow: hidden;
+					text-overflow:ellipsis;
+					white-space: nowrap;
+					font-size: 15px;
+					color: #888888;
+				}
+			}
+			.feed-back-head-line{
+				display: inline-block;
+				border-right: #ddd 1px solid;
+				width: 0;
+				height: 30%;
+			}
+			.feed-back-head-right{
+				margin-left: auto;
+				margin-right: 20px;
+			}
+		}
+	}
+	
+	.feed-back-form{
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	.feed-back-bottom{
+		padding-left: 10px;
+		padding-right: 10px;
+		border-top: 1rpx solid #eee;
+		.feed-back-bottom-box{
+			height: 100px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			.save-button-addCar {
+				border-radius: 100px;
+				width: 80%;
+				background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
+			}
+		}
+	}
+	
+	.header11 {
 		height: 50px;
 		width: 100%;
 		padding-left: 10px;

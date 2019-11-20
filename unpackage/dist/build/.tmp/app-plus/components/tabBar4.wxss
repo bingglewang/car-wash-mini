@@ -1,0 +1,62 @@
+.tabBar.data-v-50621f18 {
+  width: 100vw;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-box-shadow: 0rpx -2rpx 10rpx rgba(89, 125, 172, 0.4);
+          box-shadow: 0rpx -2rpx 10rpx rgba(89, 125, 172, 0.4);
+  margin: 0 auto;
+  z-index: 1998;
+  background-color: white;
+  color: #999;
+  border-left: 0px solid white;
+  border-top: 0px solid white;
+  border-right: 0px solid white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  border-top-right-radius: 0rpx;
+  border-top-left-radius: 0rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  overflow: hidden;
+}
+.tabBar .tabbar_item.data-v-50621f18 {
+    width: 25%;
+    font-size: 12px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+.tabBar .tabbar_item.active.data-v-50621f18 {
+      border-left: 0px solid white;
+      border-top: 0px solid white;
+      background: transparent;
+      color: #50B7EA;
+}
+.tabBar image.data-v-50621f18 {
+    width: 48rpx;
+    height: 48rpx;
+    margin-left: 5rpx;
+}
+
