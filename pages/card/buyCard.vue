@@ -8,7 +8,7 @@
 			<image src="/static/location-blue.png" class="buy-card-head-img" style="margin-left: 20upx;" mode="aspectFit"></image>
 			<text class="buy-card-head-text">房山区</text>
 			<image src="/static/down.png" class="buy-card-head-img" mode="aspectFit"></image>
-			<view class="buy-card-head-right">
+			<view class="buy-card-head-right" @click="toMyCoupons">
 				<text>我的会员卡</text>
 				<image src="/static/right.png" class="buy-card-head-img" mode="aspectFit"></image>
 			</view>
@@ -137,6 +137,12 @@ export default {
 	methods: {
 		swiperChange(e) {
 			this.bigIdx = e.detail.current;
+		},
+		toMyCoupons(){
+			let url = '/pages/user/coupon'
+			uni.navigateTo({
+				url:url
+			})
 		}
 	}
 };
