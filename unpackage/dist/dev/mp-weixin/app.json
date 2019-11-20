@@ -11,7 +11,8 @@
     "pages/user/logs",
     "pages/user/coupon",
     "pages/user/myVipCards",
-    "pages/user/feedback"
+    "pages/user/feedback",
+    "pages/user/cooperation"
   ],
   "subPackages": [],
   "window": {
@@ -31,5 +32,6 @@
     "plugin": "/pages/card/home",
     "about": "/pages/user/home",
     "cu-custom": "/colorui/components/cu-custom"
-  }
+  },
+  "sitemapLocation": "sitemap27.json"
 }

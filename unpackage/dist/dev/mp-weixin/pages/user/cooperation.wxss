@@ -1,0 +1,9 @@
+.cornerCut.data-v-2d750cc9 {
+  border-bottom: 100px #0081FF solid;
+  border-right: 100px #0081FF solid;
+}
+.cornerCut1.data-v-2d750cc9 {
+  border-left: 100px #0081FF solid;
+  border-top: 100px #0081FF solid;
+}
+
