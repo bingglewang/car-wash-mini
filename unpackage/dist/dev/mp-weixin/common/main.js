@@ -21,7 +21,7 @@ var _home3 = _interopRequireDefault(__webpack_require__(/*! ./pages/card/home.vu
 
 
 var _home4 = _interopRequireDefault(__webpack_require__(/*! ./pages/user/home.vue */ 37));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}_vue.default.component('basics', _home.default);_vue.default.component('components', _home2.default);_vue.default.component('plugin', _home3.default);
-_vue.default.component('about', _home4.default);var cuCustom = function cuCustom() {return __webpack_require__.e(/*! import() | colorui/components/cu-custom */ "colorui/components/cu-custom").then(__webpack_require__.bind(null, /*! ./colorui/components/cu-custom.vue */ 123));};
+_vue.default.component('about', _home4.default);var cuCustom = function cuCustom() {return __webpack_require__.e(/*! import() | colorui/components/cu-custom */ "colorui/components/cu-custom").then(__webpack_require__.bind(null, /*! ./colorui/components/cu-custom.vue */ 139));};
 
 
 _vue.default.component('cu-custom', cuCustom);
@@ -693,7 +693,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
-var util = __webpack_require__(/*! ../../util/util.js */ 27);var refresh = function refresh() {return __webpack_require__.e(/*! import() | components/refresh */ "components/refresh").then(__webpack_require__.bind(null, /*! ../../components/refresh.vue */ 128));};var navTab = function navTab() {return __webpack_require__.e(/*! import() | components/navTab */ "components/navTab").then(__webpack_require__.bind(null, /*! ../../components/navTab.vue */ 135));};var tabBar4 = function tabBar4() {return __webpack_require__.e(/*! import() | components/tabBar4 */ "components/tabBar4").then(__webpack_require__.bind(null, /*! ../../components/tabBar4.vue */ 142));};var _default =
+var util = __webpack_require__(/*! ../../util/util.js */ 27);var refresh = function refresh() {return __webpack_require__.e(/*! import() | components/refresh */ "components/refresh").then(__webpack_require__.bind(null, /*! ../../components/refresh.vue */ 144));};var navTab = function navTab() {return __webpack_require__.e(/*! import() | components/navTab */ "components/navTab").then(__webpack_require__.bind(null, /*! ../../components/navTab.vue */ 151));};var tabBar4 = function tabBar4() {return __webpack_require__.e(/*! import() | components/tabBar4 */ "components/tabBar4").then(__webpack_require__.bind(null, /*! ../../components/tabBar4.vue */ 158));};var _default =
 
 
 
@@ -909,7 +909,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCollapse = function uniCollapse() {return __webpack_require__.e(/*! import() | components/uni-collapse/uni-collapse */ "components/uni-collapse/uni-collapse").then(__webpack_require__.bind(null, /*! @/components/uni-collapse/uni-collapse.vue */ 149));};var uniCollapseItem = function uniCollapseItem() {return __webpack_require__.e(/*! import() | components/uni-collapse-item/uni-collapse-item */ "components/uni-collapse-item/uni-collapse-item").then(__webpack_require__.bind(null, /*! @/components/uni-collapse-item/uni-collapse-item.vue */ 156));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var uniCollapse = function uniCollapse() {return __webpack_require__.e(/*! import() | components/uni-collapse/uni-collapse */ "components/uni-collapse/uni-collapse").then(__webpack_require__.bind(null, /*! @/components/uni-collapse/uni-collapse.vue */ 165));};var uniCollapseItem = function uniCollapseItem() {return __webpack_require__.e(/*! import() | components/uni-collapse-item/uni-collapse-item */ "components/uni-collapse-item/uni-collapse-item").then(__webpack_require__.bind(null, /*! @/components/uni-collapse-item/uni-collapse-item.vue */ 172));};var _default =
 
 
 

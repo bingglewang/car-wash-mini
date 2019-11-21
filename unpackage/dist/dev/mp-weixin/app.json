@@ -13,7 +13,8 @@
     "pages/user/myVipCards",
     "pages/user/feedback",
     "pages/user/cooperation",
-    "pages/user/notice"
+    "pages/user/notice",
+    "pages/user/login"
   ],
   "subPackages": [],
   "window": {

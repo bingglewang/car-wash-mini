@@ -1616,7 +1616,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 175:
+/***/ 198:
 /*!**************************************************************!*\
   !*** E:/project/car-wash-mini/components/uni-icons/icons.js ***!
   \**************************************************************/
@@ -9502,7 +9502,7 @@ if (hadRuntime) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": {} }, "pages/washcar/home": { "usingComponents": {} }, "pages/order/home": { "usingComponents": { "refresh": "/components/refresh", "nav-tab": "/components/navTab", "tab-bar4": "/components/tabBar4" } }, "pages/card/home": { "usingComponents": { "uni-collapse": "/components/uni-collapse/uni-collapse", "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item" } }, "pages/user/home": { "usingComponents": {} }, "pages/washcar/addCar": { "usingComponents": { "tki-float-keyboard": "/components/tki-float-keyboard/tki-float-keyboard" } }, "pages/card/buyCard": { "usingComponents": {} }, "pages/user/myCars": { "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/logs": { "usingComponents": {} }, "pages/user/coupon": { "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/myVipCards": { "usingComponents": {} }, "pages/user/feedback": { "usingComponents": {} }, "pages/user/cooperation": { "usingComponents": {} }, "pages/user/notice": { "usingComponents": { "uni-notice-bar": "/components/uni-notice-bar/uni-notice-bar" } } }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/washcar/home": {}, "pages/order/home": {}, "pages/card/home": {}, "pages/user/home": {}, "pages/washcar/addCar": {}, "pages/card/buyCard": {}, "pages/user/myCars": { "enablePullDownRefresh": true }, "pages/user/logs": {}, "pages/user/coupon": { "enablePullDownRefresh": true }, "pages/user/myVipCards": {}, "pages/user/feedback": {}, "pages/user/cooperation": {}, "pages/user/notice": {}, "pages/user/login": {} }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
 
 /***/ }),
 
