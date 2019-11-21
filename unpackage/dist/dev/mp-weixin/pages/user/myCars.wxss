@@ -1,4 +1,4 @@
-.mycar-bottom.data-v-42d45d8a {
+.mycar-bottom.data-v-8f36d5e6 {
   position: fixed;
   bottom: 0;
   height: 150rpx;
@@ -13,14 +13,14 @@
       -ms-flex-align: center;
           align-items: center;
 }
-.mycar-bottom .save-button-addCar.data-v-42d45d8a {
+.mycar-bottom .save-button-addCar.data-v-8f36d5e6 {
     border-radius: 60rpx;
     width: 90%;
     z-index: 999;
     background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
     background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 }
-.car-list-item.data-v-42d45d8a {
+.car-list-item.data-v-8f36d5e6 {
   height: 100px;
   background-color: white;
   margin-bottom: 30rpx;

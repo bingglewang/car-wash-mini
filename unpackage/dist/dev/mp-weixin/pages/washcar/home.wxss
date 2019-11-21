@@ -6,6 +6,36 @@
 .basic-home {
   overflow-y: hidden;
 }
+.basic-home .basic-qipao {
+    padding-right: 10rpx;
+    padding-left: 10rpx;
+    background-color: #333333;
+    text-align: center;
+    height: 40px;
+    width: 65%;
+    z-index: 2999;
+    position: fixed;
+    right: 20rpx;
+    border-radius: 5px;
+}
+.basic-home .basic-qipao .basic-qipao-text {
+      line-height: 40px;
+      color: #FFFFFF;
+}
+.basic-home .qipao-box {
+    position: relative;
+}
+.basic-home .qipao-box ::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border: 20px solid;
+    border-color: transparent transparent #333333 transparent;
+    position: absolute;
+    right: 18%;
+    top: -30px;
+    z-index: 2999;
+}
 .basic-content {
   width: 100%;
   border-bottom: 1px solid white;

@@ -24,11 +24,11 @@
 			</view>
 		</view>
 		<view class="header11">
-			<view class="left-three" :style="{'border-bottom-color': leftColor }" @click="switchColor('left')">
-				<text class="left-text" :style="{color:leftTextColor}">个人加盟</text>
+			<view class="left-three" :style="{'border-color': leftColor,'border-width':leftborderWidth }" @click="switchColor('left')">
+				<text class="left-text" :style="{color:leftTextColor,bottom:leftTextTop}">个人加盟</text>
 			</view>
-			<view class="right-three" :style="{'border-top-color': rightColor }" @click="switchColor('right')">
-				<text class="right-text" :style="{color:rightTextColor}">企业加盟</text>
+			<view class="right-three" :style="{'border-color': rightColor,'border-width':rightborderWidth }" @click="switchColor('right')">
+				<text class="right-text" :style="{color:rightTextColor,top:rightTextTop}">企业加盟</text>
 			</view>
 		</view>
 		<view class="feed-back-form">
@@ -64,8 +64,12 @@
 				companyName:'将发动机防盗的风景撒旦飞洒算法撒旦幅度萨芬范德萨',
 				companyAddress:'飓风等级分级大家撒旦飞洒地方啊幅度萨芬范德萨',
 				feedTyp:0,
-				leftColor: '#ffffff',
-				rightColor: '#e7e7e7',
+				leftColor: 'transparent transparent #ffffff transparent',
+				leftborderWidth:'0 10px 50px 0',
+				leftTextTop: '-25px',
+				rightColor: '#e7e7e7 transparent transparent transparent',
+				rightborderWidth:'50px 0 0 10px',
+				rightTextTop: '-25px',
 				leftTextColor: 'red',
 				rightTextColor: 'black'
 			}
@@ -73,15 +77,23 @@
 		methods: {
 			switchColor(direction) {
 				if (direction == 'right') {
-					this.leftColor = '#e7e7e7'
-					this.rightColor = '#ffffff'
+					this.leftColor = '#e7e7e7 transparent transparent transparent'
+					this.leftborderWidth = '50px 10px 0 0'
+					this.leftTextTop = '25px'
+					this.rightColor = 'transparent transparent #ffffff transparent'
+					this.rightborderWidth = '0 0 50px 10px'
+					this.rightTextTop = '25px'
 					this.leftTextColor = 'black'
 					this.rightTextColor = 'red'
 					this.feedTyp = 1
 				}
 				if (direction == 'left') {
-					this.leftColor = '#ffffff'
-					this.rightColor = '#e7e7e7'
+					this.leftColor = 'transparent transparent #ffffff transparent'
+					this.leftborderWidth = '0 10px 50px 0'
+					this.leftTextTop = '-25px'
+					this.rightColor = '#e7e7e7 transparent transparent transparent'
+					this.rightborderWidth = '50px 0 0 10px'
+					this.rightTextTop = '-25px'
 					this.leftTextColor = 'red'
 					this.rightTextColor = 'black'
 					this.feedTyp = 0
@@ -196,9 +208,7 @@
 			right: 10px;
 			display: inline-block;
 			width: 50%;
-			border-width: 50px 0 0 10px;
 			border-style: solid;
-			border-color: blue transparent transparent transparent;
 
 			.right-text {
 				left: 50%;
@@ -214,10 +224,7 @@
 			position: relative;
 			width: 50%;
 			display: inline-block;
-			border-width: 0 10px 50px 0;
 			border-style: solid;
-			border-color: transparent transparent red transparent;
-
 			.left-text {
 				left: 50%;
 				transform: translateX(-50%);

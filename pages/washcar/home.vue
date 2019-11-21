@@ -1,5 +1,10 @@
 <template name="basics">
 	<view class="basic-home">
+		<view class="basic-qipao" :style="{top: CustomBar+'px'}" v-if="showQiPao">
+			<view class="qipao-box">
+				<text class="basic-qipao-text">添加到【我的小程序】更快找到我</text>
+			</view>
+		</view>
 		<view><map style="width: 100%;" :style="{ height: mapHeight + 'px' }" :latitude="latitude" :longitude="longitude" :markers="covers"></map></view>
 		<view class="basic-bottom">
 			<view class="basic-content bg-white" :style="{ height: contentheght + 'px' }">
@@ -63,6 +68,9 @@ export default {
 	name: 'basics',
 	data() {
 		return {
+			showQiPao:false,
+			StatusBar: this.StatusBar,
+			CustomBar: this.CustomBar,
 			currentSwiper:0,
 			indicatorDots: false,
 			autoplay: false,
@@ -169,6 +177,38 @@ export default {
 }
 .basic-home {
 	overflow-y: hidden;
+	.basic-qipao{
+		padding-right: 10upx;
+		padding-left: 10upx;
+		background-color: #333333;
+		text-align: center;
+		height: 40px;
+		width: 65%;
+		z-index: 2999;
+		position: fixed;
+		right: 20rpx;
+		border-radius: 5px;
+		.basic-qipao-text{
+			line-height: 40px;
+			color: #FFFFFF;
+		}
+	}
+	
+	.qipao-box{
+		position: relative;
+	}
+	
+	.qipao-box ::before{
+		content: '';
+		width: 0;
+		height: 0;
+		border: 20px solid;
+		border-color: transparent transparent #333333 transparent;
+		position: absolute;
+		right: 18%;
+		top:-30px;
+		z-index: 2999;
+	}
 }
 .basic-content {
 	width: 100%;

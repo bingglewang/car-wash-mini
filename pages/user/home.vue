@@ -38,7 +38,7 @@
 					</view>
 					<view class="text">更新日志</view>
 				</view>
-				<view class="box1">
+				<view class="box1" @click="toPages('/pages/user/notice')">
 					<view class="img">
 						<image src="../../static/user/notice.png"></image>
 					</view>
