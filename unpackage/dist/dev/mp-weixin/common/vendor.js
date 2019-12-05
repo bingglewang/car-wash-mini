@@ -734,7 +734,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1613,112 +1613,6 @@ function normalizeComponent (
   }
 }
 
-
-/***/ }),
-
-/***/ 198:
-/*!**************************************************************!*\
-  !*** E:/project/car-wash-mini/components/uni-icons/icons.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  'contact': "\uE100",
-  'person': "\uE101",
-  'personadd': "\uE102",
-  'contact-filled': "\uE130",
-  'person-filled': "\uE131",
-  'personadd-filled': "\uE132",
-  'phone': "\uE200",
-  'email': "\uE201",
-  'chatbubble': "\uE202",
-  'chatboxes': "\uE203",
-  'phone-filled': "\uE230",
-  'email-filled': "\uE231",
-  'chatbubble-filled': "\uE232",
-  'chatboxes-filled': "\uE233",
-  'weibo': "\uE260",
-  'weixin': "\uE261",
-  'pengyouquan': "\uE262",
-  'chat': "\uE263",
-  'qq': "\uE264",
-  'videocam': "\uE300",
-  'camera': "\uE301",
-  'mic': "\uE302",
-  'location': "\uE303",
-  'mic-filled': "\uE332",
-  'speech': "\uE332",
-  'location-filled': "\uE333",
-  'micoff': "\uE360",
-  'image': "\uE363",
-  'map': "\uE364",
-  'compose': "\uE400",
-  'trash': "\uE401",
-  'upload': "\uE402",
-  'download': "\uE403",
-  'close': "\uE404",
-  'redo': "\uE405",
-  'undo': "\uE406",
-  'refresh': "\uE407",
-  'star': "\uE408",
-  'plus': "\uE409",
-  'minus': "\uE410",
-  'circle': "\uE411",
-  'checkbox': "\uE411",
-  'close-filled': "\uE434",
-  'clear': "\uE434",
-  'refresh-filled': "\uE437",
-  'star-filled': "\uE438",
-  'plus-filled': "\uE439",
-  'minus-filled': "\uE440",
-  'circle-filled': "\uE441",
-  'checkbox-filled': "\uE442",
-  'closeempty': "\uE460",
-  'refreshempty': "\uE461",
-  'reload': "\uE462",
-  'starhalf': "\uE463",
-  'spinner': "\uE464",
-  'spinner-cycle': "\uE465",
-  'search': "\uE466",
-  'plusempty': "\uE468",
-  'forward': "\uE470",
-  'back': "\uE471",
-  'left-nav': "\uE471",
-  'checkmarkempty': "\uE472",
-  'home': "\uE500",
-  'navigate': "\uE501",
-  'gear': "\uE502",
-  'paperplane': "\uE503",
-  'info': "\uE504",
-  'help': "\uE505",
-  'locked': "\uE506",
-  'more': "\uE507",
-  'flag': "\uE508",
-  'home-filled': "\uE530",
-  'gear-filled': "\uE532",
-  'info-filled': "\uE534",
-  'help-filled': "\uE535",
-  'more-filled': "\uE537",
-  'settings': "\uE560",
-  'list': "\uE562",
-  'bars': "\uE563",
-  'loop': "\uE565",
-  'paperclip': "\uE567",
-  'eye': "\uE568",
-  'arrowup': "\uE580",
-  'arrowdown': "\uE581",
-  'arrowleft': "\uE582",
-  'arrowright': "\uE583",
-  'arrowthinup': "\uE584",
-  'arrowthindown': "\uE585",
-  'arrowthinleft': "\uE586",
-  'arrowthinright': "\uE587",
-  'pulldown': "\uE588",
-  'closefill': "\uE589",
-  'sound': "\uE590",
-  'scan': "\uE612" };exports.default = _default;
 
 /***/ }),
 
@@ -7204,7 +7098,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7225,14 +7119,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7308,7 +7202,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -7685,10 +7579,138 @@ internalMixin(Vue);
 
 /***/ }),
 
+/***/ 206:
+/*!*********************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star.png ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACcuBHKAAAD9klEQVRYR8WXX2gcVRTGv3M3u9tsNDREiq2suzOz40REUkNEQVDBivVPtVYJ1JeiqIiIiIr4oNAXsaDgm08iiCFCWsU/RBAx0dqC0MUQiCHtZnc2CV2koLRpdLPu7P3kSiJJupvMpls6r/ec8/3mzNzvnivY4jM5OXlNe3v7ewDuJ3ma5Muu6+a3Uk62kjQ8PBzp6+t7VUTeARBdrjEUi8WeTSaT5WZrbgmiWCz2aa2/IblrleCSiDxn2/bgFYcwnyGRSAyR3FdH7ExbW9uDqVSq0AxI053I5/OvADgCIL5eSEQ0yU+UUi9alrUUFqQpCN/3d2utvwaQ3ECgrLU+5Lru0ZZDlEqlRLlc/hTAgRDFfxORh23bng0Ri1CdyOVy8Ugk8jzJ9wHENitsPovW+mOSr7muu7BpfKOAbDab6O7uvklrfTOAPQCeBNC5WcGVdZJVEfme5FdKqWmt9XQmkzlXL3+lE1IqldorlUonyVtJPgSgH4AFwGzDUB3bAPACAGNk0ySPB0HwI4CS53l/ma7J7OxsV7VaHQCwXynVS/JaEUmQVGHfusm4f0TkotY6p5QaqVQqg5LP598F8AaAKyW6ISPJbw3ECADT/qv1nDYQTwD4CMD2q0BRJfmWZLPZaFdX1+sADofZfq0CXXbXocXFxRf+++t939+mtf4QwNOtEglR5+dYLHYwmUye/X/rzc3N7QqC4DOSd4cocLkhxSAIBjzPO2UKrdn/xWLxtiAIjomIfbkqjfJJLojIM47jfL4Sc4kJFQqFR0maMyK0OzYBbFz0sGVZR8w/0RDCTE39/f1vkny73nHdhOCa0OXzZDAIgpd6enourl6sa8dTU1M74/H4TwDcrYquzyN5FsDeTCYzuX6tLsTybvkFQG+rIACcUUrdY1nW76EgxsfHt3d2dp4AcEurIESkoJTak06n/VAQMzMzO0TkOACvVRAk50nudV13KhREqVS6sVwujwJwWgUhIiWl1L50Ov1rKIhCoeCR/A5AqlUQAM6RPJDJZE6GhejVWo+IyA0thPgTwIDjOD+EgvB9/w6t9ZcArt8Ewty2LpC8TkTaNok1s+ZTjuOY0WGth9RLzOVy94qIse/ueusk/1BKjdZqNTP+T4nIfSLyAIC7AGxrAPO3iByybftYKIhCoWAOsS9IroZYIJkXkcFarTYajUanV19wfN8388hukgdJGqCd60aDhveRumY1MTHR0dHR8YGIPAbgvNb6ZDQaPbq0tHTC87xFEWGj1o+NjbU5jrMjCILHtdaPiMidywPTKaXUgGVZxVCdMEHz8/Pt1WrVTN7nbdvObSTcCMhcmCqVyu0kU5FIJJtKpS7xCJP7L8jJrBUMCpKaAAAAAElFTkSuQmCC"
+
+/***/ }),
+
+/***/ 207:
+/*!****************************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star_active.png ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACcuBHKAAADVUlEQVRYR7XXX4iUVRjH8c8z7qq7mRnVkkZJRS0RYUWRpI1ua2im/bFYsBspKiIioiK6KPAmEgq6C4IIomWDtCjFSKIdd1cjULoqWRWtiJUQCv9Vos6ceGctVp113llnz+15zu/5vs97nj8nTHClkhl4G/cJu5W9EN32TUQuJnIofWqKDi/hTbSe1ugz1VNxt38a1ZwYxKDbJZskc8Y4PC55Orr0TjpE9TeEPqys4WyPKe6Pe+xvBKThSKSSF7FOmHaOo1CRfCR5LroczwvSEEQquVXYiKvP4yC7E2tisfVNh0g7tTvmY6yqK578pOKB6PZrXVvkikTaa5oRz+AdTK0rnP2Wig+1eTnmO1LPflyItEm7GW4UbsISPIaZ9QTH7J/EN/hSGHbccCx1sNb5KkTKIrJTm6NmCrcIy1XcIVxLNQ1zRWxcwOSwgn2SYcmgZKupDljgrwiVSEMudUoPHhbm4WKhXVJo4KsbMT2Bo5K9Cjar6I004C3Jq0ya03qAX0XaajOW17OcxP3dkfo9quADzJpER+NJZ5f39Ujva9XpFWGtlCP9mkU6msZ9Tnh2NDtKpgvv4Ylm+cihM6RsdXQb+T/10jZzlH0iKeYQuFCTX9ATi+3IhM7I/zTgNskGXHehXs5z/oiCJ6Pos/9szilCacCDUrVHNFId8zJnF3GtRdZlRWp8iGxqusJrwhvUaNd53Z1tN9rme7V4PhY6Ona7ZjlOX5ttugHcMFGfNc6NSJZFlx/P5athXc0Wvj9dxpvFsUeyKLr8nhdilrANNzeLAPuFJbHIz/kgtutw0iA6mwjxm4JlUbQrH8SQa5T14/omQhxQsDKKfsgH0a9T2CLMbSLEQRWr4l7b80EMmadc7a5XNRHiTwU9UfRtXoi7lH2BK+tAZJP1YVyOljq2WaV8PIrVjztj1a4TJYuxQbispnDyh9Av2ahilym6JUuFBVTTu9b6W7ImuqptIQfEgKLkc86AyKbm7MHbK1Uv7fDYB04qVeeR7F2yGksx+6zJfNz3SO1IbHGRad4VHpIcUrFdwXottlngWEQ2G9deqaRFqw5lj0hWYP7pgWmHpCe6ZB20fiQyi/SdNqeqk/chC+09n+NxgbJnwyXulMzN5vlaNSI7+y+jHvkCgjlOdgAAAABJRU5ErkJggg=="
+
+/***/ }),
+
+/***/ 215:
+/*!****************************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/components/uni-icons/icons.js ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  'contact': "\uE100",
+  'person': "\uE101",
+  'personadd': "\uE102",
+  'contact-filled': "\uE130",
+  'person-filled': "\uE131",
+  'personadd-filled': "\uE132",
+  'phone': "\uE200",
+  'email': "\uE201",
+  'chatbubble': "\uE202",
+  'chatboxes': "\uE203",
+  'phone-filled': "\uE230",
+  'email-filled': "\uE231",
+  'chatbubble-filled': "\uE232",
+  'chatboxes-filled': "\uE233",
+  'weibo': "\uE260",
+  'weixin': "\uE261",
+  'pengyouquan': "\uE262",
+  'chat': "\uE263",
+  'qq': "\uE264",
+  'videocam': "\uE300",
+  'camera': "\uE301",
+  'mic': "\uE302",
+  'location': "\uE303",
+  'mic-filled': "\uE332",
+  'speech': "\uE332",
+  'location-filled': "\uE333",
+  'micoff': "\uE360",
+  'image': "\uE363",
+  'map': "\uE364",
+  'compose': "\uE400",
+  'trash': "\uE401",
+  'upload': "\uE402",
+  'download': "\uE403",
+  'close': "\uE404",
+  'redo': "\uE405",
+  'undo': "\uE406",
+  'refresh': "\uE407",
+  'star': "\uE408",
+  'plus': "\uE409",
+  'minus': "\uE410",
+  'circle': "\uE411",
+  'checkbox': "\uE411",
+  'close-filled': "\uE434",
+  'clear': "\uE434",
+  'refresh-filled': "\uE437",
+  'star-filled': "\uE438",
+  'plus-filled': "\uE439",
+  'minus-filled': "\uE440",
+  'circle-filled': "\uE441",
+  'checkbox-filled': "\uE442",
+  'closeempty': "\uE460",
+  'refreshempty': "\uE461",
+  'reload': "\uE462",
+  'starhalf': "\uE463",
+  'spinner': "\uE464",
+  'spinner-cycle': "\uE465",
+  'search': "\uE466",
+  'plusempty': "\uE468",
+  'forward': "\uE470",
+  'back': "\uE471",
+  'left-nav': "\uE471",
+  'checkmarkempty': "\uE472",
+  'home': "\uE500",
+  'navigate': "\uE501",
+  'gear': "\uE502",
+  'paperplane': "\uE503",
+  'info': "\uE504",
+  'help': "\uE505",
+  'locked': "\uE506",
+  'more': "\uE507",
+  'flag': "\uE508",
+  'home-filled': "\uE530",
+  'gear-filled': "\uE532",
+  'info-filled': "\uE534",
+  'help-filled': "\uE535",
+  'more-filled': "\uE537",
+  'settings': "\uE560",
+  'list': "\uE562",
+  'bars': "\uE563",
+  'loop': "\uE565",
+  'paperclip': "\uE567",
+  'eye': "\uE568",
+  'arrowup': "\uE580",
+  'arrowdown': "\uE581",
+  'arrowleft': "\uE582",
+  'arrowright': "\uE583",
+  'arrowthinup': "\uE584",
+  'arrowthindown': "\uE585",
+  'arrowthinleft': "\uE586",
+  'arrowthinright': "\uE587",
+  'pulldown': "\uE588",
+  'closefill': "\uE589",
+  'sound': "\uE590",
+  'scan': "\uE612" };exports.default = _default;
+
+/***/ }),
+
 /***/ 27:
-/*!*********************************************!*\
-  !*** E:/project/car-wash-mini/util/util.js ***!
-  \*********************************************/
+/*!***********************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/util/util.js ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7749,9 +7771,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 4:
-/*!*******************************************!*\
-  !*** E:/project/car-wash-mini/pages.json ***!
-  \*******************************************/
+/*!*********************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/pages.json ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7761,9 +7783,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 40:
-/*!*****************************************************!*\
-  !*** E:/project/car-wash-mini/static/user/face.jpg ***!
-  \*****************************************************/
+/*!*******************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/static/user/face.jpg ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7772,9 +7794,9 @@ module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVR
 /***/ }),
 
 /***/ 41:
-/*!*******************************************************!*\
-  !*** E:/project/car-wash-mini/static/user/mycars.png ***!
-  \*******************************************************/
+/*!*********************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/static/user/mycars.png ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7783,9 +7805,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 42:
-/*!**********************************************************!*\
-  !*** E:/project/car-wash-mini/static/user/vipmanage.png ***!
-  \**********************************************************/
+/*!************************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/static/user/vipmanage.png ***!
+  \************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -7794,9 +7816,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 43:
-/*!*******************************************************!*\
-  !*** E:/project/car-wash-mini/static/user/coupon.png ***!
-  \*******************************************************/
+/*!*********************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/static/user/coupon.png ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9495,21 +9517,21 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 7:
-/*!************************************************************!*\
-  !*** E:/project/car-wash-mini/pages.json?{"type":"style"} ***!
-  \************************************************************/
+/*!**************************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"style"} ***!
+  \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/washcar/home": {}, "pages/order/home": {}, "pages/card/home": {}, "pages/user/home": {}, "pages/washcar/addCar": {}, "pages/card/buyCard": {}, "pages/user/myCars": { "enablePullDownRefresh": true }, "pages/user/logs": {}, "pages/user/coupon": { "enablePullDownRefresh": true }, "pages/user/myVipCards": {}, "pages/user/feedback": {}, "pages/user/cooperation": {}, "pages/user/notice": {}, "pages/user/login": {} }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/washcar/home": {}, "pages/order/home": {}, "pages/card/home": {}, "pages/user/home": {}, "pages/washcar/addCar": {}, "pages/card/buyCard": {}, "pages/user/myCars": { "enablePullDownRefresh": true }, "pages/user/logs": {}, "pages/user/coupon": { "enablePullDownRefresh": true }, "pages/user/myVipCards": {}, "pages/user/feedback": {}, "pages/user/cooperation": {}, "pages/user/notice": {}, "pages/user/login": {}, "pages/order/orderDetail": {} }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!***********************************************************!*\
-  !*** E:/project/car-wash-mini/pages.json?{"type":"stat"} ***!
-  \***********************************************************/
+/*!*************************************************************************!*\
+  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"stat"} ***!
+  \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

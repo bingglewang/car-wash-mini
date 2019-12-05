@@ -60,6 +60,10 @@
 		{
 			"path": "pages/user/login",
 			"style": {}
+		},
+		{
+			"path": "pages/order/orderDetail",
+			"style": {}
 		}
 	],
 	"globalStyle": {

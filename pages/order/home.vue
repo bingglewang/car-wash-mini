@@ -1,7 +1,10 @@
 <template>
 	<view class="container999" @touchstart="refreshStart" @touchmove="refreshMove" @touchend="refreshEnd">
 		<!-- 刷新组件需搭配scroll-view使用，并在pages.json中添加 "disableScroll":true-->
-		<cu-custom bgColor="bg-gradual-blue" :isBack="false"><block slot="backText">返回</block><block slot="content">订单列表</block></cu-custom>
+		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
+			<block slot="backText"></block>
+			<block slot="content">订单列表</block>
+		</cu-custom>
 		<refresh ref="refresh" @isRefresh='isRefresh'></refresh>
 		<view class='nav1'>
 			<!-- 导航栏 agents导航栏标题 -->
@@ -11,103 +14,141 @@
 		<swiper style="min-height: 100vh;" :current="currentTab" @change="swiperTab">
 			<swiper-item v-for="(listItem,listIndex) in list" :key="listIndex">
 				<scroll-view style="height: 100%;" scroll-y="true" @scrolltolower="lower1" scroll-with-animation :scroll-into-view="toView">
-				<view :id="'top'+listIndex" style="width: 100%;height: 180upx;">边距盒子</view>
-				<view class='content'>
-					<view class='card' v-for="(item,index) in listItem" v-if="listItem.length > 0" :key="index">
-						{{item}}
+					<view :id="'top'+listIndex" style="width: 100%;height: 110upx;"></view>
+					<view class='cu-card'>
+						<view class="cu-item bg-white shadow padding" v-for="(item, index) in listItem" v-if="listItem.length > 0" :key="index" style="padding-bottom: 16upx;" @click="naviagetorToPages('/pages/order/orderDetail')">
+							<view class="order-item" style="display: flex;align-items: center;">
+								<text class="text-cyan cuIcon-time" style="margin-right: 15upx;"></text>
+								<text class="text-black">订单号：</text>
+								<text class="order-font-color">203084757674748338</text>
+							</view>
+							<view class="order-item" style="display: flex;align-items: center;">
+								<text class="text-blue cuIcon-taxi" style="margin-right: 15upx;"></text>
+								<text class="text-black">下单时间：</text>
+								<text class="order-font-color">沪HUA298</text>
+							</view>
+							<view class="order-item">
+								<text class="text-olive cuIcon-phone" style="margin-right: 15upx;"></text>
+								<text class="text-black">实付金额：</text>
+								<text class="order-font-color">￥27.95</text>
+							</view>
+							<view class="order-item">
+								<text class="text-red cuIcon-location" style="margin-right: 15upx;"></text>
+								<text class="text-black">订单状态：</text>
+								<text class="order-font-color">进行中</text>
+							</view>
+							<view class="order-item">
+								<view class="order-item-bottom">
+									<view class="cu-tag radius light bg-gradual-blue">去洗车</view>
+								</view>
+							</view>
+						</view>
 					</view>
-				</view>
-				<view class='noCard' v-if="listItem.length===0">
-					暂无信息
-				</view>
-				<view style="width: 100%;height: 100upx;opacity:0;">底部占位盒子</view>
+					<view class='noCard' v-if="listItem.length===0">
+						暂无信息
+					</view>
+					<view style="width: 100%;height: 100upx;opacity:0;">底部占位盒子</view>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
 		<!-- <tabBar4 :currentPage="currentPage"></tabBar4> -->
-			<view class="cu-tabbar-height"></view>
+		<view class="cu-tabbar-height"></view>
 	</view>
 </template>
 
 <script>
-const util = require('../../util/util.js');
-import refresh from '../../components/refresh.vue';
-import navTab from '../../components/navTab.vue';
-import tabBar4 from '../../components/tabBar4.vue';
-export default {
-	components: {refresh,navTab,tabBar4},
-	data() {
-		return {
-			currentPage:'index',
-			toView:'',//回到顶部id
-			tabTitle:['进行中','已完成','退款单'], //导航栏格式 --导航栏组件
-			currentTab: 0, //sweiper所在页
-			pages:[1,1,1], //第几个swiper的第几页
-			list: [[1, 2, 3, 4, 5, 6],['a', 'b', 'c', 'd', 'e', 'f'],['2233','4234','13144','324244']] //数据格式
-		};
-	},
-	onLoad(e) {
-		
-	},
-	onShow() {},
-	onHide() {},
-	methods: {
-		toTop(){
-			this.toView = ''
-			setTimeout(()=>{
-				this.toView = 'top' + this.currentTab
-			},10)
+	const util = require('../../util/util.js');
+	import refresh from '../../components/refresh.vue';
+	import navTab from '../../components/navTab.vue';
+	import tabBar4 from '../../components/tabBar4.vue';
+	export default {
+		components: {
+			refresh,
+			navTab,
+			tabBar4
 		},
-		changeTab(index){
-			this.currentTab = index;
+		data() {
+			return {
+				currentPage: 'index',
+				toView: '', //回到顶部id
+				tabTitle: ['全部', '已接单', '进行中', '未评价'], //导航栏格式 --导航栏组件
+				currentTab: 0, //sweiper所在页
+				pages: [1, 1, 1, 1], //第几个swiper的第几页
+				list: [
+					[1, 2, 3, 4, 5, 6],
+					['a', 'b', 'c', 'd', 'e', 'f'],
+					['2233', '4234', '13144', '324244'],
+					['2233', '4234', '13144', '324244']
+				] //数据格式
+			};
 		},
-		// 其他请求事件 当然刷新和其他请求可以写一起 多一层判断。
-		isRequest() {
-			return new Promise((resolve, reject) => {
-				this.pages[this.currentTab]++
-				var that = this
+		onLoad(e) {
+
+		},
+		onShow() {},
+		onHide() {},
+		methods: {
+			toTop() {
+				this.toView = ''
 				setTimeout(() => {
-					uni.hideLoading()
-					uni.showToast({
-						icon: 'none',
-						title: `请求第${that.currentTab + 1 }个导航栏的第${that.pages[that.currentTab]}页数据成功`
-					})
-					let newData = ['新数据1','新数据2','新数据3']
-					resolve(newData)
-				}, 1000)
-			})
-		},
-		// swiper 滑动
-		swiperTab: function(e) {
-			var index = e.detail.current //获取索引
-			this.$refs.navTab.longClick(index);
-		},
-		// 加载更多 util.throttle为防抖函数
-		lower1: util.throttle(function(e) {
-		console.log(`加载${this.currentTab}`)//currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
-		uni.showLoading({
-			title: '加载中',
-			mask:true
-		})
-			this.isRequest().then((res)=>{
-				let tempList = this.list
-				tempList[this.currentTab] = tempList[this.currentTab].concat(res)
-				console.log(tempList)
-				this.list = tempList
-				this.$forceUpdate() //二维数组，开启强制渲染
-			})
-		}, 300),
-		// 刷新touch监听
-		refreshStart(e) {
-			this.$refs.refresh.refreshStart(e);
-		},
-		refreshMove(e){
-			this.$refs.refresh.refreshMove(e);
-		},
-		refreshEnd(e) {
-			this.$refs.refresh.refreshEnd(e);
-		},
-		isRefresh(){
+					this.toView = 'top' + this.currentTab
+				}, 10)
+			},
+			changeTab(index) {
+				this.currentTab = index;
+			},
+			naviagetorToPages(url) {
+				uni.navigateTo({
+					url: url
+				});
+			},
+			// 其他请求事件 当然刷新和其他请求可以写一起 多一层判断。
+			isRequest() {
+				return new Promise((resolve, reject) => {
+					this.pages[this.currentTab]++
+					var that = this
+					setTimeout(() => {
+						uni.hideLoading()
+						uni.showToast({
+							icon: 'none',
+							title: `请求第${that.currentTab + 1 }个导航栏的第${that.pages[that.currentTab]}页数据成功`
+						})
+						let newData = ['新数据1', '新数据2', '新数据3']
+						resolve(newData)
+					}, 1000)
+				})
+			},
+			// swiper 滑动
+			swiperTab: function(e) {
+				var index = e.detail.current //获取索引
+				this.$refs.navTab.longClick(index);
+			},
+			// 加载更多 util.throttle为防抖函数
+			lower1: util.throttle(function(e) {
+				console.log(`加载${this.currentTab}`) //currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
+				uni.showLoading({
+					title: '加载中',
+					mask: true
+				})
+				this.isRequest().then((res) => {
+					let tempList = this.list
+					tempList[this.currentTab] = tempList[this.currentTab].concat(res)
+					console.log(tempList)
+					this.list = tempList
+					this.$forceUpdate() //二维数组，开启强制渲染
+				})
+			}, 300),
+			// 刷新touch监听
+			refreshStart(e) {
+				this.$refs.refresh.refreshStart(e);
+			},
+			refreshMove(e) {
+				this.$refs.refresh.refreshMove(e);
+			},
+			refreshEnd(e) {
+				this.$refs.refresh.refreshEnd(e);
+			},
+			isRefresh() {
 				setTimeout(() => {
 					uni.showToast({
 						icon: 'success',
@@ -115,25 +156,43 @@ export default {
 					})
 					this.$refs.refresh.endAfter() //刷新结束调用
 				}, 1000)
+			}
 		}
-	}
-};
+	};
 </script>
 
-<style lang="scss">
-		.container999 {
-	  width: 100vw;
-	  font-size: 28upx;
-	  min-height: 100vh;
-	  overflow: hidden;
-	  color: #6B8082;
-	  position: relative;
-	  background-color: #f6f6f6;
+<style lang="scss" scoped>
+	
+	.order-font-color {
+		color: #75787d;
 	}
+	
+	.order-item {
+		padding: 8upx 20upx;
+		font-size: 32upx;
+		color: #303133;
+	}
+	
+	.order-item-bottom{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.container999 {
+		width: 100vw;
+		font-size: 28upx;
+		min-height: 100vh;
+		overflow: hidden;
+		color: #6B8082;
+		position: relative;
+		background-color: #f6f6f6;
+	}
+
 	.content {
 		width: 100%;
 	}
-	
+
 	.card {
 		width: 90%;
 		height: 368upx;
@@ -144,7 +203,7 @@ export default {
 		border-radius: 5px;
 		position: relative;
 	}
-	
+
 	.noCard {
 		width: 90%;
 		height: 200upx;
@@ -157,8 +216,8 @@ export default {
 		box-shadow: 0 0 10upx 0 rgba(0, 0, 0, 0.10);
 		border-radius: 10upx;
 	}
-	
-	
+
+
 	.nav1 {
 		position: fixed;
 		left: 0;
@@ -173,7 +232,7 @@ export default {
 		background-color: #50B7EA;
 		z-index: 1996;
 	}
-	
+
 	.searchInput999 {
 		width: 90%;
 		margin: 0 auto;
@@ -184,12 +243,12 @@ export default {
 		justify-content: center;
 		height: 56upx;
 	}
-	
+
 	.search999 {
 		width: 32upx;
 		height: 32upx;
 	}
-	
+
 	.searchBox999 {
 		width: 56upx;
 		height: 56upx;
@@ -197,7 +256,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 	}
-	
+
 	.input999 {
 		color: #999;
 		width: 80%;

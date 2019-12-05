@@ -5031,7 +5031,29 @@ scroll-view.cu-steps .cu-item {
         padding-bottom: 4px;
 }
 
-.container999 {
+.order-font-color.data-v-012d0475 {
+  color: #75787d;
+}
+.order-item.data-v-012d0475 {
+  padding: 8rpx 20rpx;
+  font-size: 32rpx;
+  color: #303133;
+}
+.order-item-bottom.data-v-012d0475 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.container999.data-v-012d0475 {
   width: 100vw;
   font-size: 28rpx;
   min-height: 100vh;
@@ -5040,10 +5062,10 @@ scroll-view.cu-steps .cu-item {
   position: relative;
   background-color: #f6f6f6;
 }
-.content {
+.content.data-v-012d0475 {
   width: 100%;
 }
-.card {
+.card.data-v-012d0475 {
   width: 90%;
   height: 368rpx;
   background-color: white;
@@ -5054,7 +5076,7 @@ scroll-view.cu-steps .cu-item {
   border-radius: 5px;
   position: relative;
 }
-.noCard {
+.noCard.data-v-012d0475 {
   width: 90%;
   height: 200rpx;
   margin: auto;
@@ -5076,7 +5098,7 @@ scroll-view.cu-steps .cu-item {
           box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.1);
   border-radius: 10rpx;
 }
-.nav1 {
+.nav1.data-v-012d0475 {
   position: fixed;
   left: 0;
   /* top: 64px; */
@@ -5103,7 +5125,7 @@ scroll-view.cu-steps .cu-item {
   background-color: #50B7EA;
   z-index: 1996;
 }
-.searchInput999 {
+.searchInput999.data-v-012d0475 {
   width: 90%;
   margin: 0 auto;
   background: white;
@@ -5122,11 +5144,11 @@ scroll-view.cu-steps .cu-item {
           justify-content: center;
   height: 56rpx;
 }
-.search999 {
+.search999.data-v-012d0475 {
   width: 32rpx;
   height: 32rpx;
 }
-.searchBox999 {
+.searchBox999.data-v-012d0475 {
   width: 56rpx;
   height: 56rpx;
   display: -webkit-box;
@@ -5142,7 +5164,7 @@ scroll-view.cu-steps .cu-item {
       -ms-flex-align: center;
           align-items: center;
 }
-.input999 {
+.input999.data-v-012d0475 {
   color: #999;
   width: 80%;
 }

@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/navTab":1,"components/refresh":1,"components/tabBar4":1,"components/uni-collapse-item/uni-collapse-item":1,"components/uni-collapse/uni-collapse":1,"components/tki-float-keyboard/tki-float-keyboard":1,"components/uni-notice-bar/uni-notice-bar":1,"components/uni-icons/uni-icons":1};
+/******/ 		var cssChunks = {"components/navTab":1,"components/refresh":1,"components/tabBar4":1,"components/uni-collapse-item/uni-collapse-item":1,"components/uni-collapse/uni-collapse":1,"components/tki-float-keyboard/tki-float-keyboard":1,"components/uni-notice-bar/uni-notice-bar":1,"components/myIssue":1,"components/uni-icons/uni-icons":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"colorui/components/cu-custom":"colorui/components/cu-custom","components/navTab":"components/navTab","components/refresh":"components/refresh","components/tabBar4":"components/tabBar4","components/uni-collapse-item/uni-collapse-item":"components/uni-collapse-item/uni-collapse-item","components/uni-collapse/uni-collapse":"components/uni-collapse/uni-collapse","components/tki-float-keyboard/tki-float-keyboard":"components/tki-float-keyboard/tki-float-keyboard","components/uni-notice-bar/uni-notice-bar":"components/uni-notice-bar/uni-notice-bar","components/uni-icons/uni-icons":"components/uni-icons/uni-icons"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"colorui/components/cu-custom":"colorui/components/cu-custom","components/navTab":"components/navTab","components/refresh":"components/refresh","components/tabBar4":"components/tabBar4","components/uni-collapse-item/uni-collapse-item":"components/uni-collapse-item/uni-collapse-item","components/uni-collapse/uni-collapse":"components/uni-collapse/uni-collapse","components/tki-float-keyboard/tki-float-keyboard":"components/tki-float-keyboard/tki-float-keyboard","components/uni-notice-bar/uni-notice-bar":"components/uni-notice-bar/uni-notice-bar","components/myIssue":"components/myIssue","components/uni-icons/uni-icons":"components/uni-icons/uni-icons"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
