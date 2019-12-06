@@ -15,6 +15,7 @@
     "pages/user/cooperation",
     "pages/user/notice",
     "pages/user/login",
+    "pages/user/validatorCode",
     "pages/order/orderDetail"
   ],
   "subPackages": [],
@@ -35,6 +36,5 @@
     "plugin": "/pages/card/home",
     "about": "/pages/user/home",
     "cu-custom": "/colorui/components/cu-custom"
-  },
-  "sitemapLocation": "sitemap83.json"
+  }
 }

@@ -1,12 +1,12 @@
-.buy-page.data-v-8fe55d28 {
+.buy-page.data-v-16f7eb6e {
   height: 100vh;
   background-color: #ffffff;
 }
-.cu-list.grid > .cu-item.data-v-8fe55d28:after {
+.cu-list.grid > .cu-item.data-v-16f7eb6e:after {
   border-right: none !important;
   border-bottom: none !important;
 }
-.detail-bottom.data-v-8fe55d28 {
+.detail-bottom.data-v-16f7eb6e {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -17,13 +17,13 @@
           align-items: center;
   margin-top: 50px;
 }
-.detail-bottom .save-button-addCar.data-v-8fe55d28 {
+.detail-bottom .save-button-addCar.data-v-16f7eb6e {
     border-radius: 100px;
     width: 80%;
     background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
     background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 }
-.quanyishuoming.data-v-8fe55d28 {
+.quanyishuoming.data-v-16f7eb6e {
   border-bottom: #ddd 0.5px solid;
   width: 90%;
   margin: 0 auto;
@@ -37,15 +37,15 @@
       -ms-flex-align: center;
           align-items: center;
 }
-.quanyishuoming .quanyishuoming-title.data-v-8fe55d28 {
+.quanyishuoming .quanyishuoming-title.data-v-16f7eb6e {
     font-weight: bold;
     font-size: 15px;
     border-bottom: #0081ff 2px solid;
 }
-.quanyishuoming-content.data-v-8fe55d28 {
+.quanyishuoming-content.data-v-16f7eb6e {
   padding-left: 20px;
 }
-.grid-item-count1.data-v-8fe55d28 ::after {
+.grid-item-count1.data-v-16f7eb6e ::after {
   position: absolute;
   content: "";
   display: block;
@@ -58,18 +58,18 @@
   top: calc(50% - 20px);
   opacity: .15;
 }
-.grid-item-count1.data-v-8fe55d28 {
+.grid-item-count1.data-v-16f7eb6e {
   display: inline-block !important;
   font-size: 24px !important;
   font-weight: bold !important;
   color: black !important;
   margin-right: 4rpx !important;
 }
-.grid-item-unit1.data-v-8fe55d28 {
+.grid-item-unit1.data-v-16f7eb6e {
   display: inline-block !important;
   color: black !important;
 }
-.buy-card-head.data-v-8fe55d28 {
+.buy-card-head.data-v-16f7eb6e {
   height: 40px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -80,17 +80,17 @@
       -ms-flex-align: center;
           align-items: center;
 }
-.buy-card-head .buy-card-head-text.data-v-8fe55d28 {
+.buy-card-head .buy-card-head-text.data-v-16f7eb6e {
     font-weight: bold;
     font-size: 15px;
     margin-left: 8rpx;
     margin-right: 8rpx;
 }
-.buy-card-head .buy-card-head-img.data-v-8fe55d28 {
+.buy-card-head .buy-card-head-img.data-v-16f7eb6e {
     width: 20px;
     height: 20px;
 }
-.buy-card-head .buy-card-head-right.data-v-8fe55d28 {
+.buy-card-head .buy-card-head-right.data-v-16f7eb6e {
     display: block;
     display: -webkit-box;
     display: -webkit-flex;
@@ -103,11 +103,11 @@
     margin-left: auto;
     margin-right: 20rpx;
 }
-.swiper.data-v-8fe55d28 {
+.swiper.data-v-16f7eb6e {
   width: 100%;
   margin-top: 10px;
 }
-.swiper .swiper-item.data-v-8fe55d28 {
+.swiper .swiper-item.data-v-16f7eb6e {
     border-radius: 16px;
     display: -webkit-box;
     display: -webkit-flex;
@@ -129,42 +129,42 @@
     margin-left: 10px;
     margin-right: 10px;
 }
-.swiper .big.data-v-8fe55d28 {
+.swiper .big.data-v-16f7eb6e {
     margin-top: 0;
 }
-.swiper .big .img.data-v-8fe55d28 {
+.swiper .big .img.data-v-16f7eb6e {
       margin-top: 15px;
       width: 40px;
       height: 40px;
 }
-.swiper .big .title.data-v-8fe55d28 {
+.swiper .big .title.data-v-16f7eb6e {
       font-size: 25px;
       font-weight: 500;
       color: white;
       line-height: 41px;
 }
-.swiper .big .sub_title.data-v-8fe55d28 {
+.swiper .big .sub_title.data-v-16f7eb6e {
       font-size: 11px;
       font-weight: 300;
       color: white;
       line-height: 41px;
 }
-.swiper .small.data-v-8fe55d28 {
+.swiper .small.data-v-16f7eb6e {
     margin-top: 14px;
     height: 75%;
 }
-.swiper .small .img.data-v-8fe55d28 {
+.swiper .small .img.data-v-16f7eb6e {
       margin-top: 5px;
       width: 25px;
       height: 25px;
 }
-.swiper .small .title.data-v-8fe55d28 {
+.swiper .small .title.data-v-16f7eb6e {
       font-size: 15px;
       font-weight: 500;
       color: white;
       line-height: 31px;
 }
-.swiper .small .sub_title.data-v-8fe55d28 {
+.swiper .small .sub_title.data-v-16f7eb6e {
       font-size: 7px;
       font-weight: 300;
       color: white;
