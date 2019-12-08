@@ -10,7 +10,7 @@
 			<view class="zai-form">
 				<view class="zai-label" style="color: #000000;font-weight: bold;font-size: 20px;padding: 0;">小饼好吃提醒您</view>
 				<view class="zai-label">*您未登录，请您使用(微信授权登录)</view>
-				<button class="zai-btn">授权登录</button>
+				<button class="zai-btn" open-type="getUserInfo" @getuserinfo="userInfo">授权登录</button>
 				<view class="zai-label">版本号：1.0.0</view>
 			</view>
 		</view>
@@ -18,6 +18,60 @@
 </template>
 
 <script>
+	import {
+	    mapMutations  
+	} from 'vuex';
+	export default {
+		data(){
+			return{
+				mpCode:''
+			}
+		},
+		onLoad() {
+			let that = this
+			// 登录
+			uni.login({
+				success: res => {
+					if (res.code) {
+						console.log("code:",res)
+						this.mpCode = res.code
+					} else {
+						console.log('登录失败！' + res.errMsg)
+					}
+				}
+			})
+		},
+		methods:{
+			...mapMutations(['login']),
+			userInfo(res){
+				let _this = this;
+				let loginParam = {
+					code:this.mpCode,
+					platform: 'mp',
+					/* encryptedData: res.detail.encryptedData, */
+					encryptedData:'13227355241',
+					/* iv: res.detail.iv, */
+					deviceType:1,
+					nickName: res.detail.userInfo.nickName,
+					avatarurl: res.detail.userInfo.avatarUrl
+				}
+				this.$api.request(loginParam,'api/user/wechat-app-login','POST').then(resp =>{
+					//存储用户信息
+					let userInfo = {
+						avatarUrl : resp.data.data.avatarurl,
+						nickName : resp.data.data.nickName
+					}
+					//将获取的token信息存储到缓存
+					uni.setStorage({
+					    key: 'token',  
+					    data: resp.data.data.token
+					})
+					_this.login(userInfo);
+					uni.navigateBack();
+				})				
+			}
+		}
+	}
 </script>
 
 <style>

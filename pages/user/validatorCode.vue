@@ -40,7 +40,7 @@
 			uni.login({
 				success: res => {
 					if (res.code) {
-						console.log("code:"+res.code)
+						console.log("code:"+res)
 						// 发送 res.code 到后台换取 openId, sessionKey
 					/* 	var urlVal = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + that.appid + '&secret=' + that.secret +
 							'&js_code=' + res.code + '&grant_type=authorization_code';

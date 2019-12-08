@@ -34,9 +34,14 @@ export const request = (data,url,method) => {
 	}
 	//设置请求结束后拦截器
 	http.interceptor.response = (response) => {
-		console.log('个性化response....')
 		//判断返回状态 执行相应操作
-		return response;
+		if(response.data.code -0 == 0){
+			return response;
+		}else{
+			uni.showModal({
+				title:response.data.msg
+			})
+		}
 	}
 	
     return http.request({
