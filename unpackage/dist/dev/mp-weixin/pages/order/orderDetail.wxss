@@ -1,8 +1,8 @@
-.page.data-v-77ad4f5c {
+.page.data-v-34dbf3ce {
   overflow: auto;
   background-color: #ffffff;
 }
-.box-align-start-end.data-v-77ad4f5c {
+.box-align-start-end.data-v-34dbf3ce {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12,17 +12,17 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.pingjia-box.data-v-77ad4f5c {
+.pingjia-box.data-v-34dbf3ce {
   width: 100%;
   background-color: white;
 }
-.pingjia-area-box.data-v-77ad4f5c {
+.pingjia-area-box.data-v-34dbf3ce {
   width: 100%;
   padding-left: 30rpx;
   padding-right: 30rpx;
   padding-bottom: 30rpx;
 }
-.pingjia-area.data-v-77ad4f5c {
+.pingjia-area.data-v-34dbf3ce {
   border: #f37b1d solid 1rpx;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -30,7 +30,7 @@
   width: 100%;
   padding: 10rpx 10rpx;
 }
-.order-button-box.data-v-77ad4f5c {
+.order-button-box.data-v-34dbf3ce {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -43,21 +43,21 @@
   margin-bottom: 10px;
   position: relative;
 }
-.order-button-box .save-button-addCar.data-v-77ad4f5c {
+.order-button-box .save-button-addCar.data-v-34dbf3ce {
     border-radius: 100px;
     width: 80%;
     background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
     background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 }
-.my-step-title.data-v-77ad4f5c {
+.my-step-title.data-v-34dbf3ce {
   padding-bottom: 10px;
   padding-top: 6px;
 }
-.create-order.data-v-77ad4f5c {
+.create-order.data-v-34dbf3ce {
   background: #fff;
   position: relative;
 }
-.create-order .a-bg.data-v-77ad4f5c {
+.create-order .a-bg.data-v-34dbf3ce {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -65,16 +65,16 @@
     width: 100%;
     height: 5rpx;
 }
-.cu-timeline > .cu-item.item-active.data-v-77ad4f5c::after {
+.cu-timeline > .cu-item.item-active.data-v-34dbf3ce::after {
   background-color: #f37b1d !important;
 }
-.cu-timeline > .cu-item.order-step-last.data-v-77ad4f5c::after {
+.cu-timeline > .cu-item.order-step-last.data-v-34dbf3ce::after {
   height: 80% !important;
 }
-.cu-timeline > .cu-item.data-v-77ad4f5c::after {
+.cu-timeline > .cu-item.data-v-34dbf3ce::after {
   top: 20px !important;
 }
-.cu-timeline > .cu-item.data-v-77ad4f5c:not([class*='cuIcon-'])::before {
+.cu-timeline > .cu-item.data-v-34dbf3ce:not([class*='cuIcon-'])::before {
   content: '\E671' !important;
 }
 
