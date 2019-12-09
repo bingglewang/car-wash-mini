@@ -14,6 +14,10 @@ const store = new Vuex.Store({
 			state.hasLogin = true;
 			state.userInfo = provider;
 			uni.setStorage({//缓存用户登陆状态
+			    key: 'hasLogin',
+			    data: true  
+			}) 
+			uni.setStorage({//缓存用户登陆状态
 			    key: 'userInfo',  
 			    data: provider  
 			}) 
@@ -25,6 +29,9 @@ const store = new Vuex.Store({
 			uni.removeStorage({  
                 key: 'userInfo'  
             })
+			uni.removeStorage({
+			    key: 'hasLogin'  
+			})
 		}
 	},
 	actions: {

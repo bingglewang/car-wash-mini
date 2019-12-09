@@ -43,8 +43,9 @@
 									<swiper-item :key="index">
 										<view class="wash-list-content">
 											<view class="wash-list">
-												<view class="wash-box1" v-for="(car,index1) in item.cars" :key="index1">
-													<view class="wash-text" style="background-color: #e7e7e7;">{{car}}</view>
+												<view class="wash-box1" v-for="(car,index1) in item.cars" :key="index1" @click="doCreateOrder(car)">
+													<view class="wash-text" style="background-color: #888888;" v-if="car == currentSelectCar">{{car}}</view>
+													<view class="wash-text" style="background-color: #e7e7e7;" v-else>{{car}}</view>
 												</view>
 												<view class="wash-box1" @tap="toAddCarPage">
 													<view class="wash-text" style="border: #DDDDDD 1upx dashed;"><span style="font-weight: bold;margin-right: 5px;">＋</span>添加车辆</view>
@@ -60,6 +61,18 @@
 			</view>
 			<view class="cu-tabbar-height"></view>
 		</view>
+		
+		<!-- 购买弹窗 -->
+		<view class="cu-modal bottom-modal" :class="modalName=='ChooseModal'?'show':''" @tap="hideModal">
+			<view class="cu-dialog" @tap.stop="">
+				<view class="cu-bar bg-white">
+					<view class="action text-blue" @tap="hideModal">取消</view>
+					<view class="action text-green" @tap="hideModal">确定</view>
+				</view>
+				<view class="grid col-3 padding-sm">
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -68,6 +81,8 @@ export default {
 	name: 'basics',
 	data() {
 		return {
+			currentSelectCar:'车辆1',
+			modalName:null,
 			showQiPao:false,
 			StatusBar: this.StatusBar,
 			CustomBar: this.CustomBar,
@@ -86,6 +101,7 @@ export default {
 			longitude: 116.39742,
 			covers: [
 				{
+					id:'dddds',
 					latitude: 39.909,
 					longitude: 116.39742,
 					iconPath: '../../static/location.png',
@@ -120,6 +136,13 @@ export default {
 	},
 
 	methods: {
+		hideModal(e) {
+			this.modalName = null
+		},
+		doCreateOrder(carNumber){
+			this.currentSelectCar = carNumber;
+			this.modalName = 'ChooseModal'
+		},
 		//跳转添加车辆页面
 		toAddCarPage(){
 			let url = '/pages/washcar/addCar';

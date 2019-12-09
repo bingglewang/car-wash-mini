@@ -1,4 +1,4 @@
-.car-list-item.data-v-25004eb1 {
+.car-list-item.data-v-60d30cb4 {
   height: 100px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -14,7 +14,7 @@
           justify-content: flex-start;
   margin-bottom: 10px;
 }
-.swiper-item.data-v-25004eb1 {
+.swiper-item.data-v-60d30cb4 {
   width: 100%;
   height: 100%;
   border-radius: 16px;
@@ -38,22 +38,22 @@
   margin-left: 10px;
   margin-right: 10px;
 }
-.small.data-v-25004eb1 {
+.small.data-v-60d30cb4 {
   margin-top: 14px;
   /* height: 75%; */
 }
-.small .img.data-v-25004eb1 {
+.small .img.data-v-60d30cb4 {
     margin-top: 5px;
     width: 25px;
     height: 25px;
 }
-.small .title.data-v-25004eb1 {
+.small .title.data-v-60d30cb4 {
     font-size: 15px;
     font-weight: 500;
     color: white;
     line-height: 31px;
 }
-.small .sub_title.data-v-25004eb1 {
+.small .sub_title.data-v-60d30cb4 {
     font-size: 7px;
     font-weight: 300;
     color: white;

@@ -34,25 +34,27 @@
 </template>
 
 <script>
-	import {
-	      mapState 
-	  } from 'vuex'; 
 	export default {
 		data() {
 			return {
-					PageCur: 'basics'
-				}
+					PageCur: 'basics',
+					hasLogin:false
+			}
 		},
 		onLoad() {
-			console.log("是否登录:"+this.hasLogin)
+			let _this = this;
+			uni.getStorage({
+				key: 'hasLogin',
+				success: function(res) {
+					_this.hasLogin = res.data
+				}
+			});
+			console.log("是否登录:",this.hasLogin)
 			if(!this.hasLogin){
 				uni.navigateTo({
 					url: '/pages/user/login'
 				}) 
 			}
-		},
-		computed: {
-			...mapState(['hasLogin','userInfo'])
 		},
 		//右上角分享功能
 		onShareAppMessage: function(res) {

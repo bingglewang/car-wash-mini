@@ -73,14 +73,22 @@
 					<view class="text">检查更新</view>
 				</view>
 
-				<view class="box1">
+				<!-- <view class="box1">
 					<navigator open-type="exit" target="miniProgram">
 						<view class="img">
 							<image src="../../static/user/exit.png"></image>
 						</view>
 						<view class="text">退出登录</view>
 					</navigator>
+				</view> -->
+				
+				<view class="box1" @click="exitLogin">
+						<view class="img">
+							<image src="../../static/user/exit.png"></image>
+						</view>
+						<view class="text">退出登录</view>
 				</view>
+				
 
 				<view class="box1" style="visibility: hidden;">
 					<view class="img">
@@ -129,6 +137,9 @@
 	</view>
 </template>
 <script>
+	import {
+		mapMutations
+	} from 'vuex';
 	export default {
 		data() {
 			return {
@@ -146,6 +157,7 @@
 		},
 		onLoad() {},
 		methods: {
+			...mapMutations(['logout']),
 			toPages(url) {
 				uni.navigateTo({
 					url: url
@@ -179,12 +191,20 @@
 						console.log("当前页面；", uni.getCurrentPages())
 						if (res.confirm) {
 							uni.navigateBack({
-								delta: -1
+								delta:-1
 							})
 						}
 					},
 				})
 			},
+			
+			exitLogin(){
+				this.logout();
+				uni.navigateTo({
+					url:'/pages/user/login'
+				})
+			},
+			
 			// 版本更新
 			checkUpdateVersion() {
 				let that = this;
