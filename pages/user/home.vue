@@ -157,14 +157,7 @@
 			};
 		},
 		mounted() {
-			let _this = this;
-			uni.getStorage({
-				key: 'userInfo',
-				success: function(res) {
-					console.log("用户信息：",res.data)
-					_this.userInfo = res.data;
-				}
-			});
+			this.userInfo = uni.getStorageSync('userInfo');
 		},
 		methods: {
 			...mapMutations(['logout']),

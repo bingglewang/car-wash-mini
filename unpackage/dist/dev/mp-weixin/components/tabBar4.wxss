@@ -1,4 +1,4 @@
-.tabBar.data-v-dbd0d938 {
+.tabBar.data-v-55a0da87 {
   width: 100vw;
   height: 100rpx;
   position: fixed;
@@ -23,7 +23,7 @@
   box-sizing: border-box;
   overflow: hidden;
 }
-.tabBar .tabbar_item.data-v-dbd0d938 {
+.tabBar .tabbar_item.data-v-55a0da87 {
     width: 25%;
     font-size: 12px;
     display: -webkit-box;
@@ -40,13 +40,13 @@
     -webkit-align-items: center;
             align-items: center;
 }
-.tabBar .tabbar_item.active.data-v-dbd0d938 {
+.tabBar .tabbar_item.active.data-v-55a0da87 {
       border-left: 0px solid white;
       border-top: 0px solid white;
       background: transparent;
       color: #50B7EA;
 }
-.tabBar image.data-v-dbd0d938 {
+.tabBar image.data-v-55a0da87 {
     width: 48rpx;
     height: 48rpx;
     margin-left: 5rpx;

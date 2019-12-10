@@ -62,10 +62,7 @@
 					avatarurl: 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJ5nKRcTbnl3IJOeVpjnT5TerbOj76wnrWXZ7G3mzvrMqGc0de0AWWZRVUI7grtn03piaXKHxIYyug/132'
 				}
 				//将获取的token信息存储到缓存
-				uni.setStorage({
-					key: 'token',
-					data: 'ceshi'
-				})
+				uni.setStorageSync('token','ceshi')
 				this.login(loginParam);
 				uni.navigateBack();
 			},
@@ -99,13 +96,12 @@
 							//存储用户信息
 							let userInfo = {
 								avatarUrl: resp.data.data.avatarurl,
-								nickName: resp.data.data.nickName
+								nickName: resp.data.data.nickName,
+								expireTime: resp.data.data.expireTime,
+								refreshToken: resp.data.data.refreshToken
 							}
 							//将获取的token信息存储到缓存
-							uni.setStorage({
-								key: 'token',
-								data: resp.data.data.token
-							})
+							uni.setStorageSync('token',resp.data.data.token)
 							_this.login(userInfo);
 							uni.navigateBack();
 						})

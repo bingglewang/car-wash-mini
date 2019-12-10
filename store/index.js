@@ -13,25 +13,16 @@ const store = new Vuex.Store({
 
 			state.hasLogin = true;
 			state.userInfo = provider;
-			uni.setStorage({//缓存用户登陆状态
-			    key: 'hasLogin',
-			    data: true  
-			}) 
-			uni.setStorage({//缓存用户登陆状态
-			    key: 'userInfo',  
-			    data: provider  
-			}) 
+			uni.setStorageSync('hasLogin',true)//缓存用户登陆状态
+			uni.setStorageSync('userInfo',provider)//缓存用户登陆状态
 			console.log(state.userInfo);
 		},
 		logout(state) {
 			state.hasLogin = false;
 			state.userInfo = {};
-			uni.removeStorage({  
-                key: 'userInfo'  
-            })
-			uni.removeStorage({
-			    key: 'hasLogin'  
-			})
+			uni.removeStorageSync('userInfo');
+			uni.removeStorageSync('hasLogin');
+			uni.removeStorageSync('token');
 		}
 	},
 	actions: {

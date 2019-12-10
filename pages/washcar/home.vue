@@ -198,22 +198,6 @@ export default {
 	onShow() {
 		console.log('success');
 	},
-
-	onLoad() {
-		let _this = this;
-		uni.getStorage({
-			key: 'hasLogin',
-			success: function(res) {
-				_this.hasLogin = res.data
-			}
-		});
-		console.log("是否登录:",this.hasLogin)
-		if(!this.hasLogin){
-			uni.navigateTo({
-				url: '/pages/user/login'
-			}) 
-		}
-	},
 	
 	methods: {
 		selectPromotion(id,index) {
@@ -242,7 +226,7 @@ export default {
 		//跳转添加车辆页面
 		toPages(url) {
 			if(!this.hasLogin){
-					url = '/pages/user/login'
+				url = '/pages/user/login'
 			}
 			uni.navigateTo({
 				url: url
@@ -290,6 +274,13 @@ export default {
 	mounted() {
 		this.screenHeight = uni.getStorageSync('screenHeight') - 50 - uni.getStorageSync('bottomTarHeight');
 		this.mapHeight = this.screenHeight - this.contentheght;
+		this.hasLogin = uni.getStorageSync('hasLogin');
+		console.log("是否登录:",this.hasLogin)
+		if(!this.hasLogin){
+			uni.navigateTo({
+				url: '/pages/user/login'
+			}) 
+		}
 	}
 };
 </script>

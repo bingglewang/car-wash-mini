@@ -2,26 +2,31 @@ import http from './interface'
 
 import {BaseUrl} from '../../util/env/index'
 
-import randomString from '@/util/common'
-
-var timestamp = (new Date()).valueOf();  //时间戳
-var randomStr = randomString.randomString(27); //随机字符串
-var myHeader = {
-	time:timestamp,
-	nonceStr:randomStr
-}
+import {randomString,formatTime} from '@/util/common'
 
 export const request = (data,url,method) => {
 	http.config.baseUrl = BaseUrl
+
+	//随机字符串,时间戳
+	var timestamp = (new Date()).valueOf();  //时间戳
+	var randomStr = randomString(27); //随机字符串
+	var myHeader = {
+		time:timestamp,
+		nonceStr:randomStr
+	}
 	
+	//获取用户信息
+	try{
+		let userInfo = uni.getStorageSync('userInfo');
+	}catch(e){
+		console.log("接口:用户详情:",e);
+	}
+
 	//获取token
-	let token = "";
-	uni.getStorage({
-		key: 'token',
-		success: function(res) {
-			token = res.data
-		}
-	});
+	let token = uni.getStorageSync('token');
+	
+	
+	console.log("接口:token:",token);
 	
 	//设置请求前拦截器
 	http.interceptor.request = (config) => {

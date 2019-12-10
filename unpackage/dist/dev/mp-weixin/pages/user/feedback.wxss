@@ -1,7 +1,7 @@
-.page.data-v-a8497bb2 {
+.page.data-v-597adf64 {
   height: 100vh;
 }
-.feedback-item.data-v-a8497bb2 {
+.feedback-item.data-v-597adf64 {
   border-radius: 20px;
   width: 80%;
   height: 50rpx;
@@ -12,7 +12,7 @@
   margin-top: 10px;
   background-color: #0081ff;
 }
-.detail-bottom.data-v-a8497bb2 {
+.detail-bottom.data-v-597adf64 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -21,7 +21,7 @@
           align-items: center;
   margin-top: 50px;
 }
-.detail-bottom .save-button-addCar.data-v-a8497bb2 {
+.detail-bottom .save-button-addCar.data-v-597adf64 {
     border-radius: 100px;
     width: 80%;
     background-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);
