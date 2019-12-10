@@ -4,8 +4,8 @@
 			<view class="bg">
 				<view class="box">
 					<view class="box-hd">
-						<view class="avator"><img src="../../static/user/face.jpg" /></view>
-						<view class="phone-number">小炳</view>
+						<view class="avator"><img :src="userInfo.avatarUrl" /></view>
+						<view class="phone-number">{{userInfo.nickName}}</view>
 					</view>
 					<view class="box-bd">
 						<view class="item" @click="toPages('/pages/user/myCars')">
@@ -143,6 +143,7 @@
 	export default {
 		data() {
 			return {
+				userInfo:{},
 				modalName: '',
 				kefuList: [{
 						name: '张三',
@@ -155,7 +156,16 @@
 				]
 			};
 		},
-		onLoad() {},
+		mounted() {
+			let _this = this;
+			uni.getStorage({
+				key: 'userInfo',
+				success: function(res) {
+					console.log("用户信息：",res.data)
+					_this.userInfo = res.data;
+				}
+			});
+		},
 		methods: {
 			...mapMutations(['logout']),
 			toPages(url) {

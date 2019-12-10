@@ -41,8 +41,7 @@
     font-size: 28rpx;
     color: #898989;
     padding: 24rpx;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
     line-height: 40rpx;
 }
 .issue-btn-box {

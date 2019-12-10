@@ -37,23 +37,7 @@
 	export default {
 		data() {
 			return {
-					PageCur: 'basics',
-					hasLogin:false
-			}
-		},
-		onLoad() {
-			let _this = this;
-			uni.getStorage({
-				key: 'hasLogin',
-				success: function(res) {
-					_this.hasLogin = res.data
-				}
-			});
-			console.log("是否登录:",this.hasLogin)
-			if(!this.hasLogin){
-				uni.navigateTo({
-					url: '/pages/user/login'
-				}) 
+					PageCur: 'basics'					
 			}
 		},
 		//右上角分享功能

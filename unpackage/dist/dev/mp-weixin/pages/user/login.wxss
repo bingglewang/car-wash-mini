@@ -41,7 +41,7 @@
 		color: #a7b6d0;
 }
 .zai-btn {
-	background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
+	background-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);
 	background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 	color: #fff;
 	border: 0;
@@ -55,7 +55,6 @@
 /*按钮点击效果*/
 .zai-btn.button-hover {
 	-webkit-transform: translate(1rpx, 1rpx);
-	    -ms-transform: translate(1rpx, 1rpx);
 	        transform: translate(1rpx, 1rpx);
 }
 

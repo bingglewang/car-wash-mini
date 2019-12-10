@@ -6,7 +6,6 @@
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   position: absolute;
   bottom: 0;
@@ -15,15 +14,12 @@
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-      -ms-flex-direction: row;
           flex-direction: row;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   color: #ffffff;
   font-size: 30rpx;
@@ -32,29 +28,25 @@
 .detail-bottom {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   margin-top: 50px;
 }
 .detail-bottom .save-button-addCar {
     border-radius: 100px;
     width: 80%;
-    background-image: -o-linear-gradient(45deg, #0081ff, #1cbbb4);
+    background-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);
     background-image: linear-gradient(45deg, #0081ff, #1cbbb4);
 }
 .detail-item-tile {
   height: 50px;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   margin-left: 20px;
 }
@@ -75,11 +67,9 @@
 .carinput-input {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
 }
 .carinput-input-i {
@@ -107,25 +97,20 @@
   height: 90rpx;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: end;
   -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
           justify-content: flex-end;
 }
 .carinput-power .checkbox-g {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
 }
 .carinput-power .checkbox {
@@ -147,7 +132,6 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked {
 }
 .carinput-power .checkbox checkbox {
   -webkit-transform: scale(0.6) translateY(-2px);
-      -ms-transform: scale(0.6) translateY(-2px);
           transform: scale(0.6) translateY(-2px);
   margin-right: 0;
 }

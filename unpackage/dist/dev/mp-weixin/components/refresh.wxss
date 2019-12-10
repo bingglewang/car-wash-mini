@@ -5,15 +5,12 @@
   overflow: hidden;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
   max-height: 300rpx;
   position: fixed;
@@ -21,7 +18,6 @@
   top: 50px;
   left: 0;
   -webkit-transform: translateY(-100rpx);
-      -ms-transform: translateY(-100rpx);
           transform: translateY(-100rpx);
 }
 .animationSmall {
@@ -68,20 +64,16 @@
   min-width: 50rpx;
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
   height: 50rpx;
   background: #FFFFFF;
-  -webkit-box-shadow: 0 0 16rpx 0 rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0 16rpx 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 16rpx 0 rgba(0, 0, 0, 0.1);
   border-radius: 50rpx;
 }
 .refreshCirle {

@@ -241,7 +241,7 @@ var promiseInterceptor = {
 
 
 var SYNC_API_RE =
-/^\$|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64/;
+/^\$|restoreGlobal|getCurrentSubNVue|getMenuButtonBoundingClientRect|^report|interceptors|Interceptor$|getSubNVueById|requireNativePlugin|upx2px|hideKeyboard|canIUse|^create|Sync$|Manager$|base64ToArrayBuffer|arrayBufferToBase64/;
 
 var CONTEXT_API_RE = /^create|Manager$/;
 
@@ -1085,6 +1085,18 @@ function handleEvent(event) {var _this = this;
           {// mp-weixin,mp-toutiao 抽象节点模拟 scoped slots
             handlerCtx = handlerCtx.$parent.$parent;
           }
+          if (methodName === '$emit') {
+            handlerCtx.$emit.apply(handlerCtx,
+            processEventArgs(
+            _this.$vm,
+            event,
+            eventArray[1],
+            eventArray[2],
+            isCustom,
+            methodName));
+
+            return;
+          }
           var handler = handlerCtx[methodName];
           if (!isFn(handler)) {
             throw new Error(" _vm.".concat(methodName, " is not a function"));
@@ -1189,6 +1201,13 @@ function parseBaseApp(vm, _ref3)
 
   // 兼容旧版本 globalData
   appOptions.globalData = vm.$options.globalData || {};
+  // 将 methods 中的方法挂在 getApp() 中
+  var methods = vm.$options.methods;
+  if (methods) {
+    Object.keys(methods).forEach(function (name) {
+      appOptions[name] = methods[name];
+    });
+  }
 
   initHooks(appOptions, hooks);
 
@@ -1291,7 +1310,7 @@ function parseBaseComponent(vueComponentOptions)
 
 
   {
-    // 微信multipleSlots  部分情况有 bug，导致内容顺序错乱 如 u-list，提供覆盖选项
+    // 微信 multipleSlots 部分情况有 bug，导致内容顺序错乱 如 u-list，提供覆盖选项
     if (vueOptions['mp-weixin'] && vueOptions['mp-weixin']['options']) {
       Object.assign(options, vueOptions['mp-weixin']['options']);
     }
@@ -1617,9 +1636,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!*************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/store/index.js ***!
-  \*************************************************************/
+/*!***********************************************!*\
+  !*** E:/project/car-wash-mini/store/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2622,9 +2641,9 @@ var index_esm = {
 /***/ }),
 
 /***/ 17:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/index.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/index.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2692,9 +2711,9 @@ exports.request = request;var _default = {
 /***/ }),
 
 /***/ 18:
-/*!********************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/interface.js ***!
-  \********************************************************************************/
+/*!******************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/interface.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2897,9 +2916,9 @@ function _reslog(res) {
 /***/ }),
 
 /***/ 19:
-/*!****************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/env/index.js ***!
-  \****************************************************************/
+/*!**************************************************!*\
+  !*** E:/project/car-wash-mini/util/env/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8872,9 +8891,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
-/*!*******************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/common/index.js ***!
-  \*******************************************************************/
+/*!*****************************************************!*\
+  !*** E:/project/car-wash-mini/util/common/index.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9006,10 +9025,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ 220:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star.png ***!
-  \*********************************************************************/
+/***/ 226:
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9017,10 +9036,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 
 /***/ }),
 
-/***/ 221:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star_active.png ***!
-  \****************************************************************************/
+/***/ 227:
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star_active.png ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9028,10 +9047,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 
 /***/ }),
 
-/***/ 229:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/components/uni-icons/icons.js ***!
-  \****************************************************************************/
+/***/ 235:
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/components/uni-icons/icons.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9166,9 +9185,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 33:
-/*!***********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/util.js ***!
-  \***********************************************************/
+/*!*********************************************!*\
+  !*** E:/project/car-wash-mini/util/util.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9198,9 +9217,9 @@ module.exports = {
 /***/ }),
 
 /***/ 4:
-/*!*********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json ***!
-  \*********************************************************/
+/*!*******************************************!*\
+  !*** E:/project/car-wash-mini/pages.json ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9209,21 +9228,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ 46:
-/*!*******************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/face.jpg ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gNzUK/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8AAEQgBkAGQAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8ATFGKfjmlxX1J8+R4p22nYFGKAG7aUCnYpcUANpadilC0E2GbaUCn7aXbxQIZilAp+2lC0ANxShetPxS4oA8j+Iox4kHvCtej+H+dAsT/ANMV/lXnfxIUjxGp9YV/rXonh3/kXrD/AK4rXn0f48j0a38CJqAUhFSAUYr0Dz7kW2lxUm33o20CGAUuKdtpdtAhmKNuafilwKVwGUYp+BRimAzFO204CnAUAR7aXFSYoxQA3FLinYpwFADdtGyngUuKQEeylC4p+KXbQAwClxT9uKMUrgN20oWnYp2Pai4DMUbafijFO4DNtG2nUopczGM20u2n4FJii7AbtoxTsUuBSuAzFLinYoxQBhYpafil28VY7keKdtp22nBaB3I8UoFP20oWgXMM20uKdinbaBXGYp2KdtoxQA2lAp2PalxQAmKMU8CjbQC3PJviYMa9Ae5hH869B8MjPhuwP/TEVwPxRXGvWx9YB/Ou+8Kc+GLD/rkK8+n/ALxI9Gv/AAEa9Lin7aAtdx5ozFGMVJj1owKQxoWjFPAp2M0XAj2igj0qTbS7aLgRY9qMe1S7aXbTTERAUuKkxRsxTuBHilAzUm2gLzRcLjQlOAFOox70rgJgCjFOxRilcY3ApQBSgU7bRcQ3FGDTwKXbSuBHjFFSbaNtFwI6XFPC07j0ouVYixS7afjPal20BYZijFPx7UYouFhmKXFPxRilcLDNtLtFPxRincEYWKXFPC0YrQQzFO204D1p2KAI9tOAp2DS7aBDMUoFOxSgUrgNxTgvFLjmpB0ouBFtpcVJijFTcYzApQtP20oHNK40eS/FRcazZn1h/rXdeDhnwvYn/YrivisuNVsT28k/zrtfBAz4Vsv92uGk/wDaJHfW/gRN4g0BTmpMUoFd1zz2R7aNtSYpQD6UrgRhadtp4HtRg0rgNxRilIAHJArD1nxHFpMX/LGSYHBjaUKfyocktyowlJ2RuUYrj9N+I2j3WEui1tLnBDcr+ddjG6TRrJGwZGGQw6GlGpGWw505Q+JCAU7FOApdtVcyGYoAp+KUCi4DMUbafij8KLgR4NOA4p+2gCi4xuKcPpS4pQtK4DMGlxT8UYoAZg0uKeFp22mMiAxS4zUmynbRQMjC0uKfjFGKBjNvtRt9qeFpcUgI9tG32p+KXFADNtG2pMUYpgYNFP20oWtLiGBacFp+2lxU8xNxm2lxTsUuKXMFxmKXbTttOAouBHinAU/bShaVxjcUbaftpwFFwsMApcU6l20h2PKPiyP9P08/9Mm/nXXeAGL+FrXJ6CuU+Lgxeab7xv8AzFdX8PBnwpbfQ/zrhp6V2ehV/gI6fHNLin7aAtdtzgsNxSgc04rSgUwI5ZFiiaRs4UZ4GTXmXizxvqNpetDYMYIgOkkWGP516bclo7dmRQzdgfWvB/GuoyX2suGdnVOAxXGfp7Vz4ibjDQ6sLBSlqRS+LL66kDXFzOG7ujc/l0rLn1Bp5XeR5JGP3WZuao9qTrXlutN9T1VCK2RI0hJznmvQ/h74x+xu9hqdyBbBcxu5+7jtXnFKDjkUqdVwlzE1KanGzPpGy1u01A5tyWT+/wAYrSAyMggg1846Nr17pF9HPDM4VT8y54I7ivoDQdUt9Z0iC6tyMFeVHY16tLEKoeTiMM6eqNADijFO20uwGtzmsMpcU4IBTttAEeKXFP20u2gmxGBzTguaft56U4LxQUkRhaXbUgX2pdtMdiLbTgKftpdtFwsMxRin7aXFK4yPFG2pMUoFFx2I9tGKlxSYouBHtp22nbaMUXAbto20/FKBSuBgbaUCpMUoWruyNSPFLipdtGKQWI8UbakxSgc0BYYFpcVIFpdtA7EeKXFP20oSgdhmKMZqXaKNtK47DFWnACnYoXDdCD9KTY7HlHxfXE+mH/YcfqK6b4cZbwpAfQkfrXO/GEfNph9nH8q6P4Y8+Eoh/tt/OuOH8dndU/3dHX4pdtSbaMV2XPPI9tKFqTFO24pXGV5U3ROvTKkZrwTx1atZ6ysTKw2xAAsMZ9/zzX0HgV5B8Y7YR6pp8wHLwkE/Q/8A165cS/cOvBv37HmNJSkUleWeqFFFFACjpXq/wlku43nhdGNtInmI3YEHBryheSBX0L4B0ZbDw5ay5yZolfp0zya6sInznLi5WhqdOF4pcdsVKFpdor1jxyHb7UuypcUuKVwsRbKUJzUuKMUXHYYFxRinYriPBviO+1rxTrdpcy7re3YiJdoG3DEVEp2djSFNyTfY7YD2pcZp22lxzVXFYZtpdtPApcUrisR7aNtSYpNtMQ3bRinYpQKBjMUYqTbS7aAsRY9qUCpNtGwUXCxHilxUm2l20rjsYIFKBUmOelLtq7kjMfSjH0qTbS7aVwsR7aAuDUm2l2c0XCw3bRtJqXFJikMbto21Jil28UXAj20Bak20oFK4GR4kDL4a1EqSGFu+CO3Fc98Lrp7vwy6SMWMMxUZOeDzXU69Hv8PaiuM5t3/lXn/weuGcapa9lKyD9RWLl+8R0wV6TIfjKo26WR3Mn9K3fhcM+FE9pGFYfxfuIHl020DAzqGZl7gHGD+lb/wsIfwtwOkzD+VZRf75s1qf7ujtcUu2pAKMV03OCxGFpwWn7aXHtQAzAFeAfEqa9bxddwXMjtEhBhUngKQOlfQWK8d+L+izRX9vq6gmGVBE2B91h0z9f6Vz4m/JodeDsp6nlpptSFTjODUQrzD1RaKKKAHRjc4HvX074Xgmg8MadDO26VYFyT9OBXzr4d059T1+xslHM0yr+Gef0r6jhiEUSoowFAUfhXbglq2cONeiQmKAtPxRtr0LnnWE2ijbS7aXaaVwsJjFcYfGjWXjKfRNVhSCJmAtpgeCD0z9a7XYa474h+Fjrmhm5tY86ha/PGV6sO4qKkmldGtFRbtI69R8wryH4aXOPHusx8Yl3n8nrovhx4xOr266TfyYv4BhSx5kUf1FcN4X1m18PeL9Z1C4OUjWXYg6ud/ArnlUTszqp03FSie7YyaMVl+F9fg8TaMmoQRGIFijITnaRW1iulTTRySi09SHFOCE9Kk20AU7k2Gbfal20/FGKLgM2ijaKk25o20XGM20bafijbS5h2G4FG0U4CnbaLhYj2ijFS7aNtFwsYSpgc07GafinBaq5FiPAoxUm2lC+1K4WIgtKFqQLTttF2FiILS7ak2+1KFpXCxHtpwWn7aXbSuNIj20AYNSbar391HYWE95KCUhQuQvUgUmxpX0Mq41zSb2e90UXSm6ETK0ZGOcdAe9ebfCu8hsPEeqQzSpGhhb5mOB8rVzPiXV4r/xBcajYebbiRtwG7DKfqKwAxDEhiCepzXFUr2kenSoJQs+pt+KNWOseJb6+L7o/MIiP+yDgV6l8JAf+EVbJzmZv5CvE5Bi0Lf3mxXtvwhOfCrg9pm/kKWHled2LEpKnZHfhaXFPxRtrvuebYZiipAlKEouKxHjNVr7TrXU7V7S8hWaB+GRhmrwWgr7VMtVYuL5XdHzd4w0JNC1u5solIiR8p/ukZH865R12npXsvxdso4Zra+JH75Nh+orx2dgz8dK8qouWVj16cuaKZHUkMe+ULjPNRd60dJga5v4oowSzMAAPrULUs9j+GHha0ht31iWINcFykRP8IA5Ir0rbVXRdOXTNHtbRQP3cYB9z3q6RXq0Y8sdDya8uaTGbaNtPAp2OK1uYWGbaNtPxRtouFhu2grkYp+DS7aTKSseCfEnQpPDXiVNS07fbxXILq8RK7X7gEdK88ldnYlmJZjkknk19MePtE/trwldwom6eJfNi45yP/rZr5mkUqcHqK86unGR6mHlzx1O28E+Pb7w+1rpkUMb2sk+ZNwyx3EDj0r6GC18i20nl3UMmcbXDfrX1zaSC4soJlOVeNWB+orbDzbVjLFRW6HAZpdtPC80uM11XOGwzZ70Yp+0UuB6UXHYj20bafgUuBRcLDQMUYzTsUuKLgM20uKdilxRcY3AoxT8CjFK4WMTaKdinBPanBKu5FiMLTgKftpQtFwsR4oxUu2jZSuFiMCnBakC8UoUUXHYixRipttG2gLEOKz9es2vtAv7ZPvyQMF+uK1dtIVypHqMUm9BxWp8nyo0czo3BViDUZrZ8VWT6d4l1C3ddpWZiPcE5FYmea8qa949dPRFqdf+JbGf+mn9K9p+Dq58Lyn/AKbt/IV4/MhPh1Hx/wAvBGfwr2L4MDPhSU/9PLD9FrbD/EY4le4ei7aXFS7OKNtd1zzkiLFGKl2ikK0XCwzFUdZ1KHR9IutQn+5BGXx6nsPxNLqut6XocIl1O9it1b7u48n6CvG/iZ8QLPX7WLTdIkka3Vt0shXaHPYYrOpUSRrSouUvI4XxD4j1DxFqUl1ezM+T8qZ+VB6AVj5FKRmm15snd3Z6iVlZDs1e0bUG0zVrW8UBvJkV9p6HBzis+nCkh7n11pWoW+raVbX9qwaKdA4I7e1WyMV8weHvHuveGbdrfT7lfIZtxjkXcM+3pXbWHxvvd0Yv9Mt3XPztExU/kc13wxEbannzw8r6HtO2l21yp+JPhYaUl+dRXDLnyQMyZ9NtQaX8UfC2psVN4bRwfu3K7c/Q9K29rHuY+xn2Oy204KKqWWqafqQzZXtvOP8ApnICaugU+a+xLg1uNxSYqTApQtO4cpGVDAgjg8V8oeJLFtM1u9tHGCkzAD2zX1nivlbx7cvc+NNUeRtxE7KD7DgfyrlxCvqdWGunY57NfVng66jvPCOmSxyLIPIUFge44Ir5RzzXrfwU8QTR6rPocrkwTRtLEvo4xn9M1nRlyyN68eaJ7ftoxTx0peK7Lnn8ozFGDTytLii4WI8Uu2n4oxRcfKM20YqTFBFFw5SPFLtp2KMUNhyjdtGMdqeBS4qeYdjJC0u2n4xS4rS4uUj20u2n4pQKVxcowLS7afilC80XHyjAOKNtS7aMUXCwzbSbak20uKXMFiMLVa/u4NOsZry4fZFCpZjV0LnpXAfF+SWLweojfarTqrjPUVMpWQ4x1PHfGmtR694mur6EYhcgJxg4AxXNljup0j5NR9TXA3d3PSirI1/tUknhk25QbI7kMH75K9P0r2j4KjPhO4/6+m/9BWvJBaAeADdY+Zr8IfwT/wCvXrvwSGfCdx/19N/6Cta0PiMq3wnpNVr6+tNOt2nvLiOCJerO2BS6pdDTdMubxyuIY2fLHjgV8t+I/FOq+I7sy6hcs4BO2McKo9AK3nV5TnhR5z1zX/jJpllvi0mBruQcCR/lT8uprgLv4teKriQsl1FCD0WKMAD881wpbPekzXK60mdUKMIo0NU1nUNZumur+5eeZurOaz8mg0lZuTe5qklsFJS0VICUUUUDFoFJS0xDvaim5pc0CLNndTWtzHNDIUdGBDA9K+t9HvoNS0u2uILiKbdGu5o2yN2Oa+Ps11Pgnxjd+EtYjuEdntGOJ4M8Mvt71rTquLMqlPmR9T4pQKy9B8RaZ4ksFu9MuFlT+JejIfQjtWuorrUubVHG009RpFfKPjpAnjXVlHT7S386+sStfM/xds4LPx9dCDpKiyOM9GI5rKrsbUNzgxzW94P1eTQ/FNhfx9EkCsPVTwRWCK6j4ezWMPjfTP7Qt1ngeXYVboCeAfzxXOnZnU9UfVWMqCOhGaTFTyKB06VHiuxO6OBoZilxTsH0pcGmIZik2n0qTFGKLgN2n0o2mnc0oBp3CwzYaMVJikxSHYZinAcU7bS7aAsZe2lC07FLincVhu2l2infhRii4WG4pQKdilApXCwmOKMU/wDCjGaVwsN20uyn4FFO47DVXHNea/GiO7fwvA0UW62jl3SuD93sv869NxXmHxtvvs/hm1tB1nmyR7KP/r1nN6FwWp4AeRSd6M0neuVHad5c2yx/ByzmDZaTUXJHp8uP6V6N8D/+RSuv+vtv/QVrzx7F4vgulyXbbLqWQvYYXFSeD/iKvhDwpc2dvb+dfy3BkQv9xRtAz79KuErMynFyVjtvjT4lS10qLRIJAZ7gh5VHVUHTP1NeDliSav6zrF5rupTX99JvnlOWOKzqmcrsuEeVWE70tFFQWFJRSZpALRSZpaACiiigYUhpaKAEopaKBCUuaKWmBueF/E994W1iK/s5DgHEkeeJF7g19Q+HfE+l+JdOiu7C4Riw+aIn5kPcEV8hZqxa3txZTrPbTSQyryGRiDVwm4mdSmpo+z8V8yfF2Ix/EK+JfduCH6fKOK6PRfjtfWtmkGp6al3IgA85JNhb6j1rzPX9Zm13W7rUpxh55C+3P3R2H4VcpqSIp0nFmZU9lcNaX0Fwpw0UiuMexzUFFZGx9q2twLzT7a6AwJolkA+ozT8e9ZfhK5W88GaLOpzutIwT9Bj+la+K64O6OOa1G4pcfSnYpeKogZikxUnFGBRcLEe2l20+ii47DdtGKdRRcLCYpcUYNOAGKLlWM3bS7afik6Urk2G7aXbThSkUXCwzFGKfijFFw5RuKNtOxTgKLhYbijFOpcUrjGYrxb48zfvdHgB5CyOfzAFe2Yr53+NV81x4yS2P3beBQPx5qJ7GtNanmZ6Ug60ppO9c+x0no9/r9ncfBix0x7hftsd3gRZ52jv9Oa86JzSZ96UUXEJikxTqQ0hiUmaXBpKAAmkoopAFGaKKAFooooGFFFFABRRRQIKWkAJ6U9kdfvKR9aYDMUYpeaKAExRS0UAFKKQ0opoD6p+FM5n+G2lE/wACun5Oa7MCuR+F1k9j8OtJjkzudGk/76Yn+tdfiumDsjkmveExRinUuKq4rDMUoWnYpRRcLDdtG3FO4oxU8w+UbijbT8UlHMPlE20Yp1GKVxozqKTNGad2KyFGadTRTgaVwsLSYoozSuFgp1NzSg0XHYXFLikDU7NO4rCV8y/Fxy3xBvvZUH/jtfTefzr5j+LiFPiBek/xBSPyFTJuxcFqcJ3ooorE3CnU2nUAFPihknlWOKNndjgKoyTVvSdG1DW71LTT7WWeVj0RScfU9q+hPh18MofCy/b9S8q41NhgYGViHtnv70WE2fPmqaHqeisi6lYz2rSLuQSrjcKzDX0j8btK+3eDo7xVG+znDE452sCD+uK+cGGKGgTG0UUVIwooooAWiiigYUUUUAFFFOUZagDuvhP4dtPEHjKOO9j822t4zM0fZiOgPtmvozU/Ceg6xbCC/wBMt5VA4IXaR9COa8W+AcZ/4SXUpQpKrbAE+mW/+tXv5cVpFXM5OzPKNc+BOjXaNJpN5PZy9Qkh3p/jXA6l8FfFNmpa3S3vF/6ZSYP5HFfSm8UoYU+UXMfHt94Q8Q6a2LvR7yMevlEj8xWU9rcJ96CUfVDX2ucNwcEVC9jZyD57WFvqgocR858U4IOMHPpXY+APA174r12BGt5U09DunmK4XaOwPcmvpVvC3h95hM2jWJkznd5K5/lWrEkUChIYkjUdkUAD8qFGwcw5Yo7a3ht4UCRRqERR0AHAFLSv0U0zdVoxe44U4Him5pM0xkmaQmmZo3UAPzRkUzNGfemBJSZFMzRmgCSjNR7sUbqAM/PvS1XDEU/fx1H50EkuaUHNRBx60nmAdxRZjuT0ZqASD1FOEg9RRZhckzTt1Q+Yv94fnSeav99fzo5WO5Puo3VB5qf31/Ojzk/vr+dHKwLINeCfHHR2g1601Rc7LmLyyf8AaX/6xr3MXEY/jX86patYaXrdkbPUo4p4DztYjg+o9KTixxkkfIHSivoqT4ReDZZGYC4QE/dW44H6VNZ/CzwZZShzC8/tNNkfkKz9nLsX7SJ84hGIJCnA6nHSvSfhd4B07xaLi61GaXyrdwvkpxv47mvQ/iRbaXZ/Di8trCC3hRSm1IlA6MKwPgbdRw6fqiyOF/er1+lHK07MfOmro9W0vRNN0S3EGm2cVsnfYvJ+p6mtBWIqr9utf+e6fnSf2haj/lun51oqb7EOaKXi/Tzq3hPU7MfeeA7fqORXyHIpVyD1FfZLajalSDMnT1r5T8Z2Kad4s1K3jH7tZ2K/Q8j+dZzg1qVCSexz9FKaSsjQKKKKAFooooGFFFFAhaVepptOTvQB9C/A7RjZeGbnU3I33su1R3Cr/wDXJr1PmvPvh3f22m+BdNhZjv2biPqc11H/AAkNoP71dEKcrbHPKcb7mxmlrFPiO1zwCab/AMJHbf3TV+zkT7SPc3d2KN1YX/CSW3900f8ACS2o6g0/ZSD2se5u7qN1YH/CTWw7H86P+EmtT/C350eykHtI9zo3b5VqPNY0uvwxxxsV4Ycc1XPieEfwZ/Gj2Uhc8e50e7imlq5w+J4u0f60n/CToP4P1p+ykHtYdzo99Aauc/4SZP7lH/CToP4KPYyD2sTpCaAa5g+Kh2jH50n/AAlP+wtNUph7WJ1O6l3Vy3/CUn/nmv50n/CUn+4KPYyD2sTqt1Ga5P8A4SdvQUv/AAlLDstP2Eg9tE40+IbkD/Xt+dA1+6I/15/OubM2eKBLmu5QRy8zOj/t66P/AC8P+BNNbXLn/nvJ/wB9Vz5lI703zCe9VyoOZnRDW7n/AJ7yf99Uf25cgf6+T/vqufDn1pd59aOVCubp1qc9ZX/OkGtTZ/1r/nWEWPrSbj60KKC7N8axKT/rm/OkOqyf89WP41hh+advHanyoLs2P7Vl/vt+dOGpyHq7fnWJu5p4fjrS5US2zaGot/z0b86d/aL/APPQ/nWLvNODGjlQtSPxbdNceGbtN5PAOPxFYnw3nMNrfYbALr/Kr2vEnQrv/c/rWP4DbFrec/xD+VclRfvkdVN/umegfbT/AHj+dNN82fvfrWb5lJvNdXKjkuzVW9c9T+teX+PYz/wkDSn/AJaIrZ/T+ld+rmuM8exAtaTY5IKk1z4mK5Dpwz944Y0lKRikryT0QooooAWiiigYUUUooAMUq8dKSlHWgR7lojmHQbBC2MQL/KrLXDetULJv+JbbAHgRL/KnlzXtU17qPGqazZbFwf7xoNw2MhjVMNVkSW6wkFizkcDHQ1eglqH2pu7GnC4P96qZNG7FUrCaLn2g+ppftDepqmH96XdRoKxfa8kZVUsSAOKj+0t6mq24gUm40rCLX2hvWl85jzmqu40Bsd6ENFsTOT940NM4/jNVw9DNmmOxN5zH+I0nmMe5qAtSbqdxFne39404SnHWqm80u+gZY8xvU08SZ71XU09TRcTOapwNJt+n50cd2H50uZG3Kx3WkORSgj+8PzoJX+8v507oOVgDSjNGV/vp+dAK/wB9PzFHMh8suw6k4o3L3Zf++hRvj/vr/wB9ClzR7i5WL9KTJxR5kY6yIP8AgYpPMh/57R/99ijnj3Dll2FBNPFR+dAP+W8f/fYpRcW4/wCXiL/vsUuddw5JdiYZpQeai+022P8Aj4h/7+Cj7Vbf8/MP/fYo54hyMra3zol3j+5WN4F/49rv/fFa2rXdo2k3S/aYixjOAHHJrD8E3MFvFd+fPHHkrjewGetctSS9qmdEIv2bR2Jo5zVU6np//P7B/wB/BSf2rpwP/H9b/wDfYro9pHuc3s5di+ua5bx0p+wWzHs5H6VuDWNOHW/t/wDvsVzvjDU7K80+KO3uEldXyQp6cVlWqRcLG1CDU7nENTDUhqM15J6IlFFFIBaKKKBhS0lFAC0opKUUCPZdJfzdJtnHQxL/ACqyRXJaF4r0yz0iCC5kl81F2namRV1vGukdvP8A++P/AK9etTqw5dWeZOjNydkb3ekPFc+fGul9kuD/AMA/+vTT410zH+ruP++B/jVutDuT7CfY6LrS7eK5z/hNdN/55XH/AHyP8aT/AITjTh0guD+A/wAaPbQ7h7CfY6UCnY71zH/Cc2GP+Pe4/T/Gj/hOrD/n1uP0/wAaPbU+4vYT7HTil4rmP+E80/8A59J/0/xoHj2w/wCfO4/Sl7en3D6vPsdTto21y3/Ce2X/AD6XH6Uf8J/Zf8+dx+Yo9vT7j+rz7HVhaNtcvF8QNOEymWwuWTPzAMAcUkvxC0/zG8rTrkJn5d0gzij6xDuP6vUOpK0gXNcn/wALBs/+gfN/32KP+FhWo6adKf8AtqP8KX1in3D6vUOt2UhSuSPxDt/+gbJ/39H+FMPxEt8/8gx/+/3/ANaj6zT7h9XqdjsQuKkVTkVxJ+I0WeNMbH/Xb/7Gk/4WMucjTP8AyN/9jR9Zp9w+rz7HGHGKZmtc6VD/AM9k/wC+xSf2TB3mT/vsVxckjv5jJzSZxWv/AGTb/wDPdP8AvsUv9k23/Pwn/fYo9nIOdGPnNGfetf8Asu1HW5T/AL7FJ/Zlpj/j5j/77FHs5dw5kZHFJitf+zbP/n6j/wC+xS/2bZf8/cX/AH2KPZy7hzrsY2KXFbX9nWOP+PuL/vsUn9nWHe7j/wC+qPZS7i512MU0ma2/7O07vdx/99Uo0/TB/wAvcf8A31S9lLuHOuxh80uTW39g00f8vkf/AH1R9g03/n7j/wC+qPZS7j512MM5oAraax00f8vcZ/4FTFtdOJwbpB70eyl3Dn8jIJIpM1ufY9K73cf50otdJ/5+o6fsX3Dm8jCz9aSug+y6R/z9Rfr/AIVm6nFZxMgtJVkBHzEdqmUGtWxxkZ7GojT2NNNYM0EooopALRRRQMKKKKAAUtJS0CJYzzUufap9JmtYLgtdAlMcYGea2jqOj4+4/wD3xXRCKktzOUmnojnt3tRk+ldANR0j/nk//fFL/aOkf88n/wC+Kr2S/mF7R9jnsk+tHPoa6A6hpH/PNv8Avmj+0dIH/LKT/vml7GPcXtH2MDn0NJ+B/Kuh/tLSP+eL/wDfIoGp6T/zwk/75FDox/mD2kuxz34H8qOR0z+VdF/aekf88JP++RS/2ppA/wCXeQ/8BFL2Uf5g9o+xznPoaTDf3TXRf2ppJP8Ax7SfkKX+1dK/59ZP0qvZx7h7R9jnMP6H8qNreh/KuiOraX/z7SfpSf2tpn/Ps/6Ueyh/ML2kuxz21v7p/Kl2t/db8q6D+2NOH/Lm/wCYpp1nT8cWbfiRT9nDuPml2MDa/wDdP5UGNj/C35VunWbTtZf+PU3+3LYdLIf99VPJDuHNPsYnlP8A3W/KjypP7jflW0dft/8AnxH50n/CQQ9rBP8Avqj2dPuHNLsYG4+ppMn1paK5+Z9zWwmTRkilpKfMwsBY+9AJo4o4o5mFkLz60UUUczHZCZpc0mBS0czCyDcaMk9zRRRzMLIMmjJ9TRRRzMLCE0mTS0lNMAoz70UU9QCjt1ooFJgI1NpzU2pAKKKKQC0UUUDCiiigAooooAVTg1IHwKiHWpOMUyWO30b6ZxRxVAP30oeo+KWgCTf7UeYKjzRQxWJd9JvNR5oyaQx+40bzTM+9LRYEP3Ub/amUUhji9G/NNzSZoAfuNISabmjNO4C5NJk0ZpM1SYrC0UUVmMKKKKACiiigAooooAKKKKACiiigAopKCeKACkozSVSAWikop3AWgUlLmk2AjU2lJpKQBRRRSAWiiigYUUUUAFFFFAAKkFR05aYmLQKKBVCDFLRRSYxaDRRU3ASiijFFwEpe1FFO4BRRRigAooooAKKKKAExSU6mnrTQDqKMUVIBSE0tNNIBc0tNFLmgBaKTNJTAXNLTacOlABRRSGgANIelBooQCUUUYNMAoowaKACiiigBDSUppKACiiikAtFFFAwooooAKKKKAClFJSgUCHYpcUClp3ASilopXAKSlpKADNLSUtCASilooASlpKWgBKKKKACiiimAUmKWkyKAEzRRRSAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACkpaKAEpDTqQimA00UuKSgAooopALRRRQMKKKKACiiigApwpKcPpQIUUtJRQAtFFFABSUtJQAUUUUAFFLSUAFFFFABRRRQgClzSUUMBDTaUnNJSAWiiimAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABQKKKAEpKWigBKKWigBMUUtFAxKMUtFABijFLRQAUUUUALRSUUAOHSlpuaAaAHUUmaWgAooooAKKKKACiiigQUlFFABRSUmaAFNJRRSAKKKKYBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUlLSUAGaWkooAKKKKACiiigAooooGFFFFAC0UUUAFFFFABRRRQAUtJRQAuaAaSigB9NzSUUALmjNJRQAuTS5ptKKAFpDQeKTNIQZoxRRQwCiiigQUUUUxhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQMKKKKAFopBS0AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUtFFAhKWiigAooopAFFFFMAooooAKKKSgBaKSigBaKKKACiiigAooooAKKKSgAooooAKKKKACiiigAooooAKKKKBhRRRQAClpBS0AFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQIKKKSgBaKSigAooooAKWkpaACkpaKAEopaSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigYUUUUAApaSloAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAEoopaBCUUUUAFFFFAH//2Q=="
-
-/***/ }),
-
 /***/ 47:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/mycars.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/mycars.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9232,9 +9240,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 48:
-/*!************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/vipmanage.png ***!
-  \************************************************************************/
+/*!**********************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/vipmanage.png ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9243,9 +9251,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 49:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/coupon.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/coupon.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10147,19 +10155,19 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-24220191115004","_inBundle":false,"_integrity":"sha512-UKnpiHSP7h9c5IFpJFkWkpm1KyWz9iHj1hchrQSUxPhChx+KPOmunnQcKGiQvvBz9CeSi7Se/eauJYha5ch0kw==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-24220191115004.tgz","_shasum":"5848f2204f37daaf8c340fb27d9f76b16fcbfdeb","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"bcf65737c5111d47398695d3db8ed87305df346e","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-24220191115004"};
+module.exports = {"_from":"@dcloudio/uni-stat@^2.0.0-alpha-24420191128001","_id":"@dcloudio/uni-stat@2.0.0-v3-24020191018001","_inBundle":false,"_integrity":"sha512-nYBm5pRrYzrj2dKMqucWSF2PwInUMnn3MLHM/ik3gnLUEKSW61rzcY1RPlUwaH7c+Snm6N+bAJzmj3GvlrlVXA==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"@dcloudio/uni-stat@^2.0.0-alpha-24420191128001","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"^2.0.0-alpha-24420191128001","saveSpec":null,"fetchSpec":"^2.0.0-alpha-24420191128001"},"_requiredBy":["/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-v3-24020191018001.tgz","_shasum":"6ef04326cc0b945726413eebe442ab8f47c7536c","_spec":"@dcloudio/uni-stat@^2.0.0-alpha-24420191128001","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/alpha/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"197e8df53cc9d4c3f6eb722b918ccf51672b5cfe","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-v3-24020191018001"};
 
 /***/ }),
 
 /***/ 7:
-/*!**************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"style"} ***!
-  \**************************************************************************/
+/*!************************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"style"} ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": {}, "pages/washcar/home": {}, "pages/order/home": {}, "pages/card/home": {}, "pages/user/home": {}, "pages/washcar/addCar": {}, "pages/card/buyCard": {}, "pages/user/myCars": { "enablePullDownRefresh": true }, "pages/user/logs": {}, "pages/user/coupon": { "enablePullDownRefresh": true }, "pages/user/myVipCards": {}, "pages/user/feedback": {}, "pages/user/cooperation": {}, "pages/user/notice": {}, "pages/user/login": {}, "pages/user/validatorCode": {}, "pages/order/orderDetail": {} }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": {} }, "pages/washcar/home": { "usingComponents": {} }, "pages/order/home": { "usingComponents": { "refresh": "/components/refresh", "nav-tab": "/components/navTab", "tab-bar4": "/components/tabBar4" } }, "pages/card/home": { "usingComponents": { "uni-collapse": "/components/uni-collapse/uni-collapse", "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item" } }, "pages/user/home": { "usingComponents": {} }, "pages/washcar/addCar": { "usingComponents": { "tki-float-keyboard": "/components/tki-float-keyboard/tki-float-keyboard" } }, "pages/card/buyCard": { "usingComponents": {} }, "pages/user/myCars": { "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/logs": { "usingComponents": {} }, "pages/user/coupon": { "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/myVipCards": { "usingComponents": {} }, "pages/user/feedback": { "usingComponents": {} }, "pages/user/cooperation": { "usingComponents": {} }, "pages/user/notice": { "usingComponents": { "uni-notice-bar": "/components/uni-notice-bar/uni-notice-bar" } }, "pages/user/login": { "usingComponents": {} }, "pages/user/validatorCode": { "usingComponents": {} }, "pages/order/orderDetail": { "usingComponents": { "my-issue": "/components/myIssue" } }, "pages/order/createOrder": { "usingComponents": {} } }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
 
 /***/ }),
 
@@ -10956,9 +10964,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 8:
-/*!*************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"stat"} ***!
-  \*************************************************************************/
+/*!***********************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"stat"} ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

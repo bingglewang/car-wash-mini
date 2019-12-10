@@ -52,7 +52,7 @@
 													<view class="wash-text" style="background-color: #888888;" v-if="car == currentSelectCar">{{ car }}</view>
 													<view class="wash-text" style="background-color: #e7e7e7;" v-else>{{ car }}</view>
 												</view>
-												<view class="wash-box1" @tap="toAddCarPage">
+												<view class="wash-box1" @tap="toPages('/pages/washcar/addCar')">
 													<view class="wash-text" style="border: #DDDDDD 1upx dashed;">
 														<span style="font-weight: bold;margin-right: 5px;">＋</span>
 														添加车辆
@@ -71,20 +71,31 @@
 		</view>
 
 		<!-- 购买弹窗 -->
-		<view class="cu-modal bottom-modal" :class="modalName == 'ChooseModal' ? 'show' : ''" @tap="hideModal">
-			<view class="cu-dialog bg-white radius car-select-modal" @tap.stop="">
-				<view class="car-select">
-					<view class="car-select-item radius" v-for="(item, index) in selectCarList" :key="index" @click="selectPromotion(item.id)" :class="currentSelectId == item.id?animationSelect:''">
-						<view class="car-select-tag-box">
-							<view class="cu-tag light bg-gradual-orange car-select-tag">{{ item.selectTag }}</view>
-						</view>
-						<view><image :src="item.selectImg" class="car-select-img" mode="aspectFit"></image></view>
-						<view class="car-select-title">{{ item.selectTitle }}</view>
-						<view class="car-select-price">￥{{ item.selectPrice }}</view>
-						<view class="cu-progress round" style="height: 10upx;" v-if="currentSelectId == item.id">
-							<view class="bg-gradual-blue" :style="[{ width: loading ? '100%' : '' }]"></view>
+		<view class="cu-modal bottom-modal" :class="modalName == 'ChooseModal' ? 'show' : ''" @tap="hideModal" data-backdrop="static">
+			<view class="cu-dialog bg-white radius car-select-modal" @tap.stop="" >
+				<view style="padding-left: 30upx;padding-right: 30upx;padding-top: 30upx;">
+					<view class="car-select">
+						<view class="car-select-item radius" v-for="(item, index) in selectCarList" :key="index" @click="selectPromotion(item.id,index)" :class="currentSelectId == item.id? animationSelect:''">
+							<view class="car-select-tag-box">
+								<view class="cu-tag light bg-gradual-orange car-select-tag">{{ item.selectTag }}</view>
+							</view>
+							<view><image :src="item.selectImg" class="car-select-img" mode="aspectFit"></image></view>
+							<view class="car-select-title">{{ item.selectTitle }}</view>
+							<view class="car-select-price">￥{{ item.selectPrice }}</view>
+							<view class="cu-progress round" style="height: 10upx;" v-if="currentSelectId == item.id">
+								<view class="bg-gradual-blue" :style="[{ width: loading ? '100%' : '' }]"></view>
+							</view>
 						</view>
 					</view>
+				</view>
+				<view style="padding-right: 30upx;padding-left: 30upx;">
+					<view class="solids-bottom padding car-wash-desc"> 
+						{{carWashDesc}}
+					</view>
+				</view>
+				<view class="padding car-select-button">
+					<view class="cu-btn bg-gradual-blue round lg shadow" @click="hideModal"><span style="visibility: hidden;">ff</span>上一步<span style="visibility: hidden;">ff</span></view>
+					<view class="cu-btn bg-gradual-blue round lg shadow" @click="toPages('/pages/order/createOrder')">确认下单</view>
 				</view>
 			</view>
 		</view>
@@ -96,8 +107,10 @@ export default {
 	name: 'basics',
 	data() {
 		return {
+			hasLogin:false,
 			animationSelect: '',
 			currentSelectId: 0,
+			carWashDesc:'',
 			loading: false,
 			currentSelectLong: '',
 			currentSelectLat: '',
@@ -152,28 +165,32 @@ export default {
 					selectTag: '首洗优惠',
 					selectImg: '../../static/logo.png',
 					selectTitle: '外观',
-					selectPrice: '15'
+					selectPrice: '15',
+					desc:'加分加分流水的房客就沙发降到了附件是打开了附件是打开了就落空发送的记录'
 				},
 				{
 					id: 2,
 					selectTag: '首洗优惠',
 					selectImg: '../../static/logo.png',
 					selectTitle: '普洗',
-					selectPrice: '25'
+					selectPrice: '25',
+					desc:'就发的时刻均可发生六点尽量克服的是'
 				},
 				{
 					id: 3,
 					selectTag: '次卡专享价',
 					selectImg: '../../static/logo.png',
 					selectTitle: '精洗',
-					selectPrice: '55'
+					selectPrice: '55',
+					desc:'收到JFK了范德萨就开了放到数据库了JFK鲁大师 JFK老师的'
 				},
 				{
 					id: 4,
 					selectTag: '次卡专享价',
 					selectImg: '../../static/logo.png',
 					selectTitle: '打蜡',
-					selectPrice: '99'
+					selectPrice: '99',
+					desc:'撒JFK领导发动机萨洛克附近的萨科'
 				}
 			]
 		};
@@ -182,19 +199,37 @@ export default {
 		console.log('success');
 	},
 
+	onLoad() {
+		let _this = this;
+		uni.getStorage({
+			key: 'hasLogin',
+			success: function(res) {
+				_this.hasLogin = res.data
+			}
+		});
+		console.log("是否登录:",this.hasLogin)
+		if(!this.hasLogin){
+			uni.navigateTo({
+				url: '/pages/user/login'
+			}) 
+		}
+	},
+	
 	methods: {
-		selectPromotion(id) {
+		selectPromotion(id,index) {
+			console.log("id："+id,"下标："+index);
 			let that = this;
+			this.carWashDesc = this.selectCarList[index].desc;
 			this.currentSelectId = id;
 			this.loading = false;
 			setTimeout(function() {
 				that.loading = true;
 			}, 100);
 
-			this.animationSelect = 'my-doudong';
+			this.animationSelect = 'animation-shake';
 			setTimeout(() => {
-				that.animationSelect = '';
-			}, 1000);
+				that.animationSelect = 'shadow bg-white solids';
+			}, 100);
 		},
 		hideModal(e) {
 			this.modalName = null;
@@ -202,10 +237,13 @@ export default {
 		doCreateOrder(carNumber) {
 			this.currentSelectCar = carNumber;
 			this.modalName = 'ChooseModal';
+			this.selectPromotion(2,1);
 		},
 		//跳转添加车辆页面
-		toAddCarPage() {
-			let url = '/pages/washcar/addCar';
+		toPages(url) {
+			if(!this.hasLogin){
+					url = '/pages/user/login'
+			}
 			uni.navigateTo({
 				url: url
 			});
@@ -257,25 +295,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	@import "../../colorui/animation.css";
+	
 .page {
 	height: 100vh;
 	background-color: white;
 	overflow-y: hidden;
 }
 
-@keyframes hide_member
-{
-    0%   { transform: rotate(4deg); }
-	10%  { transform: rotate(-4deg);}
-	20%  { transform: rotate(5deg);}
-    30%  { transform: rotate(-5deg);}
-	40%  { transform: rotate(0deg);}
-	50%  { transform: rotate(0deg);}
-    100% { transform: rotate(0deg); }
+.car-select-button{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.my-doudong{
-	 animation: hide_member 2.5s .15s linear infinite; 
+.car-wash-desc{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .car-select-modal{
@@ -284,8 +321,6 @@ export default {
 
 .car-select {
 	display: flex;
-	padding-left: 30upx;
-	padding-right: 20upx;
 	overflow-x: scroll;
 }
 
@@ -317,7 +352,7 @@ export default {
 .car-select-item {
 	min-width: 24%;
 	border: #e7e7e7 1upx solid;
-	margin: 30upx 10upx 10upx 0;
+	margin: 0 8upx 10upx 0;
 }
 
 .basic-home {

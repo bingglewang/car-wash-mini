@@ -19,7 +19,7 @@
 				<!-- #ifdef MP-WEIXIN -->
 				<view class="zai-label" style="color: #000000;font-weight: bold;font-size: 20px;padding: 0;">小饼好吃提醒您</view>
 				<view class="zai-label">*您未登录，请您使用(微信授权登录)</view>
-				<button class="zai-btn" open-type="getUserInfo" @getuserinfo="userInfo">授权登录</button>
+				<button class="zai-btn" open-type="getPhoneNumber" @getphonenumber="userInfo">授权登录</button>
 				<view class="zai-label">版本号：1.0.0</view>
 				<!-- #endif -->
 			</view>
@@ -74,29 +74,43 @@
 			// #ifdef MP-WEIXIN
 			userInfo(res) {
 				let _this = this;
-				let loginParam = {
-					code: this.mpCode,
-					platform: 'mp',
-					/* encryptedData: res.detail.encryptedData, */
-					encryptedData: '13227355241',
-					/* iv: res.detail.iv, */
-					deviceType: 1,
-					nickName: res.detail.userInfo.nickName,
-					avatarurl: res.detail.userInfo.avatarUrl
-				}
-				this.$api.request(loginParam, 'api/user/wechat-app-login', 'POST').then(resp => {
-					//存储用户信息
-					let userInfo = {
-						avatarUrl: resp.data.data.avatarurl,
-						nickName: resp.data.data.nickName
-					}
-					//将获取的token信息存储到缓存
-					uni.setStorage({
-						key: 'token',
-						data: resp.data.data.token
+				
+				if (res.detail.errMsg == 'getPhoneNumber:fail user deny'){ 
+					uni.showModal({
+						title:'为了更好的用户体验，请先授权'
 					})
-					_this.login(userInfo);
-					uni.navigateBack();
+					return;
+				}
+				
+				uni.getUserInfo({
+					success: user => {
+						console.log("用户详情：",user)
+						console.log("授权信息：",res);
+						let loginParam = {
+							code: _this.mpCode,
+							platform: 'mp',
+							encryptedData: res.detail.encryptedData,
+							iv: res.detail.iv,
+							deviceType: 1,
+							nickName: user.userInfo.nickName,
+							avatarurl: user.userInfo.avatarUrl
+						}
+						_this.$api.request(loginParam, 'api/user/wechat-app-login', 'POST').then(resp => {
+							//存储用户信息
+							let userInfo = {
+								avatarUrl: resp.data.data.avatarurl,
+								nickName: resp.data.data.nickName
+							}
+							//将获取的token信息存储到缓存
+							uni.setStorage({
+								key: 'token',
+								data: resp.data.data.token
+							})
+							_this.login(userInfo);
+							uni.navigateBack();
+						})
+						
+					}
 				})
 			}
 			// #endif
