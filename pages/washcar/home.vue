@@ -48,9 +48,9 @@
 									<swiper-item :key="index">
 										<view class="wash-list-content">
 											<view class="wash-list">
-												<view class="wash-box1" v-for="(car, index1) in item.cars" :key="index1" @click="doCreateOrder(car)">
-													<view class="wash-text" style="background-color: #888888;" v-if="car == currentSelectCar">{{ car }}</view>
-													<view class="wash-text" style="background-color: #e7e7e7;" v-else>{{ car }}</view>
+												<view class="wash-box1" v-for="(car, index1) in item" :key="index1" @click="doCreateOrder(car)">
+													<view class="wash-text" style="background-color: #888888;" v-if="car.number == currentSelectCar">{{ car.number }}</view>
+													<view class="wash-text" style="background-color: #e7e7e7;" v-else>{{ car.number }}</view>
 												</view>
 												<view class="wash-box1" @tap="toPages('/pages/washcar/addCar')">
 													<view class="wash-text" style="border: #DDDDDD 1upx dashed;">
@@ -150,14 +150,7 @@ export default {
 					}
 				}
 			],
-			myCarList: [
-				{
-					cars: ['车辆1', '车辆2', '车辆3']
-				},
-				{
-					cars: ['车辆4', '车辆5', '车辆6']
-				}
-			],
+			myCarList: [],
 			selectCarList: [
 				{
 					id: 1,
@@ -194,11 +187,27 @@ export default {
 			]
 		};
 	},
-	onShow() {
-		console.log('success');
-	},
-	
 	methods: {
+		//获取全部车辆
+		getAllCars(){
+			let _this = this;
+			_this.myCarList = []
+			//获取全部车辆
+			this.$api.request({},'api/vehicle/vehicleList','GET').then(res =>{
+				let carLists = res.data.data;
+				let carItem = [];
+				for(let i = 0;i < carLists.length;i++){
+					carItem.push(carLists[i]);
+					if((i + 1) % 3 == 0){
+						_this.myCarList.push(carItem);
+						carItem = []
+					}else if((i + 1) == carLists.length){
+						_this.myCarList.push(carItem);
+					}
+				}
+				console.log("车辆：",_this.myCarList)
+			})
+		},
 		selectPromotion(id,index) {
 			console.log("id："+id,"下标："+index);
 			let that = this;
@@ -279,8 +288,8 @@ export default {
 				url: '/pages/user/login'
 			}) 
 		}
-		//获取全部车辆
-		this.$api.request()
+		//加载车辆
+		this.getAllCars();
 	}
 };
 </script>

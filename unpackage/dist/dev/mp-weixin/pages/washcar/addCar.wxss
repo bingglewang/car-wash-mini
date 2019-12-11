@@ -34,6 +34,7 @@
   -webkit-align-items: center;
           align-items: center;
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 .detail-bottom .save-button-addCar {
     border-radius: 100px;

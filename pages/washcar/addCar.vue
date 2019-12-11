@@ -285,7 +285,9 @@
 							title:'添加成功',
 							icon:'success'
 						})
-						uni.navigateBack();
+						uni.navigateTo({
+							url:'/pages/index/index'
+						});
 					})
 					console.log('可以绑定车牌了')
 				} else {
@@ -301,7 +303,12 @@
 				console.log('当前card：' + this.cardCur);
 			}
 		},
-		mounted() {},
+		mounted() {
+			//获取车辆类型
+			this.$api.request({key:'vehicle_type'},'api/dictData/list','GET').then(res => {
+				console.log("车辆类型：",res);
+			})
+		},
 		onPageScroll: function() {
 			let that = this;
 		},
@@ -354,6 +361,7 @@
 		display: flex;
 		align-items: center;
 		margin-top: 50px;
+		margin-bottom: 50px;
 
 		.save-button-addCar {
 			border-radius: 100px;
