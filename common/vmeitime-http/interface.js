@@ -89,7 +89,13 @@ export default {
 				// 统一的响应日志记录
 				_reslog(response)
 				if (statusCode === 200) { //成功
-					resolve(response);
+					if(response.data.code -0 == 0){
+						resolve(response);
+					}else{
+						uni.showModal({
+							title:response.data.msg
+						})
+					}
 				} else {
 					reject(response)
 				}

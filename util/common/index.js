@@ -43,6 +43,21 @@ const randomString = len =>{
 　　return pwd;
 }
 
+/**
+ * 判断输入时间是否大于当前时间
+ */
+const contrastTime = date => {
+	date = new Date(date);
+	var currentData = new Date();
+	var t1 = date.getTime();
+	var t2 = currentData.getTime();
+	if(t1 - t2 > 0){
+		return false;
+	}else{
+		return true;
+	}
+}
+
 
 
 /**
@@ -115,6 +130,7 @@ const SearchDataIndex = (key, data) => {
 }
 
 module.exports = {
+	contrastTime,
 	randomString,
 	uploadFile,
     formatTime,

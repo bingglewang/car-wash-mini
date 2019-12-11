@@ -4,7 +4,7 @@ page {
   padding-bottom: 100rpx;
 }
 .address-section {
-  padding: 30rpx 0;
+  padding: 0 0 0 0;
   background: #fff;
   position: relative;
 }
@@ -15,6 +15,8 @@ page {
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
+    padding-bottom: 30rpx;
+    padding-top: 30rpx;
 }
 .address-section .icon-shouhuodizhi {
     -webkit-flex-shrink: 0;

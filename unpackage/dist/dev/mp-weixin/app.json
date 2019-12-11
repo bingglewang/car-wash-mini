@@ -37,5 +37,6 @@
     "plugin": "/pages/card/home",
     "about": "/pages/user/home",
     "cu-custom": "/colorui/components/cu-custom"
-  }
+  },
+  "sitemapLocation": "sitemap48.json"
 }

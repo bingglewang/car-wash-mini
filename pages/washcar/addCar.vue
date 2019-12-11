@@ -20,8 +20,10 @@
 		</view>
 		<view class="bg-gray padding-sm"></view>
 		<view class="add-car-detail bg-white">
+			<view class="detail-item-tile"><text class="detail-item-title-font">姓名</text></view>
+			<view class="detail-item-content"><input class="detail-item-input bg-gray" placeholder="请输入姓名" v-model="userName" /></view>
 			<view class="detail-item-tile"><text class="detail-item-title-font">联系手机</text></view>
-			<view class="detail-item-content"><input class="detail-item-input bg-gray" placeholder="请输入手机号" /></view>
+			<view class="detail-item-content"><input class="detail-item-input bg-gray" placeholder="请输入手机号" v-model="phoneNumber" /></view>
 			<view class="detail-item-tile">
 				<text class="detail-item-title-font">车牌号码</text>
 				<view style="display: flex;align-items: center;margin-left: auto;margin-right: 20px;" @click="doScanCarNum">
@@ -64,14 +66,16 @@
 		},
 		data() {
 			return {
+				userName:'',
+				phoneNumber:'',
 				carIndex: -1,
 				carInput: [{
 						type: 2,
-						val: "云"
+						val: ""
 					},
 					{
 						type: 4,
-						val: "A"
+						val: ""
 					},
 					{
 						type: 1,
@@ -100,20 +104,20 @@
 				],
 				keyType: 0,
 				isPower: false, // 新能源
-				cardCur: 0,
+				cardCur: 1,
 				dotStyle: false,
 				swiperList: [{
-						id: 0,
+						id: 1,
 						url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg',
 						title: '轿车'
 					},
 					{
-						id: 1,
+						id: 2,
 						url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg',
 						title: 'SUV'
 					},
 					{
-						id: 2,
+						id: 3,
 						url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg',
 						title: 'MPV'
 					}
@@ -265,6 +269,24 @@
 				let that = this
 				let ck = that.checkCar();
 				if (ck.i == -1 && !ck.isempty) {
+					let carNumber = '';
+					that.carInput.forEach(item => {
+						carNumber += item.val
+					})
+					let addCarParam = {
+						type:that.cardCur,
+						number:carNumber,
+						isNewEnergy: that.isPower?1:0,
+						mobile:that.phoneNumber,
+						name:that.userName
+					}
+					that.$api.request(addCarParam,'api/vehicle/addVehicle','POST').then(res =>{
+						uni.showToast({
+							title:'添加成功',
+							icon:'success'
+						})
+						uni.navigateBack();
+					})
 					console.log('可以绑定车牌了')
 				} else {
 					// 显示键盘输入
@@ -306,7 +328,8 @@
 
 <style lang="scss">
 	.page {
-		height: 100vh;
+		height: 100%;
+		background-color: #FFFFFF;
 	}
 
 	.car-item-contet {

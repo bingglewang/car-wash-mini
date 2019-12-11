@@ -11,10 +11,21 @@
 				<view class="cen">
 					<view class="top">
 						<text class="name">{{addressData.name}}</text>
+					</view>
+					<text class="address">{{addressData.address}} {{addressData.area}}</text>
+				</view>
+			</view>
+			<view style="padding-left: 30upx;padding-right: 30upx;">
+				<view class="solid-bottom" style="height: 1px;"></view>
+			</view>
+			<view class="order-content">
+				<text class="cuIcon-phone" style="font-size: 50upx;color: #0081FF;margin-left: 30upx;margin-right: 30upx;"></text>
+				<view class="cen">
+					<view class="top">
+						<text class="name">{{addressData.name}}</text>
 						<text class="mobile">{{addressData.mobile}}</text>
 						<a @click="modifyPhone" class="text-blue" style="display: inline-block;margin-left: 10upx;">(修改)</a>
 					</view>
-					<text class="address">{{addressData.address}} {{addressData.area}}</text>
 				</view>
 			</view>
 
@@ -172,13 +183,15 @@
 	}
 
 	.address-section {
-		padding: 30upx 0;
+		padding: 0 0 0 0;
 		background: #fff;
 		position: relative;
 
 		.order-content {
 			display: flex;
 			align-items: center;
+			padding-bottom: 30upx;
+			padding-top: 30upx;
 		}
 
 		.icon-shouhuodizhi {

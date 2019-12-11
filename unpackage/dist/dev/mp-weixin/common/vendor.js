@@ -734,7 +734,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1636,9 +1636,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!*************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/store/index.js ***!
-  \*************************************************************/
+/*!***********************************************!*\
+  !*** E:/project/car-wash-mini/store/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2632,9 +2632,9 @@ var index_esm = {
 /***/ }),
 
 /***/ 17:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/index.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/index.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2657,23 +2657,34 @@ var request = function request(data, url, method) {
 
 
     //获取用户信息
-  };try {
-    var userInfo = uni.getStorageSync('userInfo');
-  } catch (e) {
-    console.log("接口:用户详情:", e);
-  }
-
+  };var userInfo = uni.getStorageSync('userInfo');
   //获取token
   var token = uni.getStorageSync('token');
+  var isExpire = (0, _common.contrastTime)(userInfo.expireTime - 0);
+  //let isExpire = contrastTime(1576034279);
+  console.log("过期时间:", isExpire);
+  //过期刷新token
+  if (isExpire && userInfo.expireTime != undefined && userInfo.expireTime != '') {
+    _interface.default.request({
+      baseUrl: _index.BaseUrl,
+      url: 'api/user/refresh-token/' + userInfo.refreshToken,
+      dataType: 'json',
+      method: 'POST' }).
+    then(function (refres) {
+      console.log("刷新结果:", refres.data.data.refreshToken);
+      console.log("刷新结果token:", refres.data.data.token);
+      userInfo.refreshToken = refres.data.data.refreshToken;
+      userInfo.expireTime = refres.data.data.expireTime;
+      uni.setStorageSync('userInfo', userInfo);
+      uni.setStorageSync('token', refres.data.data.token);
+    });
+  }
 
-
-  console.log("接口:token:", token);
 
   //设置请求前拦截器
   _interface.default.interceptor.request = function (config) {
     config.header = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      "token": token,
       "time": timestamp,
       "nonceStr": randomStr };
 
@@ -2681,21 +2692,18 @@ var request = function request(data, url, method) {
   //设置请求结束后拦截器
   _interface.default.interceptor.response = function (response) {
     //判断返回状态 执行相应操作
-    if (response.data.code - 0 == 0) {
-      return response;
-    } else {
-      uni.showModal({
-        title: response.data.msg });
-
-    }
   };
+
+  var baseData = {
+    "authorizationToken": token };
+
 
   return _interface.default.request({
     baseUrl: _index.BaseUrl,
     url: url,
     dataType: 'json',
     method: method || 'GET',
-    data: data });
+    data: Object.assign(data, baseData) });
 
 };
 
@@ -2707,9 +2715,9 @@ exports.request = request;var _default = {
 /***/ }),
 
 /***/ 18:
-/*!********************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/interface.js ***!
-  \********************************************************************************/
+/*!******************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/interface.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2805,7 +2813,13 @@ var _index = __webpack_require__(/*! ../../util/env/index */ 19);function _defin
         // 统一的响应日志记录
         _reslog(response);
         if (statusCode === 200) {//成功
-          resolve(response);
+          if (response.data.code - 0 == 0) {
+            resolve(response);
+          } else {
+            uni.showModal({
+              title: response.data.msg });
+
+          }
         } else {
           reject(response);
         }
@@ -2912,9 +2926,9 @@ function _reslog(res) {
 /***/ }),
 
 /***/ 19:
-/*!****************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/env/index.js ***!
-  \****************************************************************/
+/*!**************************************************!*\
+  !*** E:/project/car-wash-mini/util/env/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8405,7 +8419,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8426,14 +8440,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8509,7 +8523,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8887,9 +8901,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
-/*!*******************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/common/index.js ***!
-  \*******************************************************************/
+/*!*****************************************************!*\
+  !*** E:/project/car-wash-mini/util/common/index.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8937,6 +8951,21 @@ var randomString = function randomString(len) {
     pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
   }
   return pwd;
+};
+
+/**
+    * 判断输入时间是否大于当前时间
+    */
+var contrastTime = function contrastTime(date) {
+  date = new Date(date);
+  var currentData = new Date();
+  var t1 = date.getTime();
+  var t2 = currentData.getTime();
+  if (t1 - t2 > 0) {
+    return false;
+  } else {
+    return true;
+  }
 };
 
 
@@ -9011,6 +9040,7 @@ var SearchDataIndex = function SearchDataIndex(key, data) {
 };
 
 module.exports = {
+  contrastTime: contrastTime,
   randomString: randomString,
   uploadFile: uploadFile,
   formatTime: formatTime,
@@ -9022,9 +9052,9 @@ module.exports = {
 /***/ }),
 
 /***/ 227:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9033,9 +9063,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 /***/ }),
 
 /***/ 228:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star_active.png ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star_active.png ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9044,9 +9074,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 /***/ }),
 
 /***/ 236:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/components/uni-icons/icons.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/components/uni-icons/icons.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9181,9 +9211,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 33:
-/*!***********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/util.js ***!
-  \***********************************************************/
+/*!*********************************************!*\
+  !*** E:/project/car-wash-mini/util/util.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9213,9 +9243,9 @@ module.exports = {
 /***/ }),
 
 /***/ 4:
-/*!*********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json ***!
-  \*********************************************************/
+/*!*******************************************!*\
+  !*** E:/project/car-wash-mini/pages.json ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9225,9 +9255,9 @@ module.exports = {
 /***/ }),
 
 /***/ 46:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/mycars.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/mycars.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9236,9 +9266,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 47:
-/*!************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/vipmanage.png ***!
-  \************************************************************************/
+/*!**********************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/vipmanage.png ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9247,9 +9277,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 48:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/coupon.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/coupon.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10168,9 +10198,9 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ 70);
 /***/ }),
 
 /***/ 7:
-/*!**************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"style"} ***!
-  \**************************************************************************/
+/*!************************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"style"} ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10960,9 +10990,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 8:
-/*!*************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"stat"} ***!
-  \*************************************************************************/
+/*!***********************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"stat"} ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

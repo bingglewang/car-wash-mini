@@ -10,8 +10,8 @@
 					<view class="cu-item" @tap="doSelectLocations">
 						<view class="content">
 							<image src="/static/logo.png" class="png" mode="aspectFit"></image>
-							<text class="text-grey" v-if="currentSelectAddress == ''">选择车辆位置</text>
-							<text class="text-black" v-if="currentSelectAddress != ''">{{ currentSelectAddress }}</text>
+							<text class="text-grey" v-if="currentSelectAddress.name == undefined">选择车辆位置</text>
+							<text class="text-black" v-if="currentSelectAddress.name != undefined">{{ currentSelectAddress.name }}</text>
 							<image src="/static/right.png" class="png" mode="aspectFit" style="float: right;"></image>
 						</view>
 					</view>
@@ -95,7 +95,7 @@
 				</view>
 				<view class="padding car-select-button">
 					<view class="cu-btn bg-gradual-blue round lg shadow" @click="hideModal"><span style="visibility: hidden;">ff</span>上一步<span style="visibility: hidden;">ff</span></view>
-					<view class="cu-btn bg-gradual-blue round lg shadow" @click="toPages('/pages/order/createOrder')">确认下单</view>
+					<view class="cu-btn bg-gradual-blue round lg shadow" @click="toPages('/pages/order/createOrder?orderDetail='+orderDetail)">确认下单</view>
 				</view>
 			</view>
 		</view>
@@ -107,14 +107,13 @@ export default {
 	name: 'basics',
 	data() {
 		return {
+			orderDetail: '',
 			hasLogin:false,
 			animationSelect: '',
 			currentSelectId: 0,
 			carWashDesc:'',
 			loading: false,
-			currentSelectLong: '',
-			currentSelectLat: '',
-			currentSelectAddress: '',
+			currentSelectAddress: {},
 			currentSelectCar: '',
 			modalName: null,
 			showQiPao: false,
@@ -254,9 +253,7 @@ export default {
 					console.log('详细地址：' + res.address);
 					console.log('纬度：' + res.latitude);
 					console.log('经度：' + res.longitude);
-					_this.currentSelectAddress = res.name;
-					_this.currentSelectLong = res.longitude;
-					_this.currentSelectLat = res.latitude;
+					_this.currentSelectAddress = res;
 				}
 			});
 		},
@@ -274,6 +271,7 @@ export default {
 	mounted() {
 		this.screenHeight = uni.getStorageSync('screenHeight') - 50 - uni.getStorageSync('bottomTarHeight');
 		this.mapHeight = this.screenHeight - this.contentheght;
+		//是否登录判断
 		this.hasLogin = uni.getStorageSync('hasLogin');
 		console.log("是否登录:",this.hasLogin)
 		if(!this.hasLogin){
@@ -281,6 +279,8 @@ export default {
 				url: '/pages/user/login'
 			}) 
 		}
+		//获取全部车辆
+		this.$api.request()
 	}
 };
 </script>
