@@ -1,12 +1,12 @@
-.order-font-color.data-v-012d0475 {
+.order-font-color.data-v-3ec65092 {
   color: #75787d;
 }
-.order-item.data-v-012d0475 {
+.order-item.data-v-3ec65092 {
   padding: 8rpx 20rpx;
   font-size: 32rpx;
   color: #303133;
 }
-.order-item-bottom.data-v-012d0475 {
+.order-item-bottom.data-v-3ec65092 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -17,7 +17,7 @@
   -webkit-justify-content: center;
           justify-content: center;
 }
-.container999.data-v-012d0475 {
+.container999.data-v-3ec65092 {
   width: 100vw;
   font-size: 28rpx;
   min-height: 100vh;
@@ -26,10 +26,10 @@
   position: relative;
   background-color: #f6f6f6;
 }
-.content.data-v-012d0475 {
+.content.data-v-3ec65092 {
   width: 100%;
 }
-.card.data-v-012d0475 {
+.card.data-v-3ec65092 {
   width: 90%;
   height: 368rpx;
   background-color: white;
@@ -39,7 +39,7 @@
   border-radius: 5px;
   position: relative;
 }
-.noCard.data-v-012d0475 {
+.noCard.data-v-3ec65092 {
   width: 90%;
   height: 200rpx;
   margin: auto;
@@ -57,7 +57,7 @@
   box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.1);
   border-radius: 10rpx;
 }
-.nav1.data-v-012d0475 {
+.nav1.data-v-3ec65092 {
   position: fixed;
   left: 0;
   /* top: 64px; */
@@ -80,7 +80,7 @@
   background-color: #50B7EA;
   z-index: 1996;
 }
-.searchInput999.data-v-012d0475 {
+.searchInput999.data-v-3ec65092 {
   width: 90%;
   margin: 0 auto;
   background: white;
@@ -96,11 +96,11 @@
           justify-content: center;
   height: 56rpx;
 }
-.search999.data-v-012d0475 {
+.search999.data-v-3ec65092 {
   width: 32rpx;
   height: 32rpx;
 }
-.searchBox999.data-v-012d0475 {
+.searchBox999.data-v-3ec65092 {
   width: 56rpx;
   height: 56rpx;
   display: -webkit-box;
@@ -113,7 +113,7 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.input999.data-v-012d0475 {
+.input999.data-v-3ec65092 {
   color: #999;
   width: 80%;
 }

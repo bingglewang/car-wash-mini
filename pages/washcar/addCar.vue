@@ -305,8 +305,19 @@
 		},
 		mounted() {
 			//获取车辆类型
+			let _this = this;
+			_this.swiperList = []
 			this.$api.request({key:'vehicle_type'},'api/dictData/list','GET').then(res => {
-				console.log("车辆类型：",res);
+				console.log("车辆类型：",);
+				let carTypeList = res.data.data;
+				carTypeList.forEach(carItem => {
+					let  swiperItem = {
+						id : carItem.dictValue,
+						title : carItem.dictLabel,
+						url:carItem.url
+					}
+					_this.swiperList.push(swiperItem);
+				})
 			})
 		},
 		onPageScroll: function() {

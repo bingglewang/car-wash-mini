@@ -34,24 +34,24 @@
 		<view class="feed-back-form">
 			<view class="cu-form-group">
 				<view class="title">加盟区域<span style="color: red;">*</span></view>
-				<input placeholder="请输入您要加盟的区域" name="input"></input>
+				<input placeholder="请输入您要加盟的区域" name="input" v-model="cooperArea"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">姓<text style="visibility: hidden;">盒子</text>名<span style="color: red;">*</span></view>
-				<input placeholder="请输入您的姓名" name="input"></input>
+				<input placeholder="请输入您的姓名" name="input" v-model="cooperName"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">联系电话<span style="color: red;">*</span></view>
-				<input placeholder="请输入您的联系电话" name="input"></input>
+				<input placeholder="请输入您的联系电话" name="input" v-model="cooperNumber"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">备<text style="visibility: hidden;">盒子</text>注</view>
-				<input placeholder="请输入您的备注信息" name="input"></input>
+				<input placeholder="请输入您的备注信息" name="input" v-model="remark"></input>
 			</view>
 		</view>
 		<view class="feed-back-bottom">
 			<view class="bg-white feed-back-bottom-box">
-				<button type="primary" size="default" class="save-button-addCar" >确认提交</button>
+				<button type="primary" size="default" class="save-button-addCar" @click="submit">确认提交</button>
 			</view>
 		</view>
 	</view>
@@ -61,17 +61,28 @@
 	export default {
 		data() {
 			return {
-				companyName:'将发动机防盗的风景撒旦飞洒算法撒旦幅度萨芬范德萨',
-				companyAddress:'飓风等级分级大家撒旦飞洒地方啊幅度萨芬范德萨',
-				feedTyp:0,
+				companyName: '将发动机防盗的风景撒旦飞洒算法撒旦幅度萨芬范德萨',
+				companyAddress: '飓风等级分级大家撒旦飞洒地方啊幅度萨芬范德萨',
+				feedTyp: 0,
 				leftColor: 'transparent transparent #ffffff transparent',
-				leftborderWidth:'0 10px 50px 0',
+				leftborderWidth: '0 10px 50px 0',
 				leftTextTop: '-25px',
 				rightColor: '#e7e7e7 transparent transparent transparent',
-				rightborderWidth:'50px 0 0 10px',
+				rightborderWidth: '50px 0 0 10px',
 				rightTextTop: '-25px',
 				leftTextColor: 'red',
-				rightTextColor: 'black'
+				rightTextColor: 'black',
+				//加盟类型
+				type: 1,
+				//加盟区域
+				cooperArea: '',
+				//姓名
+				cooperName: '',
+				//联系电话
+				cooperNumber: '',
+				//备注
+				remark: ''
+
 			}
 		},
 		methods: {
@@ -86,6 +97,7 @@
 					this.leftTextColor = 'black'
 					this.rightTextColor = 'red'
 					this.feedTyp = 1
+					this.type = 2
 				}
 				if (direction == 'left') {
 					this.leftColor = 'transparent transparent #ffffff transparent'
@@ -97,99 +109,133 @@
 					this.leftTextColor = 'red'
 					this.rightTextColor = 'black'
 					this.feedTyp = 0
+					this.type = 1
 				}
 			},
-			callUs(){
+			callUs() {
 				uni.makePhoneCall({
-					phoneNumber:'13227355241'
+					phoneNumber: '13227355241'
 				})
 			},
-			lookLocation(){
+			lookLocation() {
 				let that = this;
 				uni.getLocation({
-				    type: 'gcj02', //返回可以用于uni.openLocation的经纬度
-				    success: function (res) {
-				        const latitude = res.latitude;
-				        const longitude = res.longitude;
-				        uni.openLocation({
-				            latitude: latitude,
-				            longitude: longitude,
-							name:that.companyAddress,
-							address:that.companyAddress,
-				            success: function () {
-				                console.log('success');
-				            }
-				        });
-				    }
+					type: 'gcj02', //返回可以用于uni.openLocation的经纬度
+					success: function(res) {
+						const latitude = res.latitude;
+						const longitude = res.longitude;
+						uni.openLocation({
+							latitude: latitude,
+							longitude: longitude,
+							name: that.companyAddress,
+							address: that.companyAddress,
+							success: function() {
+								console.log('success');
+							}
+						});
+					}
 				});
+			},
+			//清空表单
+			clear(){
+				this.cooperArea = '';
+				this.cooperName = '';
+				this.cooperNumber = '';
+				this.remark = '';
+			},
+			//提交
+			submit() {
+				let _this = this;
+				let cooperParam = {
+					type : this.type,
+					franchiseArea : this.cooperArea,
+					name : this.cooperName,
+					mobile : this.cooperNumber,
+					remarks : this.remark
+				}
+				this.$api.request(cooperParam,'api/joined/addJoined','POST').then(res => {
+					_this.clear();
+					uni.showToast({
+						title:'加盟成功',
+						icon:'success'
+					})
+				})
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	
-	.feed-back-head{
+	.feed-back-head {
 		height: 120px;
 		padding: 10px;
-		.feed-back-head-box{
+
+		.feed-back-head-box {
 			height: 100px;
 			display: flex;
 			align-items: center;
-			.feed-back-img{
+
+			.feed-back-img {
 				width: 30px;
 				height: 30px;
 				margin-left: 20upx;
 			}
-			.feed-back-head-title{
+
+			.feed-back-head-title {
 				display: inline-block;
 				margin-left: 10px;
 				margin-right: 10px;
 				width: 55%;
-				.feed-back-head-text1{
+
+				.feed-back-head-text1 {
 					overflow: hidden;
-					text-overflow:ellipsis;
+					text-overflow: ellipsis;
 					white-space: nowrap;
 					font-size: 20px;
 					color: #000000;
 					font-weight: bold;
 					margin-bottom: 10upx;
 				}
-				.feed-back-head-text2{
+
+				.feed-back-head-text2 {
 					overflow: hidden;
-					text-overflow:ellipsis;
+					text-overflow: ellipsis;
 					white-space: nowrap;
 					font-size: 15px;
 					color: #888888;
 				}
 			}
-			.feed-back-head-line{
+
+			.feed-back-head-line {
 				display: inline-block;
 				border-right: #ddd 1px solid;
 				width: 0;
 				height: 30%;
 			}
-			.feed-back-head-right{
+
+			.feed-back-head-right {
 				margin-left: auto;
 				margin-right: 20px;
 			}
 		}
 	}
-	
-	.feed-back-form{
+
+	.feed-back-form {
 		padding-left: 10px;
 		padding-right: 10px;
 	}
-	
-	.feed-back-bottom{
+
+	.feed-back-bottom {
 		padding-left: 10px;
 		padding-right: 10px;
 		border-top: 1rpx solid #eee;
-		.feed-back-bottom-box{
+
+		.feed-back-bottom-box {
 			height: 100px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+
 			.save-button-addCar {
 				border-radius: 100px;
 				width: 80%;
@@ -197,7 +243,7 @@
 			}
 		}
 	}
-	
+
 	.header11 {
 		height: 50px;
 		width: 100%;
@@ -225,6 +271,7 @@
 			width: 50%;
 			display: inline-block;
 			border-style: solid;
+
 			.left-text {
 				left: 50%;
 				transform: translateX(-50%);

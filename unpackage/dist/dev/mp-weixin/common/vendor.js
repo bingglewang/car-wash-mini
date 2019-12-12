@@ -1636,9 +1636,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!*************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/store/index.js ***!
-  \*************************************************************/
+/*!***********************************************!*\
+  !*** E:/project/car-wash-mini/store/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2632,9 +2632,9 @@ var index_esm = {
 /***/ }),
 
 /***/ 17:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/index.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/index.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2715,9 +2715,9 @@ exports.request = request;var _default = {
 /***/ }),
 
 /***/ 18:
-/*!********************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/interface.js ***!
-  \********************************************************************************/
+/*!******************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/interface.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2926,9 +2926,9 @@ function _reslog(res) {
 /***/ }),
 
 /***/ 19:
-/*!****************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/env/index.js ***!
-  \****************************************************************/
+/*!**************************************************!*\
+  !*** E:/project/car-wash-mini/util/env/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8901,9 +8901,9 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
-/*!*******************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/common/index.js ***!
-  \*******************************************************************/
+/*!*****************************************************!*\
+  !*** E:/project/car-wash-mini/util/common/index.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9052,9 +9052,9 @@ module.exports = {
 /***/ }),
 
 /***/ 227:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9063,9 +9063,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 /***/ }),
 
 /***/ 228:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star_active.png ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star_active.png ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9074,9 +9074,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 /***/ }),
 
 /***/ 236:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/components/uni-icons/icons.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/components/uni-icons/icons.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9211,9 +9211,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 33:
-/*!***********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/util.js ***!
-  \***********************************************************/
+/*!*********************************************!*\
+  !*** E:/project/car-wash-mini/util/util.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9243,9 +9243,9 @@ module.exports = {
 /***/ }),
 
 /***/ 4:
-/*!*********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json ***!
-  \*********************************************************/
+/*!*******************************************!*\
+  !*** E:/project/car-wash-mini/pages.json ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9255,9 +9255,9 @@ module.exports = {
 /***/ }),
 
 /***/ 46:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/mycars.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/mycars.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9266,9 +9266,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 47:
-/*!************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/vipmanage.png ***!
-  \************************************************************************/
+/*!**********************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/vipmanage.png ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9277,9 +9277,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 48:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/coupon.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/coupon.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10198,14 +10198,14 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ 70);
 /***/ }),
 
 /***/ 7:
-/*!**************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"style"} ***!
-  \**************************************************************************/
+/*!************************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"style"} ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": {} }, "pages/washcar/home": { "usingComponents": {} }, "pages/order/home": { "usingComponents": { "refresh": "/components/refresh", "nav-tab": "/components/navTab", "tab-bar4": "/components/tabBar4" } }, "pages/card/home": { "usingComponents": { "uni-collapse": "/components/uni-collapse/uni-collapse", "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item" } }, "pages/user/home": { "usingComponents": {} }, "pages/washcar/addCar": { "usingComponents": { "tki-float-keyboard": "/components/tki-float-keyboard/tki-float-keyboard" } }, "pages/card/buyCard": { "usingComponents": {} }, "pages/user/myCars": { "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/logs": { "usingComponents": {} }, "pages/user/coupon": { "enablePullDownRefresh": true, "usingComponents": {} }, "pages/user/myVipCards": { "usingComponents": {} }, "pages/user/feedback": { "usingComponents": {} }, "pages/user/cooperation": { "usingComponents": {} }, "pages/user/notice": { "usingComponents": { "uni-notice-bar": "/components/uni-notice-bar/uni-notice-bar" } }, "pages/user/login": { "usingComponents": {} }, "pages/user/validatorCode": { "usingComponents": {} }, "pages/order/orderDetail": { "usingComponents": { "my-issue": "/components/myIssue" } }, "pages/order/createOrder": { "usingComponents": {} } }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "usingComponents": {} }, "pages/washcar/home": { "usingComponents": {} }, "pages/order/home": { "usingComponents": { "refresh": "/components/refresh", "nav-tab": "/components/navTab", "tab-bar4": "/components/tabBar4" } }, "pages/card/home": { "usingComponents": { "uni-collapse": "/components/uni-collapse/uni-collapse", "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item" } }, "pages/user/home": { "usingComponents": {} }, "pages/washcar/addCar": { "usingComponents": { "tki-float-keyboard": "/components/tki-float-keyboard/tki-float-keyboard" } }, "pages/card/buyCard": { "usingComponents": {} }, "pages/user/myCars": { "usingComponents": {} }, "pages/user/logs": { "usingComponents": {} }, "pages/user/coupon": { "usingComponents": {} }, "pages/user/myVipCards": { "usingComponents": {} }, "pages/user/feedback": { "usingComponents": {} }, "pages/user/cooperation": { "usingComponents": {} }, "pages/user/notice": { "usingComponents": { "uni-notice-bar": "/components/uni-notice-bar/uni-notice-bar" } }, "pages/user/login": { "usingComponents": {} }, "pages/user/validatorCode": { "usingComponents": {} }, "pages/order/orderDetail": { "usingComponents": { "my-issue": "/components/myIssue" } }, "pages/order/createOrder": { "usingComponents": {} } }, "globalStyle": { "navigationBarBackgroundColor": "#0081ff", "navigationBarTitleText": "Car wash mini", "navigationStyle": "custom", "navigationBarTextStyle": "white" } };exports.default = _default;
 
 /***/ }),
 
@@ -10990,9 +10990,9 @@ if (hadRuntime) {
 /***/ }),
 
 /***/ 8:
-/*!*************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"stat"} ***!
-  \*************************************************************************/
+/*!***********************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"stat"} ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

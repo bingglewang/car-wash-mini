@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="page">
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
 			<block slot="backText">返回</block>
 			<block slot="content">我的优惠券</block>
@@ -15,8 +15,8 @@
 				<view class="border" :class="typeClass"></view>
 			</view>
 		</view>
+		<view style="height: 95upx;visibility: hidden;"></view>
 		<view class="coupon-content">
-			<view style="height: 95upx;visibility: hidden;"></view>
 			<view class="list">
 				<!-- 优惠券列表 -->
 				<view class="sub-list valid" v-if="subState == 'showvalid'">
@@ -184,7 +184,56 @@
 						termEnd: "2019-05-30",
 						ticket: "50",
 						criteria: "满1000使用"
+					},
+					{
+						id: 4,
+						title: "全场立减50元",
+						termStart: "2019-04-01",
+						termEnd: "2019-05-30",
+						ticket: "50",
+						criteria: "满1000使用"
+					},
+					{
+						id: 4,
+						title: "全场立减50元",
+						termStart: "2019-04-01",
+						termEnd: "2019-05-30",
+						ticket: "50",
+						criteria: "满1000使用"
+					},
+					{
+						id: 4,
+						title: "全场立减50元",
+						termStart: "2019-04-01",
+						termEnd: "2019-05-30",
+						ticket: "50",
+						criteria: "满1000使用"
 					}
+					,{
+						id: 4,
+						title: "全场立减50元",
+						termStart: "2019-04-01",
+						termEnd: "2019-05-30",
+						ticket: "50",
+						criteria: "满1000使用"
+					}
+					,{
+						id: 4,
+						title: "全场立减50元",
+						termStart: "2019-04-01",
+						termEnd: "2019-05-30",
+						ticket: "50",
+						criteria: "满1000使用"
+					},{
+						id: 4,
+						title: "全场立减50元",
+						termStart: "2019-04-01",
+						termEnd: "2019-05-30",
+						ticket: "50",
+						criteria: "满1000使用"
+					}
+
+					
 
 				],
 				couponinvalidList: [{
@@ -375,17 +424,20 @@
 </script>
 <style lang="scss" scoped>
 	.coupon-content {
+		overflow-y: auto;
+		height: calc(100% - 100upx);
+		padding-bottom: 50upx;
 		view {
 			display: flex;
 			flex-wrap: wrap;
-
 		}
 	}
 
 
-	page {
+	.page {
 		position: relative;
 		background-color: #f5f5f5;
+		overflow-y: hidden;
 	}
 
 	.hidden {
