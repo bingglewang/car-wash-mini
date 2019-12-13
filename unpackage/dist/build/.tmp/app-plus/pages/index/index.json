@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "basics": "/pages/washcar/home",
-    "components": "/pages/order/home",
-    "plugin": "/pages/card/home",
-    "about": "/pages/user/home"
-  }
-}

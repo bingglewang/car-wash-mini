@@ -51,6 +51,7 @@ export const request = (data,url,method) => {
 	//设置请求结束后拦截器
 	http.interceptor.response = (response) => {
 		//判断返回状态 执行相应操作
+		return response
 	}
 	
 	let baseData = {

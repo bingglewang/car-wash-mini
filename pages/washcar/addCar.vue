@@ -7,8 +7,8 @@
 
 		<view class="">
 			<swiper class="card-swiper" :class="dotStyle ? 'square-dot' : 'round-dot'" :indicator-dots="true" :circular="true"
-			 :autoplay="false" @change="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
-				<swiper-item v-for="(item, index) in swiperList" :key="index" :class="cardCur == index ? 'cur' : ''">
+			 :current="cardCur" :autoplay="false" @change="cardSwiper" indicator-color="#8799a3" indicator-active-color="#0081ff">
+				<swiper-item v-for="(item, index) in swiperList" :key="index" :class="cardCur==index ? 'cur' : ''">
 					<view class="swiper-item" style="position: relative;">
 						<image :src="item.url" mode="aspectFill"></image>
 						<view class="car-item-contet">
@@ -52,7 +52,7 @@
 			</view>
 		</view>
 		<view class="detail-bottom">
-			<button type="primary" size="default" class="save-button-addCar" @tap="toBind">确认添加</button>
+			<button type="primary" size="default" class="save-button-addCar" @tap="toBind">{{addType == 3 ?'保存':'确认添加'}}</button>
 		</view>
 		<tki-float-keyboard ref="keybd" :mode="'car'" :type="keyType" :title="'车牌键盘'" @del="keyCbDel" @val="keyCbVal" @hide="keyCbHide"></tki-float-keyboard>
 	</view>
@@ -66,8 +66,9 @@
 		},
 		data() {
 			return {
-				userName:'',
-				phoneNumber:'',
+				addType: 1,
+				userName: '',
+				phoneNumber: '',
 				carIndex: -1,
 				carInput: [{
 						type: 2,
@@ -104,33 +105,19 @@
 				],
 				keyType: 0,
 				isPower: false, // 新能源
-				cardCur: 1,
+				cardCur: 0,
 				dotStyle: false,
-				swiperList: [{
-						id: 1,
-						url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg',
-						title: '轿车'
-					},
-					{
-						id: 2,
-						url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg',
-						title: 'SUV'
-					},
-					{
-						id: 3,
-						url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg',
-						title: 'MPV'
-					}
-				]
+				swiperList: [],
+				carId: 0 //车辆id
 			};
 		},
 		methods: {
-			doScanCarNum(){
+			doScanCarNum() {
 				uni.chooseImage({
-				    count: 1, //默认9
-				    success: function (res) {
-				        console.log(JSON.stringify(res.tempFilePaths));
-				    }
+					count: 1, //默认9
+					success: function(res) {
+						console.log(JSON.stringify(res.tempFilePaths));
+					}
 				});
 			},
 			// 判定是否为空
@@ -273,23 +260,46 @@
 					that.carInput.forEach(item => {
 						carNumber += item.val
 					})
-					let addCarParam = {
-						type:that.cardCur,
-						number:carNumber,
-						isNewEnergy: that.isPower?1:0,
-						mobile:that.phoneNumber,
-						name:that.userName
-					}
-					that.$api.request(addCarParam,'api/vehicle/addVehicle','POST').then(res =>{
-						uni.showToast({
-							title:'添加成功',
-							icon:'success'
+					let currentSwiper = that.swiperList[that.cardCur];
+					if (that.addType == 3) {
+						let editParam = {
+							id: that.carId,
+							type: currentSwiper.id,
+							number: carNumber,
+							isNewEnergy: that.isPower ? 1 : 0,
+							mobile: that.phoneNumber,
+							name: that.userName
+						}
+						that.$api.request(editParam, 'api/vehicle/editVehicle', 'POST').then(res => {
+							uni.showToast({
+								title: '编辑成功',
+								icon: 'success'
+							})
+							uni.navigateBack();
 						})
-						uni.navigateTo({
-							url:'/pages/index/index'
-						});
-					})
-					console.log('可以绑定车牌了')
+					} else {
+						let addCarParam = {
+							type: currentSwiper.id,
+							number: carNumber,
+							isNewEnergy: that.isPower ? 1 : 0,
+							mobile: that.phoneNumber,
+							name: that.userName
+						}
+						that.$api.request(addCarParam, 'api/vehicle/addVehicle', 'POST').then(res => {
+							uni.showToast({
+								title: '添加成功',
+								icon: 'success'
+							})
+							if (that.addType == 1) {
+								uni.navigateTo({
+									url: '/pages/index/index'
+								});
+							} else if (that.addType == 2) {
+								uni.navigateBack();
+							}
+
+						})
+					}
 				} else {
 					// 显示键盘输入
 					that.keyShow();
@@ -303,23 +313,7 @@
 				console.log('当前card：' + this.cardCur);
 			}
 		},
-		mounted() {
-			//获取车辆类型
-			let _this = this;
-			_this.swiperList = []
-			this.$api.request({key:'vehicle_type'},'api/dictData/list','GET').then(res => {
-				console.log("车辆类型：",);
-				let carTypeList = res.data.data;
-				carTypeList.forEach(carItem => {
-					let  swiperItem = {
-						id : carItem.dictValue,
-						title : carItem.dictLabel,
-						url:carItem.url
-					}
-					_this.swiperList.push(swiperItem);
-				})
-			})
-		},
+		mounted() {},
 		onPageScroll: function() {
 			let that = this;
 		},
@@ -338,8 +332,49 @@
 		onUnload: function() {
 			let that = this;
 		},
-		onLoad: async function() {
-			let that = this;
+		onLoad: async function(options) {
+			this.addType = options.addType
+			//获取车辆类型
+			let _this = this;
+			_this.swiperList = []
+			this.$api.request({
+				key: 'vehicle_type'
+			}, 'api/dictData/list', 'GET').then(res => {
+				console.log("车辆类型：", );
+				let carTypeList = res.data.data;
+				carTypeList.forEach(carItem => {
+					let swiperItem = {
+						id: carItem.dictValue,
+						title: carItem.dictLabel,
+						url: carItem.url
+					}
+					_this.swiperList.push(swiperItem);
+				})
+
+				if (_this.addType == 3) {
+					let carEdit = JSON.parse(options.car);
+					_this.userName = carEdit.name;
+					_this.phoneNumber = carEdit.mobile;
+					_this.isPower = carEdit.isNewEnergy == 0 ? false : true;
+					for (let i = 0; i < _this.swiperList.length; i++) {
+						if (_this.swiperList[i].id == carEdit.type) {
+							_this.cardCur = i;
+							console.log("当前：", _this.cardCur)
+						}
+					}
+					_this.carId = carEdit.id;
+					_this.carInput[0].val = carEdit.number.substring(0, 1);
+					_this.carInput[1].val = carEdit.number.substring(1, 2);
+					_this.carInput[2].val = carEdit.number.substring(2, 3);
+					_this.carInput[3].val = carEdit.number.substring(3, 4);
+					_this.carInput[4].val = carEdit.number.substring(4, 5);
+					_this.carInput[5].val = carEdit.number.substring(5, 6);
+					_this.carInput[6].val = carEdit.number.substring(6, 7);
+					if (carEdit.isNewEnergy == 1) {
+						_this.carInput[7].val = carEdit.number.substring(7, 8);
+					}
+				}
+			})
 		}
 	};
 </script>
@@ -453,7 +488,7 @@
 		line-height: 1
 	}
 
-    checkbox .wx-checkbox-input {
+	checkbox .wx-checkbox-input {
 		border-radius: 50% !important;
 		color: #ffffff !important;
 	}

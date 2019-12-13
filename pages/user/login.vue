@@ -68,6 +68,36 @@
 			},
 			// #endif
 			
+			submit(res,user){
+				let _this = this;
+				let loginParam = {
+					code: _this.mpCode,
+					platform: 'mp',
+					encryptedData: res.detail.encryptedData,
+					iv: res.detail.iv,
+					deviceType: 1,
+					nickName: user.userInfo.nickName,
+					avatarurl: user.userInfo.avatarUrl
+				}
+				_this.$api.request(loginParam, 'api/user/wechat-app-login', 'POST').then(resp => {
+					//存储用户信息
+					let userInfo = {
+						avatarUrl: resp.data.data.avatarurl,
+						nickName: resp.data.data.nickName,
+						expireTime: resp.data.data.expireTime,
+						refreshToken: resp.data.data.refreshToken
+					}
+					//第一次显示提示添加小程序
+					uni.setStorageSync('isShowQiPao',true);
+					//将获取的token信息存储到缓存
+					uni.setStorageSync('token',resp.data.data.token)
+					_this.login(userInfo);
+					uni.navigateTo({
+						url:'/pages/index/index'
+					})
+				})
+			},
+			
 			// #ifdef MP-WEIXIN
 			userInfo(res) {
 				let _this = this;
@@ -79,35 +109,15 @@
 					return;
 				}
 				
-				uni.getUserInfo({
+				//体验，开发版，默认获取失败，正式不影响(正式再开启)
+				/* uni.getUserInfo({
 					success: user => {
 						console.log("用户详情：",user)
 						console.log("授权信息：",res);
-						let loginParam = {
-							code: _this.mpCode,
-							platform: 'mp',
-							encryptedData: res.detail.encryptedData,
-							iv: res.detail.iv,
-							deviceType: 1,
-							nickName: user.userInfo.nickName,
-							avatarurl: user.userInfo.avatarUrl
-						}
-						_this.$api.request(loginParam, 'api/user/wechat-app-login', 'POST').then(resp => {
-							//存储用户信息
-							let userInfo = {
-								avatarUrl: resp.data.data.avatarurl,
-								nickName: resp.data.data.nickName,
-								expireTime: resp.data.data.expireTime,
-								refreshToken: resp.data.data.refreshToken
-							}
-							//将获取的token信息存储到缓存
-							uni.setStorageSync('token',resp.data.data.token)
-							_this.login(userInfo);
-							uni.navigateBack();
-						})
-						
+						_this.submit(res,user);
 					}
-				})
+				}) */
+				_this.submit(res,{userInfo:{nickName:'测试',avatarurl:''}});
 			}
 			// #endif
 		}

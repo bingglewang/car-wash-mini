@@ -12,7 +12,10 @@
 						<view class="car-item-number">{{ item.number }}</view>
 						<view class="car-item-phone">{{ item.mobile }}</view>
 					</view>
-					<button class="cu-btn round line-blue shadow car-item-edit">编辑</button>
+					<view class="car-item-edit">
+						<button class="cu-btn round line-blue shadow" style="margin-bottom: 15upx;" @click="editCar(item)">编辑</button>
+						<button class="cu-btn round line-red shadow" @click="deleteCar(item.id)">删除</button>
+					</view>
 				</view>
 			</template>
 			<view style="height: 150upx;"></view>
@@ -29,26 +32,46 @@ export default {
 		};
 	},
 	methods: {
-		doAddCarPages() {
-			let url = '/pages/washcar/addCar';
+		//删除车辆
+		deleteCar(id){
+			let _this = this;
+			this.$api.request({id:id},'api/vehicle/delVehicle','POST').then(res => {
+				_this.getAllCarsList();
+			})
+		},
+		//编辑车辆
+		editCar(car){
+			let carJsonStr = JSON.stringify(car);
+			let url = '/pages/washcar/addCar?addType=3&car='+ carJsonStr;
 			uni.navigateTo({
 				url: url
 			});
+		},
+		//添加车辆
+		doAddCarPages() {
+			let url = '/pages/washcar/addCar?addType=2';
+			uni.navigateTo({
+				url: url
+			});
+		},
+		//加载车辆
+		getAllCarsList(){
+			let _this = this;
+			this.$api.request({}, 'api/vehicle/vehicleList', 'GET').then(res => {
+				_this.carList = res.data.data
+			});
 		}
 	},
-	mounted() {
-		let _this = this;
-		this.$api.request({}, 'api/vehicle/vehicleList', 'GET').then(res => {
-			_this.carList = res.data.data
-		});
+	onShow() {
+		this.getAllCarsList();
 	}
 };
 </script>
 
 <style lang="scss" scoped>
 .car-item-img {
-	width: 100px;
-	height: 100px;
+	width: 70px;
+	height: 70px;
 }
 
 .mycar-bottom {
@@ -88,6 +111,8 @@ export default {
 .car-item-edit {
 	margin-left: auto;
 	margin-right: 20px;
+	display: flex;
+	flex-direction: column;
 }
 
 .car-list-item {

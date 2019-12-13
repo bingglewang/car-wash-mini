@@ -54,7 +54,7 @@
 													<view class="wash-text" style="background-color: #888888;" v-if="car.number == currentSelectCar">{{ car.number }}</view>
 													<view class="wash-text" style="background-color: #e7e7e7;" v-else>{{ car.number }}</view>
 												</view>
-												<view class="wash-box1" @tap="toPages('/pages/washcar/addCar')">
+												<view class="wash-box1" @tap="toPages('/pages/washcar/addCar?addType=1')">
 													<view class="wash-text" style="border: #DDDDDD 1upx dashed;">
 														<span style="font-weight: bold;margin-right: 5px;">＋</span>
 														添加车辆
@@ -78,7 +78,7 @@
 				<view style="padding-left: 30upx;padding-right: 30upx;padding-top: 30upx;">
 					<view class="car-select">
 						<view class="car-select-item radius" v-for="(item, index) in selectCarList" :key="index" @click="selectPromotion(item.id,index)"
-						 :class="currentSelectId == item.id? animationSelect:''">
+						 :class="currentSelectIndex == index? animationSelect:''">
 							<!-- <view class="car-select-tag-box">
 							    优惠标签，暂时不要
 								<view class="cu-tag light bg-gradual-orange car-select-tag">{{ item.selectTag }}</view>
@@ -88,7 +88,7 @@
 							</view>
 							<view class="car-select-title">{{ item.title }}</view>
 							<view class="car-select-price">￥{{ item.price }}</view>
-							<view class="cu-progress round" style="height: 10upx;" v-if="currentSelectId == item.id">
+							<view class="cu-progress round" style="height: 10upx;" v-if="currentSelectIndex == index">
 								<view class="bg-gradual-blue" :style="[{ width: loading ? '100%' : '' }]"></view>
 							</view>
 						</view>
@@ -102,7 +102,7 @@
 				<view class="padding car-select-button">
 					<view class="cu-btn bg-gradual-blue round lg shadow" @click="hideModal"><span style="visibility: hidden;">ff</span>上一步<span
 						 style="visibility: hidden;">ff</span></view>
-					<view class="cu-btn bg-gradual-blue round lg shadow" @click="toPages('/pages/order/createOrder?orderDetail='+orderDetail)">确认下单</view>
+					<view class="cu-btn bg-gradual-blue round lg shadow" @click="toPages('createOrder')">确认下单</view>
 				</view>
 			</view>
 		</view>
@@ -115,10 +115,9 @@
 		data() {
 			return {
 				selectedCarObj:{},
-				orderDetail: '',
 				hasLogin: false,
 				animationSelect: '',
-				currentSelectId: 0,
+				currentSelectIndex: 0,
 				carWashDesc: '',
 				loading: false,
 				currentSelectAddress: {},
@@ -195,7 +194,7 @@
 				console.log("id：" + id, "下标：" + index);
 				let that = this;
 				this.carWashDesc = this.selectCarList[index].remarks;
-				this.currentSelectId = id;
+				this.currentSelectIndex = index;
 				this.loading = false;
 				setTimeout(function() {
 					that.loading = true;
@@ -219,6 +218,20 @@
 			toPages(url) {
 				if (!this.hasLogin) {
 					url = '/pages/user/login'
+				}
+				if(url == 'createOrder'){
+					if(this.currentSelectAddress.name == undefined){
+						uni.showModal({
+							title:'请选择车辆位置'
+						})
+						return ;
+					}
+					let orderDetailObj = {
+						promotionInfo:this.selectCarList[this.currentSelectIndex],
+						addressInfo:this.currentSelectAddress,
+						carInfo:this.selectedCarObj
+					}
+					url = '/pages/order/createOrder?orderDetail='+JSON.stringify(orderDetailObj);
 				}
 				uni.navigateTo({
 					url: url
@@ -275,6 +288,14 @@
 			this.getAllCars();
 			//加载产品
 			this.getProducts();
+			//显示气泡
+			let that = this;
+			this.showQiPao = uni.getStorageSync('isShowQiPao');
+			setTimeout(function() {
+				that.showQiPao = false;
+				uni.removeStorageSync('isShowQiPao');
+			}, 1000*3);
+			
 		}
 	};
 </script>

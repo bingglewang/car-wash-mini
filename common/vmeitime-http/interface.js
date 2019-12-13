@@ -92,9 +92,11 @@ export default {
 					if(response.data.code -0 == 0){
 						resolve(response);
 					}else{
-						uni.showModal({
-							title:response.data.msg
-						})
+						if(response.data.code -0 != 100){
+							uni.showModal({
+								title:response.data.msg
+							})
+						}
 					}
 				} else {
 					reject(response)

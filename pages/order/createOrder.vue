@@ -10,9 +10,9 @@
 				<text class="cuIcon-locationfill" style="font-size: 50upx;color: #0081FF;margin-left: 30upx;margin-right: 30upx;"></text>
 				<view class="cen">
 					<view class="top">
-						<text class="name">{{addressData.name}}</text>
+						<text class="name">{{orderDetail.addressInfo.name}}</text>
 					</view>
-					<text class="address">{{addressData.address}} {{addressData.area}}</text>
+					<text class="address">{{orderDetail.addressInfo.address}}</text>
 				</view>
 			</view>
 			<view style="padding-left: 30upx;padding-right: 30upx;">
@@ -22,8 +22,8 @@
 				<text class="cuIcon-phone" style="font-size: 50upx;color: #0081FF;margin-left: 30upx;margin-right: 30upx;"></text>
 				<view class="cen">
 					<view class="top">
-						<text class="name">{{addressData.name}}</text>
-						<text class="mobile">{{addressData.mobile}}</text>
+						<text class="name">{{orderDetail.carInfo.name}}</text>
+						<text class="mobile">{{orderDetail.carInfo.mobile}}</text>
 						<a @click="modifyPhone" class="text-blue" style="display: inline-block;margin-left: 10upx;">(修改)</a>
 					</view>
 				</view>
@@ -35,12 +35,13 @@
 		<view class="goods-section">
 			<view class="g-header b-b">
 				<text class="cuIcon-taxi" style="font-size: 50upx;color: #0081FF;"></text>
-				<text class="name">浙.JFF22333</text>
+				<text class="name">{{orderDetail.carInfo.number}}</text>
 			</view>
-			<view class="yt-list">
+			<view class="yt-list" style="padding-right: 20upx;">
 				<view class="yt-list-cell b-b">
-					<text class="cell-tit clamp">普洗</text>
-					<text class="cell-tip">x1</text>
+					<text class="cell-tit clamp">{{orderDetail.promotionInfo.title}}</text>
+					<!-- <text class="cell-tip">x1</text> -->
+					<uni-number-box :value="numberValue" @change="bindChange" class="cell-tip"></uni-number-box>
 				</view>
 			</view>
 		</view>
@@ -111,12 +112,13 @@
 </template>
 
 <script>
+	import uniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
 	export default {
+		components: {uniNumberBox},
 		data() {
 			return {
 				maskState: 0, //优惠券面板显示状态
 				desc: '', //备注
-				payType: 1, //1微信 2支付宝
 				couponList: [
 					{
 						title: '新用户专享优惠券',
@@ -131,22 +133,22 @@
 						price: 15,
 					}
 				],
-				addressData: {
-					name: '许小星',
-					mobile: '13853989563',
-					addressName: '金九大道',
-					address: '山东省济南市历城区',
-					area: '149号',
-					default: false,
-				}
+				//订单详情
+				orderDetail:{},
+				numberValue: 0
 			}
 		},
 		onLoad(option){
 			//商品数据
-			//let data = JSON.parse(option.data);
-			//console.log(data);
+			let createOrderParam = JSON.parse(option.orderDetail);
+			this.orderDetail = createOrderParam;
+			console.log("订单信息：",this.orderDetail)
 		},
 		methods: {
+			bindChange(value) {
+				this.numberValue = value
+				console.log("数量：",this.numberValue)
+			},
 			//修改手机号
 			modifyPhone(){
 				uni.showModal({
@@ -162,14 +164,23 @@
 					this.maskState = state;
 				}, timer)
 			},
-			numberChange(data) {
-				this.number = data.number;
-			},
-			changePayType(type){
-				this.payType = type;
-			},
 			submit(){
 				//跳转支付页面，
+				let _this = this;
+				let orderParam = {
+					vehicleType:1,
+					vehicleNumber: '浙A32132',
+					totalAmount:10,
+					lng:'',
+					lat:'',
+					productId:1,
+					address:'',
+					couponId:1,
+					payAmount:1
+				}
+				_this.$api.request(orderParam,'','POST').then(res => {
+					
+				})
 			},
 			stopPrevent(){}
 		}

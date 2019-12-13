@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom",
-    "tki-float-keyboard": "/components/tki-float-keyboard/tki-float-keyboard"
-  }
-}
