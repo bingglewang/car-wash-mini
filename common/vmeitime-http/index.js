@@ -4,41 +4,37 @@ import {BaseUrl} from '../../util/env/index'
 
 import {randomString,contrastTime} from '@/util/common'
 
-export const request = (data,url,method) => {
+export const request = async (data,url,method) => {
 	http.config.baseUrl = BaseUrl
 
 	//随机字符串,时间戳
-	var timestamp = (new Date()).valueOf();  //时间戳
-	var randomStr = randomString(27); //随机字符串
-	var myHeader = {
-		time:timestamp,
-		nonceStr:randomStr
-	}
+	var timestamp = (new Date()).valueOf();  
+	var randomStr = randomString(27); 
 	
+	//token过期刷新
 	//获取用户信息
 	let userInfo = uni.getStorageSync('userInfo');
-	//获取token
-	let token = uni.getStorageSync('token');
 	let isExpire = contrastTime(userInfo.expireTime - 0);
 	//let isExpire = contrastTime(1576034279);
 	console.log("过期时间:",isExpire);
 	//过期刷新token
 	if(isExpire && userInfo.expireTime != undefined && userInfo.expireTime != ''){
-		http.request({
-			baseUrl: BaseUrl,
-		    url: 'api/user/refresh-token/'+userInfo.refreshToken,
-			dataType: 'json',
-			method: 'POST'
-		}).then(refres => {
-			console.log("刷新结果:",refres.data.data.refreshToken)
-			console.log("刷新结果token:",refres.data.data.token)
+		var [error, refres] = await uni.request({
+		    url: BaseUrl+'api/user/refresh-token/'+userInfo.refreshToken,
+			method:'POST'
+		});
+		if(refres.data.code - 0 == 0){
+			console.log("刷新结果:",refres.data.data.refreshToken);
+			console.log("刷新结果token:",refres.data.data.token);
 			userInfo.refreshToken = refres.data.data.refreshToken;
 			userInfo.expireTime = refres.data.data.expireTime;
 			uni.setStorageSync('userInfo',userInfo);
 			uni.setStorageSync('token',refres.data.data.token)
-		})
+		}
 	}
 	
+	//获取token
+	let token = uni.getStorageSync('token');
 	
 	//设置请求前拦截器
 	http.interceptor.request = (config) => {

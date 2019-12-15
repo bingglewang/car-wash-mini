@@ -37,11 +37,10 @@
 				<text class="cuIcon-taxi" style="font-size: 50upx;color: #0081FF;"></text>
 				<text class="name">{{orderDetail.carInfo.number}}</text>
 			</view>
-			<view class="yt-list" style="padding-right: 20upx;">
+			<view class="yt-list">
 				<view class="yt-list-cell b-b">
 					<text class="cell-tit clamp">{{orderDetail.promotionInfo.title}}</text>
-					<!-- <text class="cell-tip">x1</text> -->
-					<uni-number-box :value="numberValue" @change="bindChange" class="cell-tip"></uni-number-box>
+					<text class="cell-tip">x1</text>
 				</view>
 			</view>
 		</view>
@@ -63,11 +62,11 @@
 		<view class="yt-list">
 			<view class="yt-list-cell b-b">
 				<text class="cell-tit clamp">商品金额</text>
-				<text class="cell-tip">￥179.88</text>
+				<text class="cell-tip">￥{{orderDetail.promotionInfo.price}}</text>
 			</view>
 			<view class="yt-list-cell b-b">
 				<text class="cell-tit clamp">优惠金额</text>
-				<text class="cell-tip red">-￥35</text>
+				<text class="cell-tip red">-￥0</text>
 			</view>
 			<view class="yt-list-cell desc-cell">
 				<text class="cell-tit clamp">备注</text>
@@ -80,9 +79,9 @@
 			<view class="price-content">
 				<text>实付款</text>
 				<text class="price-tip">￥</text>
-				<text class="price">475</text>
+				<text class="price">{{orderDetail.promotionInfo.price}}</text>
 			</view>
-			<text class="submit bg-gradual-blue" @click="submit">提交订单</text>
+			<text class="submit bg-gradual-blue" @click="submit">确认订单</text>
 		</view>
 		
 		<!-- 优惠券面板 -->
@@ -112,9 +111,7 @@
 </template>
 
 <script>
-	import uniNumberBox from '@/components/uni-number-box/uni-number-box.vue'
 	export default {
-		components: {uniNumberBox},
 		data() {
 			return {
 				maskState: 0, //优惠券面板显示状态
@@ -134,8 +131,7 @@
 					}
 				],
 				//订单详情
-				orderDetail:{},
-				numberValue: 0
+				orderDetail:{}
 			}
 		},
 		onLoad(option){
@@ -145,10 +141,6 @@
 			console.log("订单信息：",this.orderDetail)
 		},
 		methods: {
-			bindChange(value) {
-				this.numberValue = value
-				console.log("数量：",this.numberValue)
-			},
 			//修改手机号
 			modifyPhone(){
 				uni.showModal({
@@ -168,18 +160,21 @@
 				//跳转支付页面，
 				let _this = this;
 				let orderParam = {
-					vehicleType:1,
-					vehicleNumber: '浙A32132',
-					totalAmount:10,
-					lng:'',
-					lat:'',
-					productId:1,
-					address:'',
-					couponId:1,
-					payAmount:1
+					vehicleType:this.orderDetail.carInfo.type,
+					vehicleNumber: this.orderDetail.carInfo.number,
+					totalAmount: this.orderDetail.promotionInfo.price,
+					lng:this.orderDetail.addressInfo.longitude,
+					lat:this.orderDetail.addressInfo.latitude,
+					productId:this.orderDetail.promotionInfo.id,
+					address:this.orderDetail.addressInfo.address,
+					couponId:"",
+					sourceType:1,
+					vehicleId:this.orderDetail.carInfo.id,
+					payType:2,
+					payAmount:this.orderDetail.promotionInfo.price
 				}
-				_this.$api.request(orderParam,'','POST').then(res => {
-					
+				_this.$api.request(orderParam,'api/order/place-order','POST').then(res => {
+					console.log("下单结果：",res)
 				})
 			},
 			stopPrevent(){}

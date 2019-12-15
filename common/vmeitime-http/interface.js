@@ -93,9 +93,11 @@ export default {
 						resolve(response);
 					}else{
 						if(response.data.code -0 != 100){
-							uni.showModal({
-								title:response.data.msg
-							})
+							if(response.data.msg != '请勿重复点击'){
+								uni.showModal({
+									title:response.data.msg
+								})
+							}
 						}
 					}
 				} else {
