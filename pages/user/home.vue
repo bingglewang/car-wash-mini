@@ -12,9 +12,9 @@
 							<view class="icon"><img src="../../static/user/mycars.png" /></view>
 							<view class="text">我的车辆</view>
 						</view>
-						<view class="item" @click="toPages('/pages/user/myVipCards')">
+						<view class="item" @click="toPages('/pages/order/home')">
 							<view class="icon"><img src="../../static/user/vipmanage.png" /></view>
-							<view class="text">我的次卡</view>
+							<view class="text">订单列表</view>
 						</view>
 						<view class="item" @click="toPages('/pages/user/coupon')">
 							<view class="icon"><img src="../../static/user/coupon.png" /></view>

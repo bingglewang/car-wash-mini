@@ -149,12 +149,20 @@
 			},
 			//显示优惠券面板
 			toggleMask(type){
+				let that = this;
 				let timer = type === 'show' ? 10 : 300;
 				let	state = type === 'show' ? 1 : 0;
 				this.maskState = 2;
 				setTimeout(()=>{
 					this.maskState = state;
+					that.getCouponList();
 				}, timer)
+			},
+			getCouponList(){
+				let that = this;
+				that.$api.request({useStatus:0},'api/coupon/myCoupons','GET').then(res => {
+					
+				})
 			},
 			submit(){
 				//跳转支付页面，
