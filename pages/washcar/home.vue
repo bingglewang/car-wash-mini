@@ -172,7 +172,7 @@
 				let _this = this;
 				_this.myCarList = []
 				//获取全部车辆
-				this.$api.request({}, 'api/vehicle/vehicleList', 'GET').then(res => {
+				this.$api.request({}, 'api/vehicle/vehicleList', 'GET',false).then(res => {
 					let carLists = res.data.data;
 					let carItem = [];
 					for (let i = 0; i < carLists.length; i++) {
@@ -188,6 +188,8 @@
 						}
 					}
 					console.log("车辆：", _this.myCarList)
+					//加载产品信息
+					_this.getProducts();
 				})
 			},
 			selectPromotion(id, index) {
@@ -274,6 +276,10 @@
 			}
 		},
 		mounted() {
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			})
 			this.screenHeight = uni.getStorageSync('screenHeight') - 50 - uni.getStorageSync('bottomTarHeight');
 			this.mapHeight = this.screenHeight - this.contentheght;
 			//是否登录判断
@@ -286,8 +292,6 @@
 			}
 			//加载车辆
 			this.getAllCars();
-			//加载产品
-			this.getProducts();
 			//显示气泡
 			let that = this;
 			this.showQiPao = uni.getStorageSync('isShowQiPao');

@@ -734,7 +734,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1636,9 +1636,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!*************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/store/index.js ***!
-  \*************************************************************/
+/*!***********************************************!*\
+  !*** E:/project/car-wash-mini/store/index.js ***!
+  \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2632,20 +2632,20 @@ var index_esm = {
 /***/ }),
 
 /***/ 17:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/index.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/index.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.request = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 18));var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 262));
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = exports.request = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 18));var _interface = _interopRequireDefault(__webpack_require__(/*! ./interface */ 21));
 
 var _index = __webpack_require__(/*! ../../util/env/index */ 22);
 
 var _common = __webpack_require__(/*! @/util/common */ 23);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance");}function _iterableToArrayLimit(arr, i) {var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
-var request = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(data, url, method) {var timestamp, randomStr, userInfo, isExpire, _ref2, _ref3, error, refres, token, baseData;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+var request = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(data, url, method) {var isCloseLoading,timestamp,randomStr,userInfo,isExpire,_ref2,_ref3,error,refres,token,baseData,_args = arguments;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:isCloseLoading = _args.length > 3 && _args[3] !== undefined ? _args[3] : 'true';
             _interface.default.config.baseUrl = _index.BaseUrl;
 
             //随机字符串,时间戳
@@ -2659,10 +2659,10 @@ var request = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE_
             //let isExpire = contrastTime(1576034279);
             console.log("过期时间:", isExpire);
             //过期刷新token
-            if (!(isExpire && userInfo.expireTime != undefined && userInfo.expireTime != '')) {_context.next = 14;break;}_context.next = 9;return (
+            if (!(isExpire && userInfo.expireTime != undefined && userInfo.expireTime != '')) {_context.next = 15;break;}_context.next = 10;return (
               uni.request({
                 url: _index.BaseUrl + 'api/user/refresh-token/' + userInfo.refreshToken,
-                method: 'POST' }));case 9:_ref2 = _context.sent;_ref3 = _slicedToArray(_ref2, 2);error = _ref3[0];refres = _ref3[1];
+                method: 'POST' }));case 10:_ref2 = _context.sent;_ref3 = _slicedToArray(_ref2, 2);error = _ref3[0];refres = _ref3[1];
 
             if (refres.data.code - 0 == 0) {
               console.log("刷新结果:", refres.data.data.refreshToken);
@@ -2671,7 +2671,7 @@ var request = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE_
               userInfo.expireTime = refres.data.data.expireTime;
               uni.setStorageSync('userInfo', userInfo);
               uni.setStorageSync('token', refres.data.data.token);
-            }case 14:
+            }case 15:
 
 
             //获取token
@@ -2688,6 +2688,11 @@ var request = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE_
             //设置请求结束后拦截器
             _interface.default.interceptor.response = function (response) {
               //判断返回状态 执行相应操作
+              if (isCloseLoading) {
+                setTimeout(function () {
+                  uni.hideLoading();
+                }, 1000);
+              }
               return response;
             };
 
@@ -2700,7 +2705,7 @@ var request = /*#__PURE__*/function () {var _ref = _asyncToGenerator( /*#__PURE_
               url: url,
               dataType: 'json',
               method: method || 'GET',
-              data: Object.assign(data, baseData) }));case 19:case "end":return _context.stop();}}}, _callee, this);}));return function request(_x, _x2, _x3) {return _ref.apply(this, arguments);};}();
+              data: Object.assign(data, baseData) }));case 20:case "end":return _context.stop();}}}, _callee, this);}));return function request(_x, _x2, _x3) {return _ref.apply(this, arguments);};}();
 
 
 
@@ -8253,7 +8258,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8274,14 +8279,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8357,7 +8362,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9466,10 +9471,227 @@ internalMixin(Vue);
 
 /***/ }),
 
+/***/ 21:
+/*!******************************************************************!*\
+  !*** E:/project/car-wash-mini/common/vmeitime-http/interface.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+var _index = __webpack_require__(/*! ../../util/env/index */ 22);function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+
+/*
+                                                                                                                                                                                                                                                        // 开放的接口
+                                                                                                                                                                                                                                                        import http from './interface'
+                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                        http.config.baseUrl = "http://localhost:8080/api/"
+                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                        http.request(url:'user/list',method:'GET').then((res)=>{
+                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
+                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                        http.get('user/list').then((res)=>{
+                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
+                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                        http.get('user/list', {status: 1}).then((res)=>{
+                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
+                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                        http.post('user', {id:1, status: 1}).then((res)=>{
+                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
+                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                        http.put('user/1', {status: 2}).then((res)=>{
+                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
+                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                        http.delete('user/1').then((res)=>{
+                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
+                                                                                                                                                                                                                                                        }) 
+                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                        */var _default =
+{
+  config: {
+    baseUrl: _index.BaseUrl,
+    header: _defineProperty({
+      'Content-Type': 'application/json;charset=UTF-8' }, "Content-Type",
+    'application/x-www-form-urlencoded'),
+
+    data: {},
+    method: "GET",
+    dataType: "json", /* 如设为json，会对返回的数据做一次 JSON.parse */
+    responseType: "text",
+    success: function success() {},
+    fail: function fail() {},
+    complete: function complete() {} },
+
+  interceptor: {
+    request: null,
+    response: null },
+
+  request: function request(options) {var _this = this;
+    if (!options) {
+      options = {};
+    }
+    options.baseUrl = options.baseUrl || this.config.baseUrl;
+    options.dataType = options.dataType || this.config.dataType;
+    options.url = options.baseUrl + options.url;
+    options.data = options.data || {};
+    options.method = options.method || this.config.method;
+    //TODO 加密数据
+
+    //TODO 数据签名
+    /* 
+    _token = {'token': getStorage(STOREKEY_LOGIN).token || 'undefined'},
+    _sign = {'sign': sign(JSON.stringify(options.data))}
+    options.header = Object.assign({}, options.header, _token,_sign) 
+    */
+
+    return new Promise(function (resolve, reject) {
+      var _config = null;
+
+      options.complete = function (response) {
+        var statusCode = response.statusCode;
+        response.config = _config;
+        if (true) {
+          if (statusCode === 200) {
+            console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data));
+          }
+        }
+        if (_this.interceptor.response) {
+          var newResponse = _this.interceptor.response(response);
+          if (newResponse) {
+            response = newResponse;
+          }
+        }
+        // 统一的响应日志记录
+        _reslog(response);
+        if (statusCode === 200) {//成功
+          if (response.data.code - 0 == 0) {
+            resolve(response);
+          } else {
+            if (response.data.code - 0 != 100) {
+              if (response.data.msg != '请勿重复点击') {
+                uni.showToast({
+                  title: response.data.msg,
+                  duration: 1500,
+                  icon: 'none' });
+
+              }
+            }
+          }
+        } else {
+          reject(response);
+        }
+      };
+
+      _config = Object.assign({}, _this.config, options);
+      _config.requestId = new Date().getTime();
+
+      if (_this.interceptor.request) {
+        _this.interceptor.request(_config);
+      }
+
+      // 统一的请求日志记录
+      _reqlog(_config);
+
+      if (true) {
+        console.log("【" + _config.requestId + "】 地址：" + _config.url);
+        if (_config.data) {
+          console.log("【" + _config.requestId + "】 参数：" + JSON.stringify(_config.data));
+        }
+      }
+
+      uni.request(_config);
+    });
+  },
+  get: function get(url, data, options) {
+    if (!options) {
+      options = {};
+    }
+    options.url = url;
+    options.data = data;
+    options.method = 'GET';
+    return this.request(options);
+  },
+  post: function post(url, data, options) {
+    if (!options) {
+      options = {};
+    }
+    options.url = url;
+    options.data = data;
+    options.method = 'POST';
+    return this.request(options);
+  },
+  put: function put(url, data, options) {
+    if (!options) {
+      options = {};
+    }
+    options.url = url;
+    options.data = data;
+    options.method = 'PUT';
+    return this.request(options);
+  },
+  delete: function _delete(url, data, options) {
+    if (!options) {
+      options = {};
+    }
+    options.url = url;
+    options.data = data;
+    options.method = 'DELETE';
+    return this.request(options);
+  } };
+
+
+
+/**
+        * 请求接口日志记录
+        */exports.default = _default;
+function _reqlog(req) {
+  if (true) {
+    console.log("【" + req.requestId + "】 地址：" + req.url);
+    if (req.data) {
+      console.log("【" + req.requestId + "】 请求参数：" + JSON.stringify(req.data));
+    }
+  }
+  //TODO 调接口异步写入日志数据库
+}
+
+/**
+   * 响应接口日志记录
+   */
+function _reslog(res) {
+  var _statusCode = res.statusCode;
+  if (true) {
+    console.log("【" + res.config.requestId + "】 地址：" + res.config.url);
+    if (res.config.data) {
+      console.log("【" + res.config.requestId + "】 请求参数：" + JSON.stringify(res.config.data));
+    }
+    console.log("【" + res.config.requestId + "】 响应结果：" + JSON.stringify(res));
+  }
+  //TODO 除了接口服务错误外，其他日志调接口异步写入日志数据库
+  switch (_statusCode) {
+    case 200:
+      break;
+    case 401:
+      break;
+    case 404:
+      break;
+    default:
+      break;}
+
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 22:
-/*!****************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/env/index.js ***!
-  \****************************************************************/
+/*!**************************************************!*\
+  !*** E:/project/car-wash-mini/util/env/index.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9479,9 +9701,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.BaseUrl = 
 /***/ }),
 
 /***/ 227:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9490,9 +9712,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 /***/ }),
 
 /***/ 228:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/img/st_star_active.png ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/static/img/st_star_active.png ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -9501,9 +9723,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAgCAYAAACc
 /***/ }),
 
 /***/ 23:
-/*!*******************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/common/index.js ***!
-  \*******************************************************************/
+/*!*****************************************************!*\
+  !*** E:/project/car-wash-mini/util/common/index.js ***!
+  \*****************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9652,9 +9874,9 @@ module.exports = {
 /***/ }),
 
 /***/ 236:
-/*!****************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/components/uni-icons/icons.js ***!
-  \****************************************************************************/
+/*!**************************************************************!*\
+  !*** E:/project/car-wash-mini/components/uni-icons/icons.js ***!
+  \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9757,221 +9979,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 262:
-/*!********************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/common/vmeitime-http/interface.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
-
-
-var _index = __webpack_require__(/*! ../../util/env/index */ 22);function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
-
-
-/*
-                                                                                                                                                                                                                                                        // 开放的接口
-                                                                                                                                                                                                                                                        import http from './interface'
-                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                        http.config.baseUrl = "http://localhost:8080/api/"
-                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                        http.request(url:'user/list',method:'GET').then((res)=>{
-                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
-                                                                                                                                                                                                                                                        })
-                                                                                                                                                                                                                                                        http.get('user/list').then((res)=>{
-                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
-                                                                                                                                                                                                                                                        })
-                                                                                                                                                                                                                                                        http.get('user/list', {status: 1}).then((res)=>{
-                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
-                                                                                                                                                                                                                                                        })
-                                                                                                                                                                                                                                                        http.post('user', {id:1, status: 1}).then((res)=>{
-                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
-                                                                                                                                                                                                                                                        })
-                                                                                                                                                                                                                                                        http.put('user/1', {status: 2}).then((res)=>{
-                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
-                                                                                                                                                                                                                                                        })
-                                                                                                                                                                                                                                                        http.delete('user/1').then((res)=>{
-                                                                                                                                                                                                                                                        	console.log(JSON.stringify(res))
-                                                                                                                                                                                                                                                        }) 
-                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                        */var _default =
-{
-  config: {
-    baseUrl: _index.BaseUrl,
-    header: _defineProperty({
-      'Content-Type': 'application/json;charset=UTF-8' }, "Content-Type",
-    'application/x-www-form-urlencoded'),
-
-    data: {},
-    method: "GET",
-    dataType: "json", /* 如设为json，会对返回的数据做一次 JSON.parse */
-    responseType: "text",
-    success: function success() {},
-    fail: function fail() {},
-    complete: function complete() {} },
-
-  interceptor: {
-    request: null,
-    response: null },
-
-  request: function request(options) {var _this = this;
-    if (!options) {
-      options = {};
-    }
-    options.baseUrl = options.baseUrl || this.config.baseUrl;
-    options.dataType = options.dataType || this.config.dataType;
-    options.url = options.baseUrl + options.url;
-    options.data = options.data || {};
-    options.method = options.method || this.config.method;
-    //TODO 加密数据
-
-    //TODO 数据签名
-    /* 
-    _token = {'token': getStorage(STOREKEY_LOGIN).token || 'undefined'},
-    _sign = {'sign': sign(JSON.stringify(options.data))}
-    options.header = Object.assign({}, options.header, _token,_sign) 
-    */
-
-    return new Promise(function (resolve, reject) {
-      var _config = null;
-
-      options.complete = function (response) {
-        var statusCode = response.statusCode;
-        response.config = _config;
-        if (true) {
-          if (statusCode === 200) {
-            console.log("【" + _config.requestId + "】 结果：" + JSON.stringify(response.data));
-          }
-        }
-        if (_this.interceptor.response) {
-          var newResponse = _this.interceptor.response(response);
-          if (newResponse) {
-            response = newResponse;
-          }
-        }
-        // 统一的响应日志记录
-        _reslog(response);
-        if (statusCode === 200) {//成功
-          if (response.data.code - 0 == 0) {
-            resolve(response);
-          } else {
-            if (response.data.code - 0 != 100) {
-              if (response.data.msg != '请勿重复点击') {
-                uni.showModal({
-                  title: response.data.msg });
-
-              }
-            }
-          }
-        } else {
-          reject(response);
-        }
-      };
-
-      _config = Object.assign({}, _this.config, options);
-      _config.requestId = new Date().getTime();
-
-      if (_this.interceptor.request) {
-        _this.interceptor.request(_config);
-      }
-
-      // 统一的请求日志记录
-      _reqlog(_config);
-
-      if (true) {
-        console.log("【" + _config.requestId + "】 地址：" + _config.url);
-        if (_config.data) {
-          console.log("【" + _config.requestId + "】 参数：" + JSON.stringify(_config.data));
-        }
-      }
-
-      uni.request(_config);
-    });
-  },
-  get: function get(url, data, options) {
-    if (!options) {
-      options = {};
-    }
-    options.url = url;
-    options.data = data;
-    options.method = 'GET';
-    return this.request(options);
-  },
-  post: function post(url, data, options) {
-    if (!options) {
-      options = {};
-    }
-    options.url = url;
-    options.data = data;
-    options.method = 'POST';
-    return this.request(options);
-  },
-  put: function put(url, data, options) {
-    if (!options) {
-      options = {};
-    }
-    options.url = url;
-    options.data = data;
-    options.method = 'PUT';
-    return this.request(options);
-  },
-  delete: function _delete(url, data, options) {
-    if (!options) {
-      options = {};
-    }
-    options.url = url;
-    options.data = data;
-    options.method = 'DELETE';
-    return this.request(options);
-  } };
-
-
-
-/**
-        * 请求接口日志记录
-        */exports.default = _default;
-function _reqlog(req) {
-  if (true) {
-    console.log("【" + req.requestId + "】 地址：" + req.url);
-    if (req.data) {
-      console.log("【" + req.requestId + "】 请求参数：" + JSON.stringify(req.data));
-    }
-  }
-  //TODO 调接口异步写入日志数据库
-}
-
-/**
-   * 响应接口日志记录
-   */
-function _reslog(res) {
-  var _statusCode = res.statusCode;
-  if (true) {
-    console.log("【" + res.config.requestId + "】 地址：" + res.config.url);
-    if (res.config.data) {
-      console.log("【" + res.config.requestId + "】 请求参数：" + JSON.stringify(res.config.data));
-    }
-    console.log("【" + res.config.requestId + "】 响应结果：" + JSON.stringify(res));
-  }
-  //TODO 除了接口服务错误外，其他日志调接口异步写入日志数据库
-  switch (_statusCode) {
-    case 200:
-      break;
-    case 401:
-      break;
-    case 404:
-      break;
-    default:
-      break;}
-
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -10004,9 +10011,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 36:
-/*!***********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/util/util.js ***!
-  \***********************************************************/
+/*!*********************************************!*\
+  !*** E:/project/car-wash-mini/util/util.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10036,9 +10043,9 @@ module.exports = {
 /***/ }),
 
 /***/ 4:
-/*!*********************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json ***!
-  \*********************************************************/
+/*!*******************************************!*\
+  !*** E:/project/car-wash-mini/pages.json ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10048,9 +10055,9 @@ module.exports = {
 /***/ }),
 
 /***/ 49:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/mycars.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/mycars.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10946,9 +10953,9 @@ main();
 /***/ }),
 
 /***/ 50:
-/*!************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/vipmanage.png ***!
-  \************************************************************************/
+/*!**********************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/vipmanage.png ***!
+  \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10957,9 +10964,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACt
 /***/ }),
 
 /***/ 51:
-/*!*********************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/static/user/coupon.png ***!
-  \*********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/project/car-wash-mini/static/user/coupon.png ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10979,9 +10986,9 @@ module.exports = {"_from":"@dcloudio/uni-stat@^2.0.0-alpha-24420191128001","_id"
 /***/ }),
 
 /***/ 7:
-/*!**************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"style"} ***!
-  \**************************************************************************/
+/*!************************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"style"} ***!
+  \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10991,9 +10998,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 8:
-/*!*************************************************************************!*\
-  !*** D:/project/car-wash-mini/car-wash-mini/pages.json?{"type":"stat"} ***!
-  \*************************************************************************/
+/*!***********************************************************!*\
+  !*** E:/project/car-wash-mini/pages.json?{"type":"stat"} ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

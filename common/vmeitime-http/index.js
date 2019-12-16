@@ -4,7 +4,7 @@ import {BaseUrl} from '../../util/env/index'
 
 import {randomString,contrastTime} from '@/util/common'
 
-export const request = async (data,url,method) => {
+export const request = async (data,url,method,isCloseLoading='true') => {
 	http.config.baseUrl = BaseUrl
 
 	//随机字符串,时间戳
@@ -47,6 +47,11 @@ export const request = async (data,url,method) => {
 	//设置请求结束后拦截器
 	http.interceptor.response = (response) => {
 		//判断返回状态 执行相应操作
+		if(isCloseLoading){
+			setTimeout(() => {
+				uni.hideLoading();
+			},1000)
+		}
 		return response
 	}
 	

@@ -16,26 +16,27 @@
 				<scroll-view style="height: 100%;" scroll-y="true" @scrolltolower="lower1" scroll-with-animation :scroll-into-view="toView">
 					<view :id="'top'+listIndex" style="width: 100%;height: 110upx;"></view>
 					<view class='cu-card'>
-						<view class="cu-item bg-white shadow padding" v-for="(item, index) in listItem" v-if="listItem.length > 0" :key="index" style="padding-bottom: 16upx;" @click="naviagetorToPages('/pages/order/orderDetail')">
+						<view class="cu-item bg-white shadow padding" v-for="(item, index) in listItem" v-if="listItem.length > 0" :key="index"
+						 style="padding-bottom: 16upx;" @click="naviagetorToPages('/pages/order/orderDetail')">
 							<view class="order-item" style="display: flex;align-items: center;">
 								<text class="text-cyan cuIcon-time" style="margin-right: 15upx;"></text>
 								<text class="text-black">订单号：</text>
-								<text class="order-font-color">203084757674748338</text>
+								<text class="order-font-color">{{item.orderSn}}</text>
 							</view>
 							<view class="order-item" style="display: flex;align-items: center;">
 								<text class="text-blue cuIcon-taxi" style="margin-right: 15upx;"></text>
 								<text class="text-black">下单时间：</text>
-								<text class="order-font-color">沪HUA298</text>
+								<text class="order-font-color">{{item.formatCreateTime}}</text>
 							</view>
 							<view class="order-item">
 								<text class="text-olive cuIcon-phone" style="margin-right: 15upx;"></text>
 								<text class="text-black">实付金额：</text>
-								<text class="order-font-color">￥27.95</text>
+								<text class="order-font-color">￥{{item.payAmount}}</text>
 							</view>
 							<view class="order-item">
 								<text class="text-red cuIcon-location" style="margin-right: 15upx;"></text>
 								<text class="text-black">订单状态：</text>
-								<text class="order-font-color">进行中</text>
+								<text class="order-font-color">{{item.formatStatus}}</text>
 							</view>
 							<view class="order-item">
 								<view class="order-item-bottom">
@@ -47,7 +48,7 @@
 					<view class='noCard' v-if="listItem.length===0">
 						暂无信息
 					</view>
-					<view style="width: 100%;height: 100upx;opacity:0;">底部占位盒子</view>
+					<view style="width: 100%;height: 100upx;opacity:0;"></view>
 				</scroll-view>
 			</swiper-item>
 		</swiper>
@@ -61,6 +62,7 @@
 	import refresh from '../../components/refresh.vue';
 	import navTab from '../../components/navTab.vue';
 	import tabBar4 from '../../components/tabBar4.vue';
+	import {formatTime} from '@/util/common'
 	export default {
 		components: {
 			refresh,
@@ -71,20 +73,55 @@
 			return {
 				currentPage: 'index',
 				toView: '', //回到顶部id
-				tabTitle: ['全部', '未支付', '待接单', '带洗车','进行中'], //导航栏格式 --导航栏组件
+				tabTitle: ['全部', '未支付', '待接单', '待洗车', '进行中'], //导航栏格式 --导航栏组件
 				currentTab: 0, //sweiper所在页
-				pages: [1, 1, 1, 1,1], //第几个swiper的第几页
+				pages: [1, 1, 1, 1, 1], //第几个swiper的第几页
 				list: [
-					[1, 2, 3, 4, 5, 6],
-					['a', 'b', 'c', 'd', 'e', 'f'],
-					['2233', '4234', '13144', '324244'],
-					['2233', '4234', '13144', '324244'],
-					['2233', '4234', '13144', '324244']
+					[],
+					[],
+					[],
+					[],
+					[]
 				] //数据格式
 			};
 		},
 		onLoad(e) {
 
+		},
+		mounted() {
+			//初始化数据
+			let that = this;
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			})
+			for (let i = 0; i < that.pages.length; i++) {
+				let status = that.orderState(i + 1);
+				let orderListParam = {
+					status: status,
+					pageNum: that.pages[i],
+					pageSize: 10
+				}
+				that.$api.request(orderListParam, 'api/order/orderList', 'GET', false).then(res => {
+					let orderList = res.data.data.result;
+					let newArr = orderList.map((item,index) =>{
+						let myProperty = {
+							formatCreateTime:formatTime(item.createTime),
+							formatStatus:that.orderStatusStr(item.status)
+						}
+					   return Object.assign(item,myProperty)
+					})
+					console.log("订单数据：", newArr)
+					
+					let tempList = that.list
+					tempList[i] = newArr
+					that.list = tempList
+					that.$forceUpdate() //二维数组，开启强制渲染
+				})
+			}
+			setTimeout(() => {
+				uni.hideLoading();
+			}, 1000)
 		},
 		onShow() {},
 		onHide() {},
@@ -108,16 +145,67 @@
 				return new Promise((resolve, reject) => {
 					this.pages[this.currentTab]++
 					var that = this
-					setTimeout(() => {
-						uni.hideLoading()
-						uni.showToast({
-							icon: 'none',
-							title: `请求第${that.currentTab + 1 }个导航栏的第${that.pages[that.currentTab]}页数据成功`
-						})
-						let newData = ['新数据1', '新数据2', '新数据3']
-						resolve(newData)
-					}, 1000)
+					let status = that.orderState(that.currentTab + 1);
+					let orderListParam = {
+						status: status,
+						pageNum: that.pages[that.currentTab],
+						pageSize: 10
+					}
+					that.$api.request(orderListParam, 'api/order/orderList', 'GET').then(res => {
+						let orderList = res.data.data.result;
+						if (orderList == 0) {
+							that.$msg('无更多数据')
+						} else {
+							let newArr = orderList.map((item,index) =>{
+								let myProperty = {
+									formatCreateTime:formatTime(item.createTime),
+									formatStatus:that.orderStatusStr(item.status)
+								}
+							   return Object.assign(item,myProperty)
+							})
+							resolve(newArr)
+						}
+					})
 				})
+			},
+			orderStatusStr(status){
+				switch (status){
+					case 0:
+						return '待付款';
+						break;
+					case 1:
+						return '待接单';
+						break;
+					case 2:
+						return '进行中';
+						break;
+					case 3:
+						return '未评价';
+						break;
+					default:
+						return '';
+						break;
+				}
+			},
+			//订单状态
+			orderState(curTab) {
+				switch (curTab) {
+					case 2:
+						return 0; //待付款 
+						break;
+					case 3:
+						return 1; //待接单
+						break;
+					case 4:
+						return 2; //进行中
+						break;
+					case 5:
+						return 3; //未评价
+						break;
+					default:
+						return ""; //全部
+						break;
+				}
 			},
 			// swiper 滑动
 			swiperTab: function(e) {
@@ -128,7 +216,7 @@
 			lower1: util.throttle(function(e) {
 				console.log(`加载${this.currentTab}`) //currentTab表示当前所在页数 根据当前所在页数发起请求并带上page页数
 				uni.showLoading({
-					title: '加载中',
+					title: '加载中...',
 					mask: true
 				})
 				this.isRequest().then((res) => {
@@ -149,37 +237,59 @@
 			refreshEnd(e) {
 				this.$refs.refresh.refreshEnd(e);
 			},
+			//刷新
 			isRefresh() {
-				setTimeout(() => {
-					uni.showToast({
-						icon: 'success',
-						title: '刷新成功'
+				let that = this;
+				let status = that.orderState(that.currentTab + 1);
+				let orderListParam = {
+					status: status,
+					pageNum: that.pages[that.currentTab],
+					pageSize: 10
+				}
+				that.$api.request(orderListParam, 'api/order/orderList', 'GET').then(res => {
+					let orderList = res.data.data.result;
+					let newArr = orderList.map((item,index) =>{
+						let myProperty = {
+							formatCreateTime:formatTime(item.createTime),
+							formatStatus:that.orderStatusStr(item.status)
+						}
+					   return Object.assign(item,myProperty)
 					})
-					this.$refs.refresh.endAfter() //刷新结束调用
-				}, 1000)
+					
+					let tempList = that.list
+					tempList[that.currentTab] = newArr
+					that.list = tempList
+					that.$forceUpdate() //二维数组，开启强制渲染
+					setTimeout(() => {
+						uni.showToast({
+							icon: 'success',
+							title: '刷新成功'
+						})
+						that.$refs.refresh.endAfter() //刷新结束调用
+					}, 1000)
+				})
 			}
 		}
 	};
 </script>
 
 <style lang="scss" scoped>
-	
 	.order-font-color {
 		color: #75787d;
 	}
-	
+
 	.order-item {
 		padding: 8upx 20upx;
 		font-size: 32upx;
 		color: #303133;
 	}
-	
-	.order-item-bottom{
+
+	.order-item-bottom {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-	
+
 	.container999 {
 		width: 100vw;
 		font-size: 28upx;

@@ -159,6 +159,10 @@
 			submit(){
 				//跳转支付页面，
 				let _this = this;
+				uni.showLoading({
+					title: '提交中...',
+					mask: true
+				})
 				let orderParam = {
 					vehicleType:this.orderDetail.carInfo.type,
 					vehicleNumber: this.orderDetail.carInfo.number,
