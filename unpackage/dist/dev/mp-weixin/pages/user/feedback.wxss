@@ -1,7 +1,7 @@
-.page.data-v-597adf64 {
+.page.data-v-a8497bb2 {
   height: 100vh;
 }
-.feed-back-title.data-v-597adf64 {
+.feed-back-title.data-v-a8497bb2 {
   padding-left: 10px;
   height: 50px;
   display: -webkit-box;
@@ -11,34 +11,34 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.feed-back-title .feed-back-title-text.data-v-597adf64 {
+.feed-back-title .feed-back-title-text.data-v-a8497bb2 {
     font-size: 20px;
     color: #000000;
     font-weight: bold;
 }
-.feed-back-desc.data-v-597adf64 {
+.feed-back-desc.data-v-a8497bb2 {
   padding-left: 10px;
   height: 50rpx;
 }
-.feed-back-desc .feed-back-desc-text.data-v-597adf64 {
+.feed-back-desc .feed-back-desc-text.data-v-a8497bb2 {
     color: #888888;
     font-size: 14px;
 }
-.feed-back-check-item.data-v-597adf64 {
+.feed-back-check-item.data-v-a8497bb2 {
   padding-left: 10px;
 }
-.feed-back-content.data-v-597adf64 {
+.feed-back-content.data-v-a8497bb2 {
   height: 100px;
   padding-left: 10px;
   padding-right: 10px;
 }
-.feed-back-content .feed-back-content-box.data-v-597adf64 {
+.feed-back-content .feed-back-content-box.data-v-a8497bb2 {
     height: 100px;
 }
-.feed-back-content .feed-back-content-box .feed-back-text-area.data-v-597adf64 {
+.feed-back-content .feed-back-content-box .feed-back-text-area.data-v-a8497bb2 {
       height: 80px;
 }
-.feed-back-phone.data-v-597adf64 {
+.feed-back-phone.data-v-a8497bb2 {
   height: 80px;
   width: 100%;
   padding-right: 10px;
@@ -50,11 +50,11 @@
   -webkit-align-items: center;
           align-items: center;
 }
-.feed-back-phone .feed-back-phone-number.data-v-597adf64 {
+.feed-back-phone .feed-back-phone-number.data-v-a8497bb2 {
     border-bottom: #ddd 1rpx solid;
     width: 100%;
 }
-.feedback-item.data-v-597adf64 {
+.feedback-item.data-v-a8497bb2 {
   border-radius: 20px;
   width: 80%;
   height: 50rpx;
@@ -62,7 +62,7 @@
   padding: 4rpx;
   margin-top: 10px;
 }
-.detail-bottom.data-v-597adf64 {
+.detail-bottom.data-v-a8497bb2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -71,7 +71,7 @@
           align-items: center;
   margin-top: 50px;
 }
-.detail-bottom .save-button-addCar.data-v-597adf64 {
+.detail-bottom .save-button-addCar.data-v-a8497bb2 {
     border-radius: 100px;
     width: 80%;
     background-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);
